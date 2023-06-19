@@ -50,6 +50,7 @@ def create_parser():
         "--expiration",
         "-e",
         metavar="EXPIRATION",
+        required=True,
         help="supply the expiration date of products",
     )
 
