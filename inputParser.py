@@ -1,6 +1,7 @@
 import argparse
 
 
+
 def create_parser():
     parser = argparse.ArgumentParser(description="Grocery store",
                                      prog="SuperPy",
@@ -45,13 +46,23 @@ def create_parser():
         default=1,
         help="supply the amount of products purchased (default=1)",
     )
-
+    # ---------------
+    # # deze staat nu in dagen maar wil ik naar datum
+    # buy.add_argument(
+    #     "--expiration",
+    #     "-e",
+    #     metavar="[EXPIRATION]",
+    #     type=int,
+    #     default=10,
+    #     help="supply the amount in days of the shelf life of a product",
+    # )
+    # ---------------
     buy.add_argument(
         "--expiration",
         "-e",
         metavar="EXPIRATION",
-        required=True,
         help="supply the expiration date of products",
+        required=True,
     )
 
     # sell_commands

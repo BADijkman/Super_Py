@@ -1,5 +1,5 @@
 from inputParser import create_parser
-# from buy import handleBuy
+from buy import handleBuy
 
 
 def main():
@@ -8,10 +8,8 @@ def main():
     parsed = parser.parse_args()
     # Buy command was given and now parsed
     if hasattr(parsed, "buy"):
-        # handleBuy(parsed)
-        print("command is BUY")
-        print(parsed)
-    # Sell command was given and now parsed
+        handleBuy(parsed)
+
     if hasattr(parsed, "sell"):
         # handleSell(parsed)
         print("command is SELL")

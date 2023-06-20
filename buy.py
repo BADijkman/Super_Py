@@ -1,38 +1,31 @@
+
+import random
+from date import get_date
+from termcolor import colored
+from utils.utils import appendRowToBoughtCsv, appendRowToInventoryCsv
+
+
 # import sys
-# import random
-# from datetime import timedelta
-# from console import console
-# from getDateFromFile import getDateFromFile
-# from utils import appendRowToBoughtCsv, appendRowToInventoryCsv
-
-
 # sys.path.insert(0, "../csv")
 # # sys.path.insert(0, "../utils") #AD
 
 
 def handleBuy(parsed_Data):
-    #     newId = random.randint(1000000, 9999999)
-    name = parsed_Data.name.lower()
-    print(name)
-#     price = parsed_Data.price
-#     amount = parsed_Data.amount
-#     inputExpiration = parsed_Data.expiration  # ik wil datum ipv aant dagen
+    newId = random.randint(1000000, 9999999)
+    name = parsed_Data.name
+    price = parsed_Data.price
+    amount = parsed_Data.amount
+    date = get_date()
+    expiration_date = parsed_Data.expiration
 
-#     # ------
-#     # Get the current day from file to set the expiration date
-#     day = getDateFromFile("date")
-#     euDay = day.strftime("%d-%m-%Y")
-#     expiration = (day + timedelta(days=inputExpiration)).strftime("%d-%m-%Y")
-#     # ------
+    try:
+        # Append line to bought.csv
+        appendRowToBoughtCsv(newId, name, price, amount, date, expiration_date)
 
-#     try:
-#         # Write new product to the inventory
-#         # Append line to bought.csv
-#         appendRowToBoughtCsv(newId, name, euDay, price, amount, expiration)
+        # Append line to inventory.csv
+        appendRowToInventoryCsv(newId, name, amount)
 
-#         # Append line to inventory.csv
-#         appendRowToInventoryCsv(newId, name, amount)
+        print(colored('OK', 'green', attrs=["reverse", 'bold']))
 
-#         console.print("[blue bold]OK")
-#     except:
-#         print("An exception occurred")
+    except:
+        print(colored('an exception occurred', 'red'))
