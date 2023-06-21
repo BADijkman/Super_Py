@@ -1,5 +1,14 @@
+import os
 from inputParser import create_parser
 from buy import handleBuy
+from sell import handleSell
+from init import init_data
+
+
+base_path = os.getcwd()
+data_path = os.path.join(base_path, "cvs")
+
+init_data(base_path, data_path)
 
 
 def main():
@@ -11,9 +20,7 @@ def main():
         handleBuy(parsed)
 
     if hasattr(parsed, "sell"):
-        # handleSell(parsed)
-        print("command is SELL")
-        print(parsed)
+        handleSell(parsed)
 
 
 if __name__ == "__main__":
