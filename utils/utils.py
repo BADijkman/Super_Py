@@ -58,3 +58,17 @@ def getAllItemsByNameFromInventoryCsv(name):
                         "amount": int(line["amount"]), }
                 )
     return inStock
+
+
+# def appendRowToSoldCsv():
+
+def appendRowToSoldCsv(inputId, name, amount, sell_date, sell_price):
+    print("in appendRowtoSold")
+    print(inputId, name, amount, sell_date, sell_price)
+    with open("./csv/sold.csv", "a", newline="") as s:
+        writer = csv.writer(s, delimiter=",")
+        writer.writerow([inputId, name, amount, sell_date, sell_price])
+
+
+def removeLineFromInventoryCsv():
+    pass

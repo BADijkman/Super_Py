@@ -23,7 +23,7 @@ def init_data(base_path, cvs_path):
     if os.path.exists(f'{cvs_path }/sold.csv'):
         pass
     else:
-        fieldnames = ['id', 'name',
+        fieldnames = ['id', 'name', 'amount',
                       'sell_date', 'sell_price']
 
         with open(f'{cvs_path }/sold.csv', 'w', encoding='UTF8', newline='') as f:
