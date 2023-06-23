@@ -6,7 +6,7 @@ from init import init_data
 
 
 base_path = os.getcwd()
-data_path = os.path.join(base_path, "cvs")
+data_path = os.path.join(base_path, "csv")
 
 init_data(base_path, data_path)
 
