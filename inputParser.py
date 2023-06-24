@@ -1,4 +1,5 @@
 import argparse
+import datetime
 
 
 def create_parser():
@@ -35,7 +36,7 @@ def create_parser():
         "-p",
         metavar="PRODUCT_PRICE",
         type=float,
-        help="supply the price of the product",
+        help="supply the price of the product EURO",
         required=True,
     )
     buy.add_argument(
@@ -50,9 +51,11 @@ def create_parser():
     buy.add_argument(
         "--expiration",
         "-e",
-        metavar="EXPIRATION",
-        help="supply the expiration date of products",
+        metavar="EXPIRATION dd-mm-yyyy'",
+        type=lambda s: datetime.datetime.strptime(s, '%d-%m-%Y'),
+        help="supply the expiration date of products dd-mm-yyyy",
         required=True,
+
     )
 
     # sell_commands
@@ -61,7 +64,8 @@ def create_parser():
         help="action for selling an item.",
     )
 
-    sell.add_argument("sell", action="store_true",
+    sell.add_argument("sell",
+                      action="store_true",
                       default=False)
 
     sell.add_argument(
@@ -90,11 +94,9 @@ def create_parser():
     )
 
     # report_commands
-
-    report = commands.add_parser(
-        "report",
-        help="action for selling an item.",
-    )
+    report = commands.add_parser("report",
+                                 help="action for selling an item.",
+                                 )
 
     report.add_argument("report", action="store_true",
                         default=False)
@@ -107,8 +109,8 @@ def create_parser():
     )
 
     # inventory_report
-    inventory = reportSubcommands.add_parser(
-        "inventory", help="Show current inventory")
+    inventory = reportSubcommands.add_parser("inventory",
+                                             help="Show current inventory")
 
     inventory.add_argument("inventory",
                            action="store_true",

@@ -88,6 +88,7 @@ def resetInventory():
         writer.writeheader()
 
 
+# get item by id from bought
 def getItemFromBoughtCsvById(id):
     with open("./csv/bought.csv") as f:
         lines = csv.DictReader(f)
