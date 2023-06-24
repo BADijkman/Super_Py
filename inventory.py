@@ -24,19 +24,19 @@ def displayCurrentInventory():
             if count == 0:
                 table.add_column(
                     "Product Name",
-                    justify="left",
+                    justify="center",
                     no_wrap=True)
                 table.add_column("Amount",
-                                 justify="left",
+                                 justify="center",
                                  no_wrap=True)
                 table.add_column("Purchase price",
-                                 justify="left",
+                                 justify="center",
                                  no_wrap=True)
-                table.add_column("Expiration", justify="left",
+                table.add_column("Expirtion date", justify="center",
                                  header_style="green",
                                  no_wrap=True
                                  )
-                table.add_column("Expired", justify="left",
+                table.add_column("Expired", justify="center",
                                  header_style="green",
                                  no_wrap=True
                                  )
