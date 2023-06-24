@@ -20,7 +20,7 @@ def create_parser():
     )
 
     buy.add_argument("buy", action="store_true",
-                     default=False)  # action="store_true"  default = false??
+                     default=False)
 
     buy.add_argument(
         "--name",
