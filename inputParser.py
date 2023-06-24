@@ -1,5 +1,5 @@
 import argparse
-import datetime
+from datetime import datetime
 
 
 def create_parser():
@@ -52,7 +52,8 @@ def create_parser():
         "--expiration",
         "-e",
         metavar="EXPIRATION dd-mm-yyyy'",
-        type=lambda s: datetime.datetime.strptime(s, '%d-%m-%Y'),
+        type=lambda s: datetime.strptime(s, "%d-%m-%Y"),
+
         help="supply the expiration date of products dd-mm-yyyy",
         required=True,
 
@@ -94,6 +95,7 @@ def create_parser():
     )
 
     # report_commands
+
     report = commands.add_parser("report",
                                  help="action for selling an item.",
                                  )
@@ -109,8 +111,8 @@ def create_parser():
     )
 
     # inventory_report
-    inventory = reportSubcommands.add_parser("inventory",
-                                             help="Show current inventory")
+    inventory = reportSubcommands.add_parser(
+        "inventory", help="Show current inventory")
 
     inventory.add_argument("inventory",
                            action="store_true",

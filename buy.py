@@ -16,10 +16,11 @@ def handleBuy(parsed_Data):
     price = parsed_Data.price
     amount = parsed_Data.amount
     date = get_date()
-    expiration_date = parsed_Data.expiration
+    expiration_date = parsed_Data.expiration.strftime("%d-%m-%Y")
 
     try:
         # Append line to bought.csv
+        print(expiration_date)
         appendToBoughtCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv

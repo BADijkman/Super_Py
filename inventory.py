@@ -3,12 +3,12 @@ from console import console
 from rich.table import Table
 from rich.align import Align
 from utils.utils import getItemFromBoughtCsvById
+from date import get_date
 
 
+date = get_date()
 # from utils.utils import getItemFromBoughtCsvById
 # from utils.getDateFromFile import getDateFromFile
-
-from date import get_date
 
 
 def displayCurrentInventory():
@@ -35,17 +35,28 @@ def displayCurrentInventory():
                                  header_style="green",
                                  no_wrap=True
                                  )
+                table.add_column("Expired", justify="left",
+                                 header_style="green",
+                                 no_wrap=True
+                                 )
                 count += 1
             else:
-                # print(f'line = {line}')
-                item = getItemFromBoughtCsvById(int(line[0]))
-                # print(item)
 
+                item = getItemFromBoughtCsvById(int(line[0]))
+
+                # print(str(item['expiration_date']) < str(date))
+
+                if item['expiration_date'] < (date):
+                    expired = "YES"
+                else:
+                    expired = "NO"
+                # expired = "YES"
                 table.add_row(
                     item['product_name'],
                     item['amount'],
                     "\u20ac " + item["buy_price"],
-                    item["expiration_date"]
+                    item["expiration_date"],
+                    expired
                 )
 
     console.rule(f"[yellow]Inventory: {day}", style="yellow")
