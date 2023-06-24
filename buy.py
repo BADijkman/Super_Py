@@ -7,7 +7,7 @@ from utils.utils import appendToBoughtCsv, appendToInventoryCsv
 
 # import sys
 # sys.path.insert(0, "../csv")
-# # sys.path.insert(0, "../utils") #AD
+# sys.path.insert(0, "../utils") #AD
 
 
 def handleBuy(parsed_Data):
@@ -29,3 +29,6 @@ def handleBuy(parsed_Data):
 
     except:
         print(colored('an exception occurred', 'red'))
+
+
+

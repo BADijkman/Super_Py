@@ -76,6 +76,7 @@ def create_parser():
     sell.add_argument(
         "--name",
         "-n",
+        
         metavar="PRODUCT_NAME",
         help="supply product name for the product to sell",
         required=True,
