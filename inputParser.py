@@ -52,9 +52,9 @@ def create_parser():
         "--expiration",
         "-e",
         metavar="EXPIRATION dd-mm-yyyy'",
-        type=lambda s: datetime.strptime(s, "%d-%m-%Y"),
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
 
-        help="supply the expiration date of products dd-mm-yyyy",
+        help="supply the expiration date of products dd/mm/yyyy",
         required=True,
 
     )

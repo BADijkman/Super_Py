@@ -4,6 +4,7 @@ from rich.table import Table
 from rich.align import Align
 from utils.utils import getItemFromBoughtCsvById
 from date import get_date
+from datetime import datetime
 
 
 date = get_date()
@@ -44,13 +45,14 @@ def displayCurrentInventory():
 
                 item = getItemFromBoughtCsvById(int(line[0]))
 
-                # print(str(item['expiration_date']) < str(date))
-
-                if item['expiration_date'] < (date):
+                string_input_with_date = (str(item['expiration_date']))
+                past = datetime.strptime(string_input_with_date, "%d/%m/%Y")
+                present = datetime.now()
+                if (past.date() < present.date()):
                     expired = "YES"
                 else:
                     expired = "NO"
-                # expired = "YES"
+
                 table.add_row(
                     item['product_name'],
                     item['amount'],
