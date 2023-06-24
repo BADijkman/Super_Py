@@ -45,17 +45,7 @@ def create_parser():
         default=1,
         help="supply the amount of products purchased (default=1)",
     )
-    # ---------------
-    # # deze staat nu in dagen maar wil ik naar datum
-    # buy.add_argument(
-    #     "--expiration",
-    #     "-e",
-    #     metavar="[EXPIRATION]",
-    #     type=int,
-    #     default=10,
-    #     help="supply the amount in days of the shelf life of a product",
-    # )
-    # ---------------
+
     buy.add_argument(
         "--expiration",
         "-e",
@@ -71,12 +61,12 @@ def create_parser():
     )
 
     sell.add_argument("sell", action="store_true",
-                      default=False)  # action="store_true"default = false??
+                      default=False)
 
     sell.add_argument(
         "--name",
         "-n",
-        
+
         metavar="PRODUCT_NAME",
         help="supply product name for the product to sell",
         required=True,

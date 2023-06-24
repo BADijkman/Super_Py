@@ -29,6 +29,3 @@ def handleBuy(parsed_Data):
 
     except:
         print(colored('an exception occurred', 'red'))
-
-
-
