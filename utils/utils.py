@@ -80,9 +80,9 @@ def removeFromInventoryCsv(id):
         appendToInventoryCsv(line["id"], line["name"], line["amount"])
 
 
-# def resetInventory():
-#     fieldnames = ['id', 'name',
-#                   'amount']
-#     with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
-#         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
-#         writer.writeheader()
+def resetInventory():
+    fieldnames = ['id', 'name',
+                  'amount']
+    with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
+        writer.writeheader()

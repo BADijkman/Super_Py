@@ -29,7 +29,13 @@ def handleSell(parsed_Data):
     while amount > 0:
         if inStock:
             for stock in inStock:
-                if amount > stock["amount"] and inStockAmount != 0:
+                if amount > stock["amount"]:
+                    print(
+                        (colored(f"You were only able to sell {stock['amount']}  {name}", 'red')))
+                    amount = 0
+                    break
+
+                elif amount > stock["amount"] and inStockAmount != 0:
                     if amount == stock["amount"]:
                         print(colored('OK', 'green',
                               attrs=["reverse", 'bold']))
@@ -42,7 +48,7 @@ def handleSell(parsed_Data):
                     continue
                 elif inStockAmount == 0:
                     print(
-                        colored(f"You were only able to buy {sold}"), 'green')
+                        (colored(f"You were only able to sell {sold} {name}", 'red')))
                     amount = 0
                     break
                 else:
