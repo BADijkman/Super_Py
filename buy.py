@@ -2,7 +2,7 @@
 import random
 from date import get_date
 from termcolor import colored
-from utils.utils import appendRowToBoughtCsv, appendRowToInventoryCsv
+from utils.utils import appendToBoughtCsv, appendToInventoryCsv
 
 
 # import sys
@@ -20,10 +20,10 @@ def handleBuy(parsed_Data):
 
     try:
         # Append line to bought.csv
-        appendRowToBoughtCsv(newId, name, price, amount, date, expiration_date)
+        appendToBoughtCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv
-        appendRowToInventoryCsv(newId, name, amount)
+        appendToInventoryCsv(newId, name, amount)
 
         print(colored('OK', 'green', attrs=["reverse", 'bold']))
 

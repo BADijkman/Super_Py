@@ -1,6 +1,7 @@
 from utils.utils import (getAllItemsByNameFromInventoryCsv,
-                         appendRowToSoldCsv,
-                         removeLineFromInventoryCsv
+                         appendToSoldCsv,
+                         removeFromInventoryCsv,
+                         adjustInventoryCsv
                          )
 from functools import reduce
 from termcolor import colored
@@ -25,11 +26,6 @@ def handleSell(parsed_Data):
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
 
     # Loop that handles the selling of the products.
-
-    print(f' parsed aantal om verkocht te worden {amount}')
-    print(f' er zijn {inStockAmount} {name} in stock')
-    print(inStock)
-
     while amount > 0:
         if inStock:
             for stock in inStock:
@@ -40,30 +36,24 @@ def handleSell(parsed_Data):
                         amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
-                    print("functie om rij aan sold cvs toe te voegen")
-                    appendRowToSoldCsv(
+                    appendToSoldCsv(
                         stock["id"], name, stock["amount"], day, price)
-
-                    print("functie om rij uit voorraad cvs toe te halen")
-                    removeLineFromInventoryCsv(int(stock["id"]))
+                    removeFromInventoryCsv(int(stock["id"]))
                     continue
                 elif inStockAmount == 0:
-                    print(f"You were only able to buy {sold}")
+                    print(
+                        colored(f"You were only able to buy {sold}"), 'green')
                     amount = 0
                     break
                 else:
-                    print("functie om rij aan sold cvs toe te voegen")
-                    appendRowToSoldCsv(
+                    appendToSoldCsv(
                         stock["id"], name, amount, day, price)
                     if amount == stock["amount"]:
-                        print("functie02 removeLineFromInventoryCsv")
-                        removeLineFromInventoryCsv(int(stock["id"]))
-
+                        removeFromInventoryCsv(int(stock["id"]))
                     else:
-                        print("functie03 adjustLineInInventoryCsv")
-                        # adjustLineInInventoryCsv(int(stock["id"]), amount)
+                        adjustInventoryCsv(int(stock["id"]), amount)
 
-                    # Set amount to 0 to reset the loop as the purchase has been fulfilled
+                    # Set amount to 0 to reset the loop
                     amount = 0
                     sold += amount
                     print(colored('OK', 'green', attrs=["reverse", 'bold']))

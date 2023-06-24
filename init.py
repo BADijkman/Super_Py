@@ -10,6 +10,7 @@ def init_data(base_path, csv_path):
         os.mkdir(f'{base_path}/csv')
 
     # check bought.cvs excist
+
     if os.path.exists(f'{csv_path }/bought.csv'):
         pass
     else:

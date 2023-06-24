@@ -6,9 +6,9 @@ from init import init_data
 
 
 base_path = os.getcwd()
-data_path = os.path.join(base_path, "csv")
+csv_path = os.path.join(base_path, "csv")
 
-init_data(base_path, data_path)
+init_data(base_path, csv_path)
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
     # Buy command was given and now parsed
     if hasattr(parsed, "buy"):
         handleBuy(parsed)
-
+    # Sell command was given and now parsed
     if hasattr(parsed, "sell"):
         handleSell(parsed)
 

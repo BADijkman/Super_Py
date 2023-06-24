@@ -1,48 +1,20 @@
-
 import csv
-from csv import DictWriter
-
+from main import csv_path
 
 # appendToBought
-def appendRowToBoughtCsv(newId, name, price, amount, date, expiration_date):
-    dict = {'id': newId,
-            'product_name': name,
-            'amount': amount,
-            'buy_date': date,
-            'buy_price': price,
-            'expiration_date': expiration_date}
 
-    field_names = ['id',
-                   'product_name',
-                   'amount',
-                   'buy_price',
-                   'buy_date',
-                   'expiration_date']
 
-    with open('./csv/bought.csv', 'a')as f:
-        dictwriter_object = DictWriter(
-            f, fieldnames=field_names, delimiter=",")
-        dictwriter_object.writerow(dict)
-        f.close()
+def appendToBoughtCsv(newId, name, price, amount, date, expiration_date):
+    with open("./csv/bought.csv", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([newId, name, amount,  price, date, expiration_date])
 
 
 # appendToInventory
-def appendRowToInventoryCsv(newId, name, amount):
-    dict = {'id': newId,
-            'product_name': name,
-            'amount': amount,
-            }
-
-    field_names = ['id',
-                   'product_name',
-                   'amount',
-                   ]
-
-    with open('./csv/inventory.csv', 'a')as f:
-        dictwriter_object = DictWriter(
-            f, fieldnames=field_names, delimiter=",")
-        dictwriter_object.writerow(dict)
-        f.close()
+def appendToInventoryCsv(id, name, amount):
+    with open("./csv/inventory.csv", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([id, name, amount])
 
 
 # getAllItemsFromInventory
@@ -60,42 +32,52 @@ def getAllItemsByNameFromInventoryCsv(name):
     return inStock
 
 
-def appendRowToSoldCsv(id, name, amount, sell_date, sell_price):
-    dict = {'id': id,
-            'name': name,
-            'amount': amount,
-            'sell_date': sell_date,
-            'sell_price': sell_price
-            }
-    field_names = ['id',
-                   'name',
-                   'amount',
-                   'sell_date',
-                   'sell_price',
-                   ]
-
-    with open('./cvs/sold.csv', 'a')as f:
-        dictwriter_object = DictWriter(
-            f, fieldnames=field_names, delimiter=",")
-        dictwriter_object.writerow(dict)
-        f.close()
+# appendToSold
+def appendToSoldCsv(id, name, amount, date, price):
+    with open("./csv/sold.csv", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([id, name, amount, date, price])
 
 
-# removeLineFromInventoryCsv(int(stock["id"]))
-def resetInventory():
-    with open("./csv/inventory.csv", "w") as inv:
-        writer = csv.writer(inv, lineterminator="")
-        writer.writerow(["id", "name", "amount"])
-
-
-def removeLineFromInventoryCsv(inputId):
+# adjustInventory
+def adjustInventoryCsv(id, amount):
     newLines = []
-    with open("./csv/inventory.csv") as f:
+    with open("./csv/inventory.csv", "r+") as f:
         lines = csv.DictReader(f)
         for line in lines:
-            if int(line["id"]) != inputId:
+            if int(line["id"]) == id:
+                newLines.append(
+                    {
+                        "id": line["id"],
+                        "name": line["name"],
+                        "amount": int(line["amount"]) - amount,
+                    }
+                )
+            else:
                 newLines.append(line)
 
     resetInventory()
     for line in newLines:
-        appendRowToInventoryCsv(line["id"], line["name"], line["amount"])
+        appendToInventoryCsv(line["id"], line["name"], line["amount"])
+
+
+# removeFromInventoryCsv(int(stock["id"]))
+def removeFromInventoryCsv(id):
+    newLines = []
+    with open("./csv/inventory.csv") as f:
+        lines = csv.DictReader(f)
+        for line in lines:
+            if int(line["id"]) != id:
+                newLines.append(line)
+
+    resetInventory()
+    for line in newLines:
+        appendToInventoryCsv(line["id"], line["name"], line["amount"])
+
+
+def resetInventory():
+    fieldnames = ['id', 'name',
+                  'amount']
+    with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
+        writer.writeheader()
