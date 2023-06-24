@@ -19,7 +19,8 @@ def create_parser():
         help="action for buying an item.",
     )
 
-    buy.add_argument("buy", action="store_true",
+    buy.add_argument("buy",
+                     action="store_true",
                      default=False)
 
     buy.add_argument(
@@ -66,7 +67,6 @@ def create_parser():
     sell.add_argument(
         "--name",
         "-n",
-
         metavar="PRODUCT_NAME",
         help="supply product name for the product to sell",
         required=True,
@@ -88,4 +88,32 @@ def create_parser():
         default=1,
         help="supply the amount of products sold (default=1)",
     )
+
+    # report_commands
+
+    report = commands.add_parser(
+        "report",
+        help="action for selling an item.",
+    )
+
+    report.add_argument("report", action="store_true",
+                        default=False)
+
+    # sub_reports
+    reportSubcommands = report.add_subparsers(
+        metavar="Subcommands",
+        title="Report",
+        help="Use [subcommand] -h to get extra info on usage of each subcommand",
+    )
+
+    # inventory_report
+    inventory = reportSubcommands.add_parser(
+        "inventory", help="Show current inventory")
+
+    inventory.add_argument("inventory",
+                           action="store_true",
+                           default=False,
+                           help="Shows current inventory"
+                           )
+
     return parser

@@ -86,3 +86,11 @@ def resetInventory():
     with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
         writer.writeheader()
+
+
+def getItemFromBoughtCsvById(id):
+    with open("./csv/bought.csv") as f:
+        lines = csv.DictReader(f)
+        for line in lines:
+            if int(line["id"]) == int(id):
+                return line

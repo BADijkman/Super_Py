@@ -3,6 +3,7 @@ from inputParser import create_parser
 from buy import handleBuy
 from sell import handleSell
 from init import init_data
+from inventory import displayCurrentInventory
 
 
 base_path = os.getcwd()
@@ -21,6 +22,10 @@ def main():
     # Sell command was given and now parsed
     if hasattr(parsed, "sell"):
         handleSell(parsed)
+    # Report command was given and now parsed
+    if hasattr(parsed, "report"):
+        if hasattr(parsed, "inventory"):
+            displayCurrentInventory()
 
 
 if __name__ == "__main__":
