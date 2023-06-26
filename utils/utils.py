@@ -95,9 +95,3 @@ def getItemFromBoughtCsvById(id):
         for line in lines:
             if int(line["id"]) == int(id):
                 return line
-
-
-# handleAdvance
-
-def handleAdvance(parsed_Data):
-    print(parsed_Data)

@@ -1,5 +1,7 @@
 import os
 import csv
+from date import get_date
+from console import console
 
 
 def init_data(base_path, csv_path):
@@ -40,3 +42,10 @@ def init_data(base_path, csv_path):
         with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
+
+    # set date
+
+    with open("./day/day.txt", "w") as f:
+        euDay = get_date()
+        console.print(f"[green]Current day set to: {euDay}")
+        f.write(euDay)
