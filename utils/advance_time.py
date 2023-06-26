@@ -1,7 +1,5 @@
 from datetime import timedelta
-# from date import get_date
 from console import console, err_console
-
 from utils.getDateFromFile import getDateFromFile
 
 
