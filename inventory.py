@@ -8,15 +8,14 @@ from datetime import datetime
 
 
 date = get_date()
-# from utils.utils import getItemFromBoughtCsvById
-# from utils.getDateFromFile import getDateFromFile
 
 
 def displayCurrentInventory():
     day = get_date()
     table = Table(min_width=80, style='white',
                   header_style="green",
-                  padding=0)
+                  padding=(0, 2)
+                  )
     with open("./csv/inventory.csv") as f:
         lines = csv.reader(f)
         count = 0
@@ -24,42 +23,39 @@ def displayCurrentInventory():
             if count == 0:
                 table.add_column(
                     "Product Name",
-                    justify="center",
-                    no_wrap=True)
+                    justify="left",
+                    no_wrap=True,
+
+                )
                 table.add_column("Amount",
-                                 justify="center",
+                                 justify="left",
                                  no_wrap=True)
                 table.add_column("Purchase price",
-                                 justify="center",
+                                 justify="left",
                                  no_wrap=True)
-                table.add_column("Expirtion date", justify="center",
-                                 header_style="green",
-                                 no_wrap=True
-                                 )
-                table.add_column("Expired", justify="center",
+                table.add_column("Expirtion date",
+                                 justify="left",
                                  header_style="green",
                                  no_wrap=True
                                  )
                 count += 1
             else:
-
                 item = getItemFromBoughtCsvById(int(line[0]))
 
                 string_input_with_date = (str(item['expiration_date']))
                 past = datetime.strptime(string_input_with_date, "%d/%m/%Y")
                 present = datetime.now()
                 if (past.date() < present.date()):
-                    expired = "YES"
+                    # expired = YES
+                    pass
                 else:
-                    expired = "NO"
-
-                table.add_row(
-                    item['product_name'],
-                    item['amount'],
-                    "\u20ac " + item["buy_price"],
-                    item["expiration_date"],
-                    expired
-                )
+                    # expired = NO
+                    table.add_row(
+                        item['product_name'],
+                        item['amount'],
+                        "\u20ac " + item["buy_price"],
+                        item['expiration_date']
+                    )
 
     console.rule(f"[yellow]Inventory: {day}", style="yellow")
     console.print(Align.center(table))

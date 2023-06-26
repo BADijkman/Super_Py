@@ -94,8 +94,26 @@ def create_parser():
         help="supply the amount of products sold (default=1)",
     )
 
-    # report_commands
+    # advance day instruction
 
+    advance = commands.add_parser(
+        "advance-time",
+        help="Advance day by X days (default=1)",
+    )
+
+    advance.add_argument("advance",
+                         action="store_true",
+                         default=False)
+
+    advance.add_argument(
+        '-d',
+        metavar="DAYS",
+        type=int,
+        help="Advance day by X days",
+        required=True,
+    )
+
+    # report_commands
     report = commands.add_parser("report",
                                  help="action for selling an item.",
                                  )

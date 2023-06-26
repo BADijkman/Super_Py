@@ -5,6 +5,7 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          )
 from functools import reduce
 from termcolor import colored
+from console import console, err_console
 from date import get_date
 
 
@@ -30,14 +31,14 @@ def handleSell(parsed_Data):
         if inStock:
             for stock in inStock:
                 if amount > inStockAmount:
-                    print(
-                        (colored(f"You were only able to sell {inStockAmount} {name}", 'red')))
+
+                    err_console.print(
+                        f'You were only able to sell {inStockAmount} {name}')
                     amount = 0
                     break
                 elif amount > stock["amount"] and inStockAmount != 0:
                     if amount == stock["amount"]:
-                        print(colored('OK', 'green',
-                              attrs=["reverse", 'bold']))
+                        console.print("[green bold reverse]OK")
                         amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
@@ -57,8 +58,9 @@ def handleSell(parsed_Data):
                     # Set amount to 0 to reset the loop
                     amount = 0
                     sold += amount
-                    print(colored('OK', 'green', attrs=["reverse", 'bold']))
+                    console.print("[green bold reverse]OK")
+
                     break
         else:
-            print(colored('ERROR: Product not in stock.', 'red'))
+            console.print("[red bold reverse]ERROR: Product not in stock.")
             break

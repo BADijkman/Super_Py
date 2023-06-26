@@ -1,8 +1,8 @@
 
 import random
 from date import get_date
-from termcolor import colored
 from utils.utils import appendToBoughtCsv, appendToInventoryCsv
+from console import console
 
 
 # import sys
@@ -20,13 +20,11 @@ def handleBuy(parsed_Data):
 
     try:
         # Append line to bought.csv
-        print(expiration_date)
         appendToBoughtCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv
         appendToInventoryCsv(newId, name, amount)
-
-        print(colored('OK', 'green', attrs=["reverse", 'bold']))
+        console.print("[green bold reverse]OK")
 
     except:
-        print(colored('an exception occurred', 'red'))
+        console.print("[red bold reverse]an exception occurred")

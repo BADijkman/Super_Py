@@ -3,6 +3,7 @@ from inputParser import create_parser
 from buy import handleBuy
 from sell import handleSell
 from init import init_data
+from utils.advance_time import handleAdvance
 from inventory import displayCurrentInventory
 
 
@@ -22,6 +23,10 @@ def main():
     # Sell command was given and now parsed
     if hasattr(parsed, "sell"):
         handleSell(parsed)
+    # Advanced command was given and now parsed
+    if hasattr(parsed, "advance"):
+        handleAdvance(parsed)
+
     # Report command was given and now parsed
     if hasattr(parsed, "report"):
         if hasattr(parsed, "inventory"):
