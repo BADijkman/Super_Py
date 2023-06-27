@@ -1,7 +1,6 @@
 import os
 import csv
 from date import get_date
-from console import console
 
 
 def init_data(base_path, csv_path):
@@ -18,7 +17,7 @@ def init_data(base_path, csv_path):
     else:
         fieldnames = ['id', 'product_name', 'amount', 'buy_price',
                       'buy_date',  'expiration_date']
-        with open(f'{csv_path }/bought.csv', 'w', encoding='UTF8', newline='') as f:
+        with open(f'{csv_path }/bought.csv', 'w', encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 

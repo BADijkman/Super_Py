@@ -11,7 +11,7 @@ def create_parser():
     commands = parser.add_subparsers(
         metavar="Subcommands",
         title="SuperPy",
-        help="Use [subcommand] -h to get extra info on usage of each subcommand",
+        help="Use [subcommand] -h to get extra info on usage",
     )
 
     # buy_commands

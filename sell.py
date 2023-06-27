@@ -4,7 +4,6 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          adjustInventoryCsv
                          )
 from functools import reduce
-from termcolor import colored
 from console import console, err_console
 from date import get_date
 
