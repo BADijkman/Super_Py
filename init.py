@@ -47,5 +47,5 @@ def init_data(base_path, csv_path):
 
     with open("./day/day.txt", "w") as f:
         euDay = get_date()
-        console.print(f"[green]Current day set to: {euDay}")
+        # console.print(f"[green]Current day set to: {euDay}")
         f.write(euDay)

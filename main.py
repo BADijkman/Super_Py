@@ -2,9 +2,9 @@ import os
 from inputParser import create_parser
 from buy import handleBuy
 from sell import handleSell
+from inventory import handleInventory
 from init import init_data
 from utils.advance_time import handleAdvance
-from inventory import displayCurrentInventory
 
 
 base_path = os.getcwd()
@@ -30,7 +30,9 @@ def main():
     # Report command was given and now parsed
     if hasattr(parsed, "report"):
         if hasattr(parsed, "inventory"):
-            displayCurrentInventory()
+            handleInventory(parsed)
+
+            # displayCurrentInventory()
 
 
 if __name__ == "__main__":

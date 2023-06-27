@@ -115,17 +115,18 @@ def create_parser():
 
     # report_commands
     report = commands.add_parser("report",
-                                 help="action for selling an item.",
+                                 help="Produce reports",
                                  )
 
-    report.add_argument("report", action="store_true",
+    report.add_argument("report",
+                        action="store_true",
                         default=False)
 
     # sub_reports
     reportSubcommands = report.add_subparsers(
         metavar="Subcommands",
         title="Report",
-        help="Use [subcommand] -h to get extra info on usage of each subcommand",
+        help="Use [subcommand] -h to get extra info",
     )
 
     # inventory_report
@@ -137,5 +138,38 @@ def create_parser():
                            default=False,
                            help="Shows current inventory"
                            )
+    inventory.add_argument(
+        "--today",
+        action="store_true",
+        default=False,
+        help="Returns inventory for today."
+    )
+    inventory.add_argument(
+        "--yesterday",
+        action="store_true",
+        default=False,
+        help="Returns inventory for yesterday.",
+    )
+
+    # revenue = reportSubcommands.add_parser(
+    #     "inventory", help="Show current inventory")
+
+    # revenue.add_argument("revenue",
+    #                      action="store_true",
+    #                      default=False,
+    #                      help="Shows current revenue"
+    #                      )
+    # revenue.add_argument(
+    #     "--today",
+    #     action="store_true",
+    #     default=False,
+    #     help="Returns revenue for today."
+    # )
+    # revenue.add_argument(
+    #     "--yesterday",
+    #     action="store_true",
+    #     default=False,
+    #     help="Returns revenue for yesterday.",
+    # )
 
     return parser

@@ -1,17 +1,35 @@
 import csv
-from console import console
+from console import console, err_console
 from rich.table import Table
 from rich.align import Align
 from utils.utils import getItemFromBoughtCsvById
 from date import get_date
 from datetime import datetime
+from datetime import timedelta
+from utils.getDateFromFile import getDateFromFile
 
 
-date = get_date()
+# handleInventory
+def handleInventory(parsed_Data):
+    date = get_date()
+    if parsed_Data.today:
+        displayInventory(date)
+    elif parsed_Data.yesterday:
+        date = getDateFromFile("date")
+        with open("./day/day.txt", "w") as f:
+            newDay = date + timedelta(days=-1)
+            euDay = newDay.strftime("%d/%m/%Y")
+            f.write(euDay)
+        date_yesterday = getDateFromFile("str")
+        displayInventory(date_yesterday)
+    else:
+        err_console.print(
+            'error :inventory needs argument --today or --yesterday ')
 
 
-def displayCurrentInventory():
-    day = get_date()
+# displayInventory
+def displayInventory(date):
+    date = date
     table = Table(min_width=80, style='white',
                   header_style="green",
                   padding=(0, 2)
@@ -41,11 +59,11 @@ def displayCurrentInventory():
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
-
                 string_input_with_date = (str(item['expiration_date']))
                 past = datetime.strptime(string_input_with_date, "%d/%m/%Y")
-                present = datetime.now()
-                if (past.date() < present.date()):
+                present_date = getDateFromFile("date")
+
+                if (past.date() < present_date):
                     # expired = YES
                     pass
                 else:
@@ -57,8 +75,5 @@ def displayCurrentInventory():
                         item['expiration_date']
                     )
 
-    console.rule(f"[yellow]Inventory: {day}", style="yellow")
+    console.rule(f"[yellow]Inventory: {date}", style="yellow")
     console.print(Align.center(table))
-
-
-# displaydisplayCurrentInventory
