@@ -92,7 +92,8 @@ def displayInventory(date):
                 checking_date = getDateFromFile("date")
 
                 # checking buy date and expiration.date
-                if (past_buy.date() > checking_date) or (past_expiration.date() < checking_date):
+                if (past_buy.date() > checking_date) or (past_expiration.date()
+                                                         < checking_date):
                     pass
                 else:
                     table.add_row(

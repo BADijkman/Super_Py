@@ -1,10 +1,8 @@
 import csv
 import os
 
-
 base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
-
 
 # appendToBought
 
