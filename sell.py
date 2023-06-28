@@ -11,7 +11,7 @@ from date import get_date
 day = get_date()
 
 
-def handleSell(parsed_Data):
+def handleSell(parsed_Data, csv_path):
     name = parsed_Data.name.lower()
     price = parsed_Data.price
     amount = parsed_Data.amount
@@ -30,9 +30,8 @@ def handleSell(parsed_Data):
         if inStock:
             for stock in inStock:
                 if amount > inStockAmount:
-
-                    err_console.print(
-                        f'You were only able to sell {inStockAmount} {name}')
+                    console.print(
+                        f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}')
                     amount = 0
                     break
                 elif amount > stock["amount"] and inStockAmount != 0:
@@ -43,16 +42,16 @@ def handleSell(parsed_Data):
                     sold += stock["amount"]
                     appendToSoldCsv(
                         stock["id"], name, stock["amount"], day, price)
-                    removeFromInventoryCsv(int(stock["id"]))
+                    removeFromInventoryCsv(int(stock["id"]), csv_path)
                     continue
 
                 else:
                     appendToSoldCsv(
                         stock["id"], name, amount, day, price)
                     if amount == stock["amount"]:
-                        removeFromInventoryCsv(int(stock["id"]))
+                        removeFromInventoryCsv(int(stock["id"]), csv_path)
                     else:
-                        adjustInventoryCsv(int(stock["id"]), amount)
+                        adjustInventoryCsv(int(stock["id"]), amount, csv_path)
 
                     # Set amount to 0 to reset the loop
                     amount = 0

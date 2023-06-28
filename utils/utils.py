@@ -1,8 +1,8 @@
 import csv
-import os
+# import os
 
-base_path = os.getcwd()
-csv_path = os.path.join(base_path, "csv")
+# base_path = os.getcwd()
+# csv_path = os.path.join(base_path, "csv")
 
 
 # appendToBought
@@ -42,7 +42,7 @@ def appendToSoldCsv(id, name, amount, date, price):
 
 
 # adjustInventory
-def adjustInventoryCsv(id, amount):
+def adjustInventoryCsv(id, amount, csv_path):
     newLines = []
     with open("./csv/inventory.csv", "r+") as f:
         lines = csv.DictReader(f)
@@ -58,13 +58,13 @@ def adjustInventoryCsv(id, amount):
             else:
                 newLines.append(line)
 
-    resetInventory()
+    resetInventory(csv_path)
     for line in newLines:
         appendToInventoryCsv(line["id"], line["name"], line["amount"])
 
 
 # removeFromInventoryCsv(int(stock["id"]))
-def removeFromInventoryCsv(id):
+def removeFromInventoryCsv(id, csv_path):
     newLines = []
     with open("./csv/inventory.csv") as f:
         lines = csv.DictReader(f)
@@ -72,15 +72,15 @@ def removeFromInventoryCsv(id):
             if int(line["id"]) != id:
                 newLines.append(line)
 
-    resetInventory()
+    resetInventory(csv_path)
     for line in newLines:
         appendToInventoryCsv(line["id"], line["name"], line["amount"])
 
 
-def resetInventory():
+def resetInventory(csv_path):
     fieldnames = ['id', 'name',
                   'amount']
-    with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
+    with open(f'{csv_path}/inventory.csv', 'w', encoding='UTF8', newline='')as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
         writer.writeheader()
 

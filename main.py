@@ -11,6 +11,7 @@ base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
 day_path = os.path.join(base_path, "day")
 
+
 init_data(base_path, csv_path, day_path)
 
 
@@ -23,7 +24,7 @@ def main():
         handleBuy(parsed)
     # Sell command was given and now parsed
     if hasattr(parsed, "sell"):
-        handleSell(parsed)
+        handleSell(parsed, csv_path)
     # Advanced command was given and now parsed
     if hasattr(parsed, "advance"):
         handleAdvance(parsed)
