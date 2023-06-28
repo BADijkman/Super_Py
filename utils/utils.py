@@ -4,9 +4,8 @@ import os
 base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
 
+
 # appendToBought
-
-
 def appendToBoughtCsv(newId, name, price, amount, date, expiration_date):
     with open("./csv/bought.csv", "a", newline="") as f:
         writer = csv.writer(f, delimiter=",")
