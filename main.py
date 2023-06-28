@@ -9,8 +9,9 @@ from utils.advance_time import handleAdvance
 
 base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
+day_path = os.path.join(base_path, "day")
 
-init_data(base_path, csv_path)
+init_data(base_path, csv_path, day_path)
 
 
 def main():

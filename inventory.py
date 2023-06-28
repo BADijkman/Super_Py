@@ -11,10 +11,15 @@ from utils.getDateFromFile import getDateFromFile
 
 # handleInventory
 def handleInventory(parsed_Data):
-    date = get_date()
+    # reset date to today
+    with open("./day/day.txt", "w") as f:
+        euDay = get_date()
+        f.write(euDay)
+    date = getDateFromFile("str")
     if parsed_Data.today:
         displayInventory(date)
     elif parsed_Data.yesterday:
+        # set date to yesterday
         date = getDateFromFile("date")
         with open("./day/day.txt", "w") as f:
             newDay = date + timedelta(days=-1)
@@ -59,15 +64,30 @@ def displayInventory(date):
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
-                string_input_with_date = (str(item['expiration_date']))
-                past = datetime.strptime(string_input_with_date, "%d/%m/%Y")
-                present_date = getDateFromFile("date")
 
-                if (past.date() < present_date):
-                    # expired = YES
-                    pass
+                # expiration_date
+                string_input_expiration_date = (
+                    str(item['expiration_date']))
+                past_expiration = datetime.strptime(
+                    string_input_expiration_date, "%d/%m/%Y")
+
+                # buy_date
+                string_input_buy_date = (
+                    str(item['buy_date']))
+                past_buy = datetime.strptime(
+                    string_input_buy_date, "%d/%m/%Y")
+                checking_date = getDateFromFile("date")
+
+                # -------------
+                # print(f' checking date {checking_date}')
+                # print(f' buy date {past_buy.date()}')
+                # print(f' expiration date {past_expiration.date()}')
+                # -------------
+
+                # checking buy date and expiration.date
+                if (past_buy.date() > checking_date) or (past_expiration.date() < checking_date):
+                    print(" een van de data is lager")
                 else:
-                    # expired = NO
                     table.add_row(
                         item['product_name'],
                         item['amount'],

@@ -3,7 +3,7 @@ import csv
 from date import get_date
 
 
-def init_data(base_path, csv_path):
+def init_data(base_path, csv_path, day_path):
     # check cvs path
     if os.path.exists(csv_path):
         pass
@@ -11,7 +11,6 @@ def init_data(base_path, csv_path):
         os.mkdir(f'{base_path}/csv')
 
     # check bought.cvs excist
-
     if os.path.exists(f'{csv_path }/bought.csv'):
         pass
     else:
@@ -42,9 +41,12 @@ def init_data(base_path, csv_path):
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 
-    # set date
-
-    with open("./day/day.txt", "w") as f:
-        euDay = get_date()
-        # console.print(f"[green]Current day set to: {euDay}")
-        f.write(euDay)
+    # check day path
+    if os.path.exists(day_path):
+        pass
+    else:
+        os.mkdir(f'{base_path}/day')
+        # set day to today
+        with open("./day/day.txt", "w") as f:
+            euDay = get_date()
+            f.write(euDay)

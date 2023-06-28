@@ -3,7 +3,6 @@ from datetime import datetime
 
 def getDateFromFile(type):
     if type == "str":
-
         with open("./day/day.txt") as f:
             line = "".join(f.readline().split("/"))
             date = datetime.strptime(line, "%d%m%Y").date()
