@@ -3,22 +3,22 @@ from console import console, err_console
 from rich.table import Table
 from rich.align import Align
 from utils.utils import getItemFromBoughtCsvById
-from date import get_date
 from datetime import datetime
 from datetime import timedelta
 from utils.getDateFromFile import getDateFromFile
+from utils.reset_day_to_today import reset_date_to_today
 
 
 # handleInventory
 def handleInventory(parsed_Data):
-    # reset date to today
-    with open("./day/day.txt", "w") as f:
-        euDay = get_date()
-        f.write(euDay)
-    date = getDateFromFile("str")
+    # today
     if parsed_Data.today:
+        reset_date_to_today()
+        date = getDateFromFile("str")
         displayInventory(date)
+    # yesterday
     elif parsed_Data.yesterday:
+        reset_date_to_today
         # set date to yesterday
         date = getDateFromFile("date")
         with open("./day/day.txt", "w") as f:
@@ -27,9 +27,20 @@ def handleInventory(parsed_Data):
             f.write(euDay)
         date_yesterday = getDateFromFile("str")
         displayInventory(date_yesterday)
+    # now
+    elif parsed_Data.now:
+        date = getDateFromFile("str")
+        displayInventory(date)
+    # input date
+    elif parsed_Data.date:
+        date = datetime.strftime(parsed_Data.date, "%d/%m/%Y")
+        with open("./day/day.txt", "w") as f:
+            euDay = date
+            f.write(euDay)
+        displayInventory(date)
     else:
         err_console.print(
-            'error :inventory needs argument --today or --yesterday ')
+            'error :inventory needs argument -- now --today or --yesterday ')
 
 
 # displayInventory
@@ -76,17 +87,13 @@ def displayInventory(date):
                     str(item['buy_date']))
                 past_buy = datetime.strptime(
                     string_input_buy_date, "%d/%m/%Y")
-                checking_date = getDateFromFile("date")
 
-                # -------------
-                # print(f' checking date {checking_date}')
-                # print(f' buy date {past_buy.date()}')
-                # print(f' expiration date {past_expiration.date()}')
-                # -------------
+                # checking_date
+                checking_date = getDateFromFile("date")
 
                 # checking buy date and expiration.date
                 if (past_buy.date() > checking_date) or (past_expiration.date() < checking_date):
-                    print(" een van de data is lager")
+                    pass
                 else:
                     table.add_row(
                         item['product_name'],

@@ -53,7 +53,6 @@ def create_parser():
         "-e",
         metavar="EXPIRATION dd-mm-yyyy'",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-
         help="supply the expiration date of products dd/mm/yyyy",
         required=True,
 
@@ -150,7 +149,21 @@ def create_parser():
         default=False,
         help="Returns inventory for yesterday.",
     )
+    inventory.add_argument(
+        "--now",
+        action="store_true",
+        default=False,
+        help="Returns inventory for now (given day by advance-time input)",
+    )
 
+    inventory.add_argument(
+        "--date",
+        "-d",
+        metavar="DATE_INPUT_INVENTORY",
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        help="supply the date from getting invetory",
+        
+    )
     # revenue = reportSubcommands.add_parser(
     #     "inventory", help="Show current inventory")
 
