@@ -41,7 +41,7 @@ def init_data(base_path, csv_path, day_path):
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 
-    # check day path...
+    # check day path
     if os.path.exists(day_path):
         pass
     else:
