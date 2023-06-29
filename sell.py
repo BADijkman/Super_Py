@@ -4,7 +4,7 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          adjustInventoryCsv
                          )
 from functools import reduce
-from console import console, err_console
+from console import console
 from date import get_date
 
 
@@ -16,7 +16,6 @@ def handleSell(parsed_Data, csv_path):
     price = parsed_Data.price
     amount = parsed_Data.amount
     sold = 0
-    pass
 
     # Go through the inventory and get the product_name
     inStock = getAllItemsByNameFromInventoryCsv(name)
@@ -44,7 +43,6 @@ def handleSell(parsed_Data, csv_path):
                         stock["id"], name, stock["amount"], day, price)
                     removeFromInventoryCsv(int(stock["id"]), csv_path)
                     continue
-
                 else:
                     appendToSoldCsv(
                         stock["id"], name, amount, day, price)
@@ -52,12 +50,10 @@ def handleSell(parsed_Data, csv_path):
                         removeFromInventoryCsv(int(stock["id"]), csv_path)
                     else:
                         adjustInventoryCsv(int(stock["id"]), amount, csv_path)
-
                     # Set amount to 0 to reset the loop
                     amount = 0
                     sold += amount
                     console.print("[green bold reverse]OK")
-
                     break
         else:
             console.print("[red bold reverse]ERROR: Product not in stock.")

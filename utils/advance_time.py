@@ -13,6 +13,6 @@ def handleAdvance(parsed_Data):
             euDay = newDay.strftime("%d/%m/%Y")
             console.print(f"[green]Current day set to: {euDay}")
             f.write(euDay)
-        console.print("[green bold]OK")
+        console.print("[green bold reverse]OK")
     except:
         err_console.print("Failure!")
