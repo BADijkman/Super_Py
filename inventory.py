@@ -46,7 +46,7 @@ def handleInventory(parsed_Data):
 # displayInventory
 def displayInventory(date):
     date = date
-    table = Table(min_width=80, style='white',
+    table = Table(min_width=100, style='white',
                   header_style="green",
                   padding=(0, 2)
                   )
@@ -72,6 +72,12 @@ def displayInventory(date):
                                  header_style="green",
                                  no_wrap=True
                                  )
+                table.add_column("Expirate",
+                                 justify="left",
+                                 header_style="green",
+                                 no_wrap=True,
+                                 style='green',
+                                 )
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
@@ -91,17 +97,25 @@ def displayInventory(date):
                 # checking_date
                 checking_date = getDateFromFile("date")
 
-                # checking buy date and expiration.date
-                if (past_buy.date() > checking_date) or (past_expiration.date()
-                                                         < checking_date):
+                if (past_expiration.date() < checking_date):
+                    display = "YES"
+
+                else:
+                    display = "NO"
+
+                # checking buy date
+                if (past_buy.date() > checking_date):
                     pass
                 else:
                     table.add_row(
                         item['product_name'],
                         item['amount'],
                         "\u20ac " + item["buy_price"],
-                        item['expiration_date']
+                        item['expiration_date'],
+                        display
                     )
 
     console.rule(f"[yellow]Inventory: {date}", style="yellow")
     console.print(Align.center(table))
+    console.rule(
+        f"[black]Dykey/Winc Copyright © {(datetime.today().strftime('%Y'))}", style="grey")
