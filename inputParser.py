@@ -19,11 +19,11 @@ def create_parser():
         "buy",
         help="action for buying an item.",
     )
-
-    buy.add_argument("buy",
-                     action="store_true",
-                     default=False)
-
+    buy.add_argument(
+        "buy",
+        action="store_true",
+        default=False
+    )
     buy.add_argument(
         "--name",
         "-n",
@@ -47,7 +47,6 @@ def create_parser():
         default=1,
         help="supply the amount of products purchased (default=1)",
     )
-
     buy.add_argument(
         "--expiration",
         "-e",
@@ -55,7 +54,6 @@ def create_parser():
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
         help="supply the expiration date of products dd/mm/yyyy",
         required=True,
-
     )
 
     # sell_commands
@@ -63,11 +61,11 @@ def create_parser():
         "sell",
         help="action for selling an item.",
     )
-
-    sell.add_argument("sell",
-                      action="store_true",
-                      default=False)
-
+    sell.add_argument(
+        "sell",
+        action="store_true",
+        default=False
+    )
     sell.add_argument(
         "--name",
         "-n",
@@ -83,7 +81,6 @@ def create_parser():
         help="supply the price of the product",
         required=True,
     )
-
     sell.add_argument(
         "--amount",
         "-a",
@@ -94,16 +91,15 @@ def create_parser():
     )
 
     # advance day instruction
-
     advance = commands.add_parser(
         "advance-time",
         help="Advance day by X days (default=1)",
     )
-
-    advance.add_argument("advance",
-                         action="store_true",
-                         default=False)
-
+    advance.add_argument(
+        "advance",
+        action="store_true",
+        default=False
+    )
     advance.add_argument(
         '-d',
         metavar="DAYS",
@@ -113,13 +109,15 @@ def create_parser():
     )
 
     # report_commands
-    report = commands.add_parser("report",
-                                 help="Produce reports",
-                                 )
-
-    report.add_argument("report",
-                        action="store_true",
-                        default=False)
+    report = commands.add_parser(
+        "report",
+        help="Produce reports",
+    )
+    report.add_argument(
+        "report",
+        action="store_true",
+        default=False
+    )
 
     # sub_reports
     reportSubcommands = report.add_subparsers(
@@ -130,59 +128,120 @@ def create_parser():
 
     # inventory_report
     inventory = reportSubcommands.add_parser(
-        "inventory", help="Show current inventory")
-
-    inventory.add_argument("inventory",
-                           action="store_true",
-                           default=False,
-                           help="Shows current inventory"
-                           )
+        "inventory", help="Show current inventory"
+    )
+    inventory.add_argument(
+        "inventory",
+        action="store_true",
+        default=False,
+        help="Shows current inventory"
+    )
     inventory.add_argument(
         "--today",
+        "-t",
         action="store_true",
         default=False,
         help="Returns inventory for today."
     )
     inventory.add_argument(
         "--yesterday",
+        "-y",
         action="store_true",
         default=False,
         help="Returns inventory for yesterday.",
     )
     inventory.add_argument(
         "--now",
+        "-n",
         action="store_true",
         default=False,
         help="Returns inventory for now (given day by advance-time input)",
     )
-
     inventory.add_argument(
         "--date",
         "-d",
         metavar="DATE_INPUT_INVENTORY",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
         help="supply the date from getting invetory",
-        
     )
-    # revenue = reportSubcommands.add_parser(
-    #     "inventory", help="Show current inventory")
 
-    # revenue.add_argument("revenue",
-    #                      action="store_true",
-    #                      default=False,
-    #                      help="Shows current revenue"
-    #                      )
-    # revenue.add_argument(
-    #     "--today",
-    #     action="store_true",
-    #     default=False,
-    #     help="Returns revenue for today."
-    # )
-    # revenue.add_argument(
-    #     "--yesterday",
-    #     action="store_true",
-    #     default=False,
-    #     help="Returns revenue for yesterday.",
-    # )
+    # revenue_report
+    revenue = reportSubcommands.add_parser(
+        "revenue", help="Show current revenue"
+    )
+    revenue.add_argument(
+        "revenue",
+        action="store_true",
+        default=False,
+        help="Shows current revenue"
+    )
+    revenue.add_argument(
+        "--today",
+        "-t",
+        action="store_true",
+        default=False,
+        help="Returns revenue for today."
+    )
+    revenue.add_argument(
+        "--yesterday",
+        "-y",
+        action="store_true",
+        default=False,
+        help="Returns revenue for yesterday.",
+    )
+    revenue.add_argument(
+        "--now",
+        "-n",
+        action="store_true",
+        default=False,
+        help="Returns revenue for now (given day by advance-time input)",
+    )
+    revenue.add_argument(
+        "--date",
+        "-d",
+        metavar="DATE_INPUT_REVENUE",
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        help="supply the date from getting revenue",
+    )
+
+    # profit_report
+    profit = reportSubcommands.add_parser(
+        "profit", help="Show current profit"
+    )
+    profit.add_argument(
+        "profit",
+        action="store_true",
+        default=False,
+        help="Shows current profit"
+    )
+    profit.add_argument(
+        "--today",
+        "-t",
+        action="store_true",
+        default=False,
+        help="Returns profit for today."
+    )
+    profit.add_argument(
+        "--yesterday",
+        "-y",
+        action="store_true",
+        default=False,
+        help="Returns profit for yesterday.",
+    )
+    profit.add_argument(
+        "--now",
+        "-n",
+        action="store_true",
+        default=False,
+        help="Returns profit for now (given day by advance-time input)",
+    )
+
+    profit.add_argument(
+        "--date",
+        "-d",
+        metavar="DATE_INPUT_PROFIT",
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        help="supply the date from getting profit",
+    )
 
     return parser

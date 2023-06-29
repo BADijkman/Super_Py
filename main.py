@@ -1,10 +1,12 @@
 import os
 from inputParser import create_parser
+from init import init_data
 from buy import handleBuy
 from sell import handleSell
-from inventory import handleInventory
-from init import init_data
 from utils.advance_time import handleAdvance
+from inventory import handleInventory
+from revenue import handleRevenue
+from profit import handleProfit
 
 
 base_path = os.getcwd()
@@ -28,13 +30,14 @@ def main():
     # Advanced command was given and now parsed
     if hasattr(parsed, "advance"):
         handleAdvance(parsed)
-
     # Report command was given and now parsed
     if hasattr(parsed, "report"):
         if hasattr(parsed, "inventory"):
             handleInventory(parsed)
-
-            # displayCurrentInventory()
+        elif hasattr(parsed, "revenue"):
+            handleRevenue(parsed)
+        elif hasattr(parsed, "profit"):
+            handleProfit(parsed)
 
 
 if __name__ == "__main__":

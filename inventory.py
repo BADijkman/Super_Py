@@ -18,7 +18,7 @@ def handleInventory(parsed_Data):
         displayInventory(date)
     # yesterday
     elif parsed_Data.yesterday:
-        reset_date_to_today
+        reset_date_to_today()
         # set date to yesterday
         date = getDateFromFile("date")
         with open("./day/day.txt", "w") as f:
@@ -40,7 +40,7 @@ def handleInventory(parsed_Data):
         displayInventory(date)
     else:
         err_console.print(
-            'error :inventory needs argument -- now --today or --yesterday ')
+            'error :inventory needs argument -- now --today --yesterday  or date')
 
 
 # displayInventory
@@ -48,63 +48,62 @@ def displayInventory(date):
     date = date
     table = Table(min_width=100, style='white',
                   header_style="green",
-                  padding=(0, 2)
+                  padding=(0, 2),
                   )
     with open("./csv/inventory.csv") as f:
         lines = csv.reader(f)
         count = 0
         for line in lines:
             if count == 0:
-                table.add_column(
-                    "Product Name",
-                    justify="left",
-                    no_wrap=True,
-
-                )
+                table.add_column("Product Name",
+                                 justify="left",
+                                 no_wrap=True,
+                                 )
                 table.add_column("Amount",
                                  justify="left",
-                                 no_wrap=True)
+                                 no_wrap=True,
+                                 )
                 table.add_column("Purchase price",
                                  justify="left",
-                                 no_wrap=True)
+                                 no_wrap=True,
+                                 )
                 table.add_column("Expirtion date",
                                  justify="left",
                                  header_style="green",
-                                 no_wrap=True
+                                 no_wrap=True,
                                  )
                 table.add_column("Expirate",
                                  justify="left",
                                  header_style="green",
                                  no_wrap=True,
-                                 style='green',
                                  )
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
 
-                # expiration_date
-                string_input_expiration_date = (
+                # set expiration_date
+                string_expiration_date = (
                     str(item['expiration_date']))
-                past_expiration = datetime.strptime(
-                    string_input_expiration_date, "%d/%m/%Y")
+                expiration_date = datetime.strptime(
+                    string_expiration_date, "%d/%m/%Y")
 
-                # buy_date
-                string_input_buy_date = (
+                # set buy_date
+                string_buy_date = (
                     str(item['buy_date']))
-                past_buy = datetime.strptime(
-                    string_input_buy_date, "%d/%m/%Y")
+                buy_date = datetime.strptime(
+                    string_buy_date, "%d/%m/%Y")
 
-                # checking_date
-                checking_date = getDateFromFile("date")
+                # set check_date
+                check_date = getDateFromFile("date")
 
-                if (past_expiration.date() < checking_date):
-                    display = "YES"
-
+                # checking expirate
+                if (expiration_date.date() < check_date):
+                    display = "[red]YES"
                 else:
-                    display = "NO"
+                    display = "[green]N0"
 
                 # checking buy date
-                if (past_buy.date() > checking_date):
+                if (buy_date.date() > check_date):
                     pass
                 else:
                     table.add_row(
@@ -117,5 +116,5 @@ def displayInventory(date):
 
     console.rule(f"[yellow]Inventory: {date}", style="yellow")
     console.print(Align.center(table))
-    console.rule(
-        f"[black]Dykey/Winc Copyright © {(datetime.today().strftime('%Y'))}", style="grey")
+    console.print(Align.right(
+        f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
