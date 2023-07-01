@@ -10,8 +10,7 @@ from datetime import datetime
 
 
 # displayInventory
-def displayInventory(date):
-
+def displayInventory():
     table = Table(min_width=100, style='white',
                   header_style="green",
                   padding=(0, 2),
@@ -46,6 +45,7 @@ def displayInventory(date):
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
+                
 # --------------------------------------------
                 # set expiration_date
                 string_expiration_date = (
@@ -80,7 +80,8 @@ def displayInventory(date):
                         display
                     )
 # -------------------------------------
-    console.rule(f"[yellow]Inventory: {date}", style="yellow")
+    display_date = getDateFromFile("str")
+    console.rule(f"[yellow]Inventory: {display_date}", style="yellow")
     console.print(Align.center(table))
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))

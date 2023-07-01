@@ -89,3 +89,27 @@ def getItemFromBoughtCsvById(id):
         for line in lines:
             if int(line["id"]) == int(id):
                 return line
+
+# get all items sold by date
+
+
+def getItemFromSoldCsvById(id):
+    with open("./csv/sold.csv") as f:
+        lines = csv.DictReader(f)
+        for line in lines:
+            if int(line["id"]) == int(id):
+                return line
+
+
+# def getAllItemsSoldByDate(inputDate):
+#     print(inputDate)
+#     sold = []
+#     with open("./csv/sold.csv") as f:
+#         lines = csv.DictReader(f)
+#         for line in lines:
+#             print(line)
+
+            # if inputDate in line["sell_date"]:
+            #     sold.append(line)
+            #     continue
+    # return sold
