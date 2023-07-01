@@ -1,9 +1,6 @@
 import csv
 # import os
 
-# base_path = os.getcwd()
-# csv_path = os.path.join(base_path, "csv")
-
 
 # appendToBought
 def appendToBoughtCsv(newId, name, price, amount, date, expiration_date):

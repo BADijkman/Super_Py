@@ -1,6 +1,6 @@
 from datetime import timedelta
 from console import console, err_console
-from utils.getDateFromFile import getDateFromFile
+from modify_day.getDateFromFile import getDateFromFile
 
 
 def handleAdvance(parsed_Data):
