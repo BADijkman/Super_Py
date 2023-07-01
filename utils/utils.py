@@ -101,6 +101,24 @@ def getItemFromSoldCsvById(id):
                 return line
 
 
+def getAllItemsSoldByDate(date):
+    with open("./csv/sold.csv", 'r') as file:
+        column_name = 'sell_price'
+        reader = csv.DictReader(file)
+        # column_data = []
+     
+        for row in reader:
+            print(row)
+            print(date)
+            tekst = 3
+            # date = 01/07/23
+            if tekst in row:
+                print("JJJJ")
+
+
+# for row in reader:
+#     if search_value in row:
+#         return True
 # def getAllItemsSoldByDate(inputDate):
 #     print(inputDate)
 #     sold = []
@@ -109,7 +127,7 @@ def getItemFromSoldCsvById(id):
 #         for line in lines:
 #             print(line)
 
-            # if inputDate in line["sell_date"]:
-            #     sold.append(line)
-            #     continue
+    # if inputDate in line["sell_date"]:
+    #     sold.append(line)
+    #     continue
     # return sold
