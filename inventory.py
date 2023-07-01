@@ -1,48 +1,17 @@
 import csv
-from console import console, err_console
+from console import console
 from rich.table import Table
 from rich.align import Align
+# --------
 from utils.utils import getItemFromBoughtCsvById
 from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
-
-
-# from modify_day.handle_Report import handle_day
-
-
-# handleInventory
-# def handleInventory(parsed_Data):
-#     handle_day(parsed_Data, "Inventory")
-    
-    
-#  # today
-#     if parsed_Data.today:
-#         set_day_to_today()
-#         date = getDateFromFile("str")
-#         displayInventory(date)
-#  # yesterday
-#     elif parsed_Data.yesterday:
-#         set_day_to_today()
-#         set_day_to_yesterday()
-#         date_yesterday = getDateFromFile("str")
-#         displayInventory(date_yesterday)
-#  # now
-#     elif parsed_Data.now:
-#         date_now = getDateFromFile("str")
-#         displayInventory(date_now)
-#  # input date
-#     elif parsed_Data.date:
-#         set_day_to_inputday(parsed_Data)
-#         date_input = getDateFromFile("str")
-#         displayInventory(date_input)
-#     else:
-#         err_console.print(
-#             'error :inventory needs argument -- now --today --yesterday or date')
+# --------
 
 
 # displayInventory
 def displayInventory(date):
-    date = date
+
     table = Table(min_width=100, style='white',
                   header_style="green",
                   padding=(0, 2),
@@ -77,7 +46,7 @@ def displayInventory(date):
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
-
+# --------------------------------------------
                 # set expiration_date
                 string_expiration_date = (
                     str(item['expiration_date']))
@@ -110,7 +79,7 @@ def displayInventory(date):
                         item['expiration_date'],
                         display
                     )
-
+# -------------------------------------
     console.rule(f"[yellow]Inventory: {date}", style="yellow")
     console.print(Align.center(table))
     console.print(Align.right(
