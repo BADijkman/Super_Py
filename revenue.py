@@ -4,25 +4,28 @@ from console import console, err_console
 from rich.align import Align
 # from utils.utils import getItemFromBoughtCsvById
 from datetime import datetime
-
 from modify_day.getDateFromFile import getDateFromFile
 from utils.utils import getAllItemsSoldByDate
-# omzet
+from date import get_date
 
 
-def displayRevenue():
+def displayRevenue(parsed_data):
+
     day = getDateFromFile("str")
-    soldItems = getAllItemsSoldByDate(day)
-    print(soldItems)
+    totalRevenue = getAllItemsSoldByDate(day, parsed_data)
+    revenueLine = f"  Total revenue : \u20ac {totalRevenue:.2f}"
+    if parsed_data.startingdate is None:
+        display_date = getDateFromFile("str")
+        console.print()
+        console.rule(f"[yellow]Revenue: {display_date}", style="yellow")
+    elif parsed_data.startingdate is not None:
+        display_date_from = getDateFromFile("str")
 
-    # totalRevenue = getRevenueFromSoldItemsList(soldItems)
-    # revenueTable = returnTableOfItems(soldItems, "revenue")
-    # date = day
-    # revenueLine = f"Today's revenue so far: \u20ac {totalRevenue:.2f}"
-
-
-# display_date = getDateFromFile("str")
-# console.rule(f"[yellow]Revenue: {display_date}", style="yellow")
-# # console.print(Align.center(table))
-# console.print(Align.right(
-#     f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
+        display_date_to = get_date()
+        console.rule(
+            f"[yellow]Revenue: from {display_date_from} to {display_date_to}", style="yellow")
+        console.print()
+    console.print(revenueLine)
+    console.rule(style="yellow")
+    console.print(Align.right(
+        f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))

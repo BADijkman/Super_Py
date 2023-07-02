@@ -3,6 +3,7 @@ from console import err_console
 from modify_day.set_day_to_today import set_day_to_today
 from modify_day.set_day_to_yesterday import set_day_to_yesterday
 from modify_day.set_day_to_inputday import set_day_to_inputday
+from modify_day.set_day_to_startingday import set_day_to_startingday
 from inventory import displayInventory
 from revenue import displayRevenue
 from profit import displayProfit
@@ -49,19 +50,22 @@ def handleReport(parsed_Data):
         if parsed_Data.revenue:
             if parsed_Data.today:
                 set_day_to_today()
-                displayRevenue()
+                displayRevenue(parsed_Data)
             elif parsed_Data.yesterday:
                 set_day_to_today()
                 set_day_to_yesterday()
-                displayRevenue()
+                displayRevenue(parsed_Data)
             elif parsed_Data.now:
-                displayRevenue()
+                displayRevenue(parsed_Data)
             elif parsed_Data.date:
                 set_day_to_inputday(parsed_Data)
-                displayRevenue()
+                displayRevenue(parsed_Data)
+            elif parsed_Data.startingdate:
+                set_day_to_startingday(parsed_Data)
+                displayRevenue(parsed_Data)
             else:
                 err_console.print(
-                    'error :revenue needs argument: --today  --yesterday --now --date')
+                    'error :revenue needs argument: --today --yesterday --now --date --startingdate')
 
     else:
         err_console.print(

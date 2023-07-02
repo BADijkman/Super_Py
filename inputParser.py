@@ -203,6 +203,13 @@ def create_parser():
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
         help="supply the date from getting revenue",
     )
+    revenue.add_argument(
+        "--startingdate",
+        "-s",
+        metavar="DATE_INPUT_REVENUE",
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        help="supply the starting date from getting revenue till today",
+    )
 
     # profit_report
     profit = reportSubcommands.add_parser(

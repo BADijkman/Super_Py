@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 # import os
 
 
@@ -38,6 +39,15 @@ def appendToSoldCsv(id, name, amount, date, price):
         writer.writerow([id, name, amount, date, price])
 
 
+# resetInventory
+def resetInventory(csv_path):
+    fieldnames = ['id', 'name',
+                  'amount']
+    with open(f'{csv_path}/inventory.csv', 'w', encoding='UTF8', newline='')as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
+        writer.writeheader()
+
+
 # adjustInventory
 def adjustInventoryCsv(id, amount, csv_path):
     newLines = []
@@ -74,14 +84,6 @@ def removeFromInventoryCsv(id, csv_path):
         appendToInventoryCsv(line["id"], line["name"], line["amount"])
 
 
-def resetInventory(csv_path):
-    fieldnames = ['id', 'name',
-                  'amount']
-    with open(f'{csv_path}/inventory.csv', 'w', encoding='UTF8', newline='')as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
-        writer.writeheader()
-
-
 # get item by id from bought
 def getItemFromBoughtCsvById(id):
     with open("./csv/bought.csv") as f:
@@ -90,34 +92,24 @@ def getItemFromBoughtCsvById(id):
             if int(line["id"]) == int(id):
                 return line
 
+
 # get all items sold by date
-
-
-def getAllItemsSoldByDate(date):
+def getAllItemsSoldByDate(date, parsed_data):
     with open("./csv/sold.csv", 'r') as f:
         sold = []
         lines = csv.DictReader(f)
-        search_value = "02/07/2024"
-        print(search_value)
-        for line in lines:
-            if search_value >= line["sell_date"]:
-                print("true")
-                sold.append(float(line["sell_price"]))
-    return sold
-## datum veranderen naar date
-
-# for row in reader:
-#     if search_value in row:
-#         return True
-# def getAllItemsSoldByDate(inputDate):
-#     print(inputDate)
-#     sold = []
-#     with open("./csv/sold.csv") as f:
-#         lines = csv.DictReader(f)
-#         for line in lines:
-#             print(line)
-
-    # if inputDate in line["sell_date"]:
-    #     sold.append(line)
-    #     continue
-    # return sold
+        check_date = datetime.strptime(
+            date, "%d/%m/%Y")
+        if parsed_data.startingdate is None:
+            for line in lines:
+                sell_date = datetime.strptime(
+                    line["sell_date"], "%d/%m/%Y")
+                if check_date == sell_date:
+                    sold.append(float(line["sell_price"]))
+        elif parsed_data.startingdate is not None:
+            for line in lines:
+                sell_date = datetime.strptime(
+                    line["sell_date"], "%d/%m/%Y")
+                if check_date <= sell_date:
+                    sold.append(float(line["sell_price"]))
+    return sum(sold)
