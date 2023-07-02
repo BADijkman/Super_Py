@@ -12,8 +12,6 @@ from utils.utils import getAllItemsSoldByDate
 
 def displayRevenue():
     day = getDateFromFile("str")
-    check_date = getDateFromFile("date")
-
     soldItems = getAllItemsSoldByDate(day)
     print(soldItems)
 
