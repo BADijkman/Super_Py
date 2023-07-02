@@ -1,4 +1,3 @@
-
 from console import err_console
 from modify_day.set_day_to_today import set_day_to_today
 from modify_day.set_day_to_yesterday import set_day_to_yesterday

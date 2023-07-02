@@ -2,11 +2,9 @@ import csv
 from console import console
 from rich.table import Table
 from rich.align import Align
-# --------
 from utils.utils import getItemFromBoughtCsvById
 from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
-# --------
 
 
 # displayInventory
@@ -45,8 +43,7 @@ def displayInventory():
                 count += 1
             else:
                 item = getItemFromBoughtCsvById(int(line[0]))
-                
-# --------------------------------------------
+
                 # set expiration_date
                 string_expiration_date = (
                     str(item['expiration_date']))
@@ -79,7 +76,7 @@ def displayInventory():
                         item['expiration_date'],
                         display
                     )
-# -------------------------------------
+
     display_date = getDateFromFile("str")
     console.rule(f"[yellow]Inventory: {display_date}", style="yellow")
     console.print(Align.center(table))

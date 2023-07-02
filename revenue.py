@@ -18,6 +18,7 @@ def displayRevenue(parsed_data):
         display_date = getDateFromFile("str")
         console.print()
         console.rule(f"[yellow]Revenue: {display_date}", style="yellow")
+        console.print()
     elif parsed_data.startingdate is not None:
         display_date_from = getDateFromFile("str")
 
@@ -29,3 +30,4 @@ def displayRevenue(parsed_data):
     console.rule(style="yellow")
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
+    console.print()

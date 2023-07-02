@@ -1,13 +1,7 @@
-
 import random
 from date import get_date
 from utils.utils import appendToBoughtCsv, appendToInventoryCsv
 from console import console
-
-
-# import sys
-# sys.path.insert(0, "../csv")
-# sys.path.insert(0, "../utils") #AD
 
 
 def handleBuy(parsed_Data):
