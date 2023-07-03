@@ -36,7 +36,7 @@ def create_parser():
         "-p",
         metavar="PRODUCT_PRICE",
         type=float,
-        help="supply the price of the product EURO",
+        help="supply the price of the product to buy EURO",
         required=True,
     )
     buy.add_argument(
@@ -45,14 +45,14 @@ def create_parser():
         metavar="PRODUCT_AMOUNT",
         type=int,
         default=1,
-        help="supply the amount of products purchased (default=1)",
+        help="supply the amount of product purchased (default=1)",
     )
     buy.add_argument(
         "--expiration",
         "-e",
         metavar="EXPIRATION dd-mm-yyyy'",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the expiration date of products dd/mm/yyyy",
+        help="supply the expiration date of product dd/mm/yyyy",
         required=True,
     )
 
@@ -78,7 +78,7 @@ def create_parser():
         "-p",
         metavar="PRODUCT_PRICE",
         type=float,
-        help="supply the price of the product",
+        help="supply the price of the product to sell",
         required=True,
     )
     sell.add_argument(
@@ -87,7 +87,7 @@ def create_parser():
         metavar="PRODUCT_AMOUNT",
         type=int,
         default=1,
-        help="supply the amount of products sold (default=1)",
+        help="supply the amount of products to sell (default=1)",
     )
 
     # advance day instruction
@@ -104,7 +104,7 @@ def create_parser():
         '-d',
         metavar="DAYS",
         type=int,
-        help="Advance day by X days",
+        help="Advance day by given input days",
         required=True,
     )
 
@@ -128,13 +128,13 @@ def create_parser():
 
     # inventory_report
     inventory = reportSubcommands.add_parser(
-        "inventory", help="Show current inventory"
+        "inventory", help="Returns inventory"
     )
     inventory.add_argument(
         "inventory",
         action="store_true",
         default=False,
-        help="Shows current inventory"
+        help="Returns current inventory"
     )
     inventory.add_argument(
         "--today",
@@ -162,18 +162,18 @@ def create_parser():
         "-d",
         metavar="DATE_INPUT_INVENTORY",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the date from getting invetory",
+        help="Returns inventory for input-date",
     )
 
     # revenue_report
     revenue = reportSubcommands.add_parser(
-        "revenue", help="Show current revenue"
+        "revenue", help="Returns revenue"
     )
     revenue.add_argument(
         "revenue",
         action="store_true",
         default=False,
-        help="Shows current revenue"
+        help="Returns current revenue"
     )
     revenue.add_argument(
         "--today",
@@ -201,25 +201,25 @@ def create_parser():
         "-d",
         metavar="DATE_INPUT_REVENUE",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the date from getting revenue",
+        help="Returns revenue for input-date",
     )
     revenue.add_argument(
         "--startingdate",
         "-s",
         metavar="DATE_INPUT_REVENUE",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the starting date from getting revenue till today",
+        help="Returns revenue from input-date to current-date",
     )
 
     # profit_report
     profit = reportSubcommands.add_parser(
-        "profit", help="Show current profit"
+        "profit", help="Returns profit"
     )
     profit.add_argument(
         "profit",
         action="store_true",
         default=False,
-        help="Shows current profit"
+        help="Returns current profit"
     )
     profit.add_argument(
         "--today",
@@ -248,14 +248,14 @@ def create_parser():
         "-d",
         metavar="DATE_INPUT_PROFIT",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the date from getting profit",
+        help="Returns profit for input-date",
     )
     profit.add_argument(
         "--startingdate",
         "-s",
         metavar="DATE_INPUT_REVENUE",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
-        help="supply the starting date from getting profit till today",
+        help="Returns profit from input-date to currentdate",
     )
 
     return parser
