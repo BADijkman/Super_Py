@@ -1,7 +1,8 @@
 from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          appendToSoldCsv,
                          removeFromInventoryCsv,
-                         adjustInventoryCsv
+                         adjustInventoryCsv,
+                         getItemFromPurchaseCsvById
                          )
 from functools import reduce
 from console import console
@@ -19,16 +20,18 @@ def handleSell(parsed_Data, csv_path):
     sold = 0
 
     # Go through the inventory and get the product_name
-    inStock = getAllItemsByNameFromInventoryCsv(name)
-    print(f'hallo{inStock}')
+    # inStockTotal = getAllItemsByNameFromInventoryCsv(name)
+    # print(f'instock total{inStockTotal}')
 
-    # Check how much of the item is in stock id
-    
-    
+    # for line in inStockTotal:
+    #     x = getItemFromPurchaseCsvById(int(inStockTotal[id]))
+    #     print(f' from purchas aan de hand van id {x}')
+
+    # inStockExpirate =
+
+    inStock = getAllItemsByNameFromInventoryCsv(name)
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
-    
-    print(inStockAmount)
 
     # Check if Expirate or not
 
