@@ -8,7 +8,6 @@ def getDateFromFile(type):
             date = datetime.strptime(line, "%d%m%Y").date()
             day = datetime.strftime(date, "%d/%m/%Y")
         return day
-
     elif type == "date":
         with open("./day/day.txt") as f:
             line = "".join(f.readline().split("/"))
