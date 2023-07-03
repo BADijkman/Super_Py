@@ -10,13 +10,13 @@ def init_data(base_path, csv_path, day_path):
     else:
         os.mkdir(f'{base_path}/csv')
 
-    # check bought.cvs excist
-    if os.path.exists(f'{csv_path }/bought.csv'):
+    # check purchase.cvs excist
+    if os.path.exists(f'{csv_path }/purchase.csv'):
         pass
     else:
         fieldnames = ['id', 'product_name', 'amount', 'buy_price',
                       'buy_date',  'expiration_date']
-        with open(f'{csv_path }/bought.csv', 'w', encoding='UTF8', newline='')as f:
+        with open(f'{csv_path }/purchase.csv', 'w', encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 

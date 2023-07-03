@@ -3,9 +3,9 @@ from datetime import datetime
 # import os
 
 
-# appendToBought
-def appendToBoughtCsv(newId, name, price, amount, date, expiration_date):
-    with open("./csv/bought.csv", "a", newline="") as f:
+# appendToPurchase
+def appendToPurchaseCsv(newId, name, price, amount, date, expiration_date):
+    with open("./csv/purchase.csv", "a", newline="") as f:
         writer = csv.writer(f, delimiter=",")
         writer.writerow([newId, name, amount,  price, date, expiration_date])
 
@@ -84,9 +84,9 @@ def removeFromInventoryCsv(id, csv_path):
         appendToInventoryCsv(line["id"], line["name"], line["amount"])
 
 
-# get item by id from bought
-def getItemFromBoughtCsvById(id):
-    with open("./csv/bought.csv") as f:
+# get item by id from Purchase
+def getItemFromPurchaseCsvById(id):
+    with open("./csv/purchase.csv") as f:
         lines = csv.DictReader(f)
         for line in lines:
             if int(line["id"]) == int(id):
@@ -117,7 +117,7 @@ def getAllItemsSoldByDate(date, parsed_data):
 
 # get all items purchase by date
 def getAllItemsPurchaseByDate(date, parsed_data):
-    with open("./csv/bought.csv", 'r') as f:
+    with open("./csv/purchase.csv", 'r') as f:
         purchase = []
         lines = csv.DictReader(f)
         check_date = datetime.strptime(

@@ -2,7 +2,7 @@ import csv
 from console import console
 from rich.table import Table
 from rich.align import Align
-from utils.utils import getItemFromBoughtCsvById
+from utils.utils import getItemFromPurchaseCsvById
 from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
 
@@ -42,7 +42,7 @@ def displayInventory():
                                  )
                 count += 1
             else:
-                item = getItemFromBoughtCsvById(int(line[0]))
+                item = getItemFromPurchaseCsvById(int(line[0]))
 
                 # set expiration_date
                 string_expiration_date = (

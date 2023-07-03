@@ -1,6 +1,6 @@
 import random
 from date import get_date
-from utils.utils import appendToBoughtCsv, appendToInventoryCsv
+from utils.utils import appendToPurchaseCsv, appendToInventoryCsv
 from console import console
 
 
@@ -13,8 +13,8 @@ def handleBuy(parsed_Data):
     expiration_date = parsed_Data.expiration.strftime("%d/%m/%Y")
 
     try:
-        # Append line to bought.csv
-        appendToBoughtCsv(newId, name, price, amount, date, expiration_date)
+        # Append line to purchase.csv
+        appendToPurchaseCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv
         appendToInventoryCsv(newId, name, amount)
