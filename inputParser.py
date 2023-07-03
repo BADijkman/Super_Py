@@ -250,5 +250,12 @@ def create_parser():
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
         help="supply the date from getting profit",
     )
+    profit.add_argument(
+        "--startingdate",
+        "-s",
+        metavar="DATE_INPUT_REVENUE",
+        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        help="supply the starting date from getting profit till today",
+    )
 
     return parser

@@ -113,3 +113,25 @@ def getAllItemsSoldByDate(date, parsed_data):
                 if check_date <= sell_date:
                     sold.append(float(line["sell_price"]))
     return sum(sold)
+
+
+# get all items purchase by date
+def getAllItemsPurchaseByDate(date, parsed_data):
+    with open("./csv/bought.csv", 'r') as f:
+        purchase = []
+        lines = csv.DictReader(f)
+        check_date = datetime.strptime(
+            date, "%d/%m/%Y")
+        if parsed_data.startingdate is None:
+            for line in lines:
+                purchase_date = datetime.strptime(
+                    line["buy_date"], "%d/%m/%Y")
+                if check_date == purchase_date:
+                    purchase.append(float(line["buy_price"]))
+        elif parsed_data.startingdate is not None:
+            for line in lines:
+                purchase_date = datetime.strptime(
+                    line["buy_date"], "%d/%m/%Y")
+                if check_date <= purchase_date:
+                    purchase.append(float(line["buy_price"]))
+    return sum(purchase)
