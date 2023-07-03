@@ -1,0 +1,178 @@
+
+
+The SuperPy App. instructions
+
+-------------------------------------------------------------------------------------------------------------
+- Buy
+
+To buy a product use:
+python main.py buy 
+
+There are a few options to use as arguments:
+--name or -n          "Product name"
+
+--price or -p         "Buying price of the product"
+
+--amount or -a        "Amount of products" (if not supplied it will be 1 product)"
+
+--expiration or -e    "Expiration date dd/mm/yyyy"
+
+The item is given a "random" id and add to the purchase.csv and to the inventory.csv 
+
+
+Examples:
+
+python main.py buy -n Apple -p 2 -e 01/01/2024 
+--This will buy a single(default) Apple for 2Euro with expiration date 01/01/2024
+  return OK
+
+python main.py buy -n Apple -p 3 -a 6 -e 01/11/2024 
+--This will buy 6 Apples at 3Euro with expiration date 01/11/2024
+  return OK
+
+---------------------------------------------------------------------------------------------------------------------
+
+- Sell
+
+To sell a product use:
+python main.py sell
+
+There are a few options to use as arguments:
+--name or -n          "Product name"
+
+--price or -p         "Selling price of the product"
+
+--amount or -a        "Amount of products" (if not supplied it will be 1 product)
+
+The selling goes through the entire inventory and collects all the products with the same name 
+or returns an error message: ERROR: Product not in stock or ERROR:You can only sell the number of products in stock
+
+
+Examples:
+
+python sell -n banana -p 1                    
+--This will sell 1 banana for 1eur
+  return OK
+
+python sell -n banana -p 3 -a 10               
+--This will sell 10 bananas for 3eur
+  return OK
+
+python sell -n banana -p 3 -a 109               
+--This will sell 10 bananas for 3eur
+  return ERROR:You can only sell 20 banana
+
+---------------------------------------------------------------------------------------------------
+
+- Advancetime
+
+To advance the time use:
+python main.py advance-time
+
+The argument to use:
+
+--date or -d            "Amount of days to advance the  date"
+
+Examples:
+
+python main.py advance-time -d 5 
+--Advances the date with 5 days
+  return OK
+
+---------------------------------------------------------------------------------------------------
+
+
+- Report
+
+There are three types of reports to get from the program: [ inventory | revenue | profit ]
+
+Inventory:
+
+python main.py report inventory 
+
+There are a few options to use as arguments:
+
+--today or -t         shows the inventory for today
+
+--yesterday or -y     shows the inventory for yesterday
+
+--now or-n            shows the inventory for the day Advancetime
+
+--date  or-d          "date dd/mm/yyyy" shows the inventory on this date
+
+--startingdate or-s   "startingdate dd/mm/yyyy" shows the inventory from this date to current date
+
+Examples:
+python main.py report inventory -t
+────────────────────────────────────── Inventory: 03/07/2023 ───────────────────────────────────────
+     ┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓     
+     ┃  Product Name     ┃  Amount    ┃  Purchase price    ┃  Expirtion date    ┃  Expirate   ┃     
+     ┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩     
+     │  appel            │  1         │  € 6.0             │  03/07/2023        │  N0         │     
+     │  peer             │  12        │  € 5.0             │  03/07/2023        │  N0         │     
+     │  peer             │  12        │  € 5.0             │  03/07/2023        │  N0         │     
+     │  apple            │  5         │  € 6.0             │  12/12/2023        │  N0         │     
+     └───────────────────┴────────────┴────────────────────┴────────────────────┴─────────────┘     
+                                                                          Dykey/Winc Copyright ©2023
+
+
+Revenue:
+
+There are a few options to use as arguments:
+
+--today or -t         shows the revenue for today
+
+--yesterday or -y     shows the revenue for yesterday
+
+--now or-n            shows the revenue for the day Advancetime
+
+--date  or-d          "date dd/mm/yyyy" shows the revenue on this date
+
+--startingdate or-s   "startingdate dd/mm/yyyy" shows the revenue from this date to current date
+
+Examples:
+python main.py report revenue -y  
+─────────────────────────────────────── Revenue: 02/07/2023 ────────────────────────────────────────
+
+  Total revenue : € 0.00
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                          Dykey/Winc Copyright ©2023      
+
+
+
+python main.py report revenue -s 10/01/2022
+────────────────────────────── Revenue: from 10/01/2022 to 03/07/2023 ──────────────────────────────
+
+  Total revenue : € 9.00
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                          Dykey/Winc Copyright ©2023
+
+Profit:
+
+There are a few options to use as arguments:
+
+--today or -t         shows the profit for today
+
+--yesterday or -y     shows the profit for yesterday
+
+--now or-n            shows the profit for the day Advancetime
+
+--date  or-d          "date dd/mm/yyyy" shows the profit on this date
+
+--startingdate or-s   "startingdate dd/mm/yyyy" shows the profit from this date to current date
+
+Examples:
+python main.py report profit -t
+──────────────────────────── Profit: 03/07/2023 ────────────────────────────
+
+  Total Profit : € -25.00
+────────────────────────────────────────────────────────────────────────────
+                                                  Dykey/Winc Copyright ©2023
+
+
+main.py report profit -s 10/01/2023
+────────────────── Profit: from 10/01/2023 to 03/07/2023 ───────────────────
+
+  Total Profit : € -25.00
+────────────────────────────────────────────────────────────────────────────
+                                                  Dykey/Winc Copyright ©2023

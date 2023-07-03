@@ -50,7 +50,7 @@ def create_parser():
     buy.add_argument(
         "--expiration",
         "-e",
-        metavar="EXPIRATION dd-mm-yyyy'",
+        metavar="EXPIRATION dd/mm/yyyy'",
         type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
         help="supply the expiration date of product dd/mm/yyyy",
         required=True,
