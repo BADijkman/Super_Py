@@ -17,7 +17,7 @@ There are a few options to use as arguments:
 
 --expiration or -e    "Expiration date dd/mm/yyyy"
 
-The item is given a "random" id and add to the purchase.csv and to the inventory.csv 
+The item is given an id and add to the purchase.csv and to the inventory.csv 
 
 
 Examples:
@@ -26,8 +26,8 @@ python main.py buy -n Apple -p 2 -e 01/01/2024
 --This will buy a single(default) Apple for 2Euro with expiration date 01/01/2024
   return OK
 
-python main.py buy -n Apple -p 3 -a 6 -e 01/11/2024 
---This will buy 6 Apples at 3Euro with expiration date 01/11/2024
+python main.py buy -n Pear -p 3 -a 6 -e 01/11/2024 
+--This will buy 6 Pears at 3Euro with expiration date 01/11/2024
   return OK
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -72,6 +72,7 @@ python main.py advance-time
 The argument to use:
 
 --date or -d            "Amount of days to advance the  date"
+
 
 Examples:
 

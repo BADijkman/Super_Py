@@ -70,8 +70,8 @@ def displayInventory():
                     pass
                 else:
                     table.add_row(
-                        item['product_name'],
-                        item['amount'],
+                        line[1],
+                        line[2],
                         "\u20ac " + item["buy_price"],
                         item['expiration_date'],
                         display

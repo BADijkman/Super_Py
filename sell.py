@@ -12,6 +12,7 @@ day = get_date()
 
 
 def handleSell(parsed_Data, csv_path):
+    print(parsed_Data)
     name = parsed_Data.name.lower()
     price = parsed_Data.price
     amount = parsed_Data.amount
@@ -19,10 +20,17 @@ def handleSell(parsed_Data, csv_path):
 
     # Go through the inventory and get the product_name
     inStock = getAllItemsByNameFromInventoryCsv(name)
+    print(f'hallo{inStock}')
 
-    # Check how much of the item is in stock.
+    # Check how much of the item is in stock id
+    
+    
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
+    
+    print(inStockAmount)
+
+    # Check if Expirate or not
 
     # Loop that handles the selling of the products.
     while amount > 0:
