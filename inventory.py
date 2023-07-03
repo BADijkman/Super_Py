@@ -9,7 +9,7 @@ from datetime import datetime
 
 # displayInventory
 def displayInventory():
-    table = Table(min_width=100, style='white',
+    table = Table(min_width=90, style='white',
                   header_style="green",
                   padding=(0, 2),
                   )
