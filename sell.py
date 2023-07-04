@@ -7,6 +7,7 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
 from functools import reduce
 from console import console
 from date import get_date
+from datetime import datetime
 
 
 day = get_date()
@@ -20,20 +21,33 @@ def handleSell(parsed_Data, csv_path):
     sold = 0
 
     # Go through the inventory and get the product_name
-    # inStockTotal = getAllItemsByNameFromInventoryCsv(name)
-    # print(f'instock total{inStockTotal}')
+    inStockTotal = getAllItemsByNameFromInventoryCsv(name)
+    print(f'instock total{inStockTotal}')
 
-    # for line in inStockTotal:
-    #     x = getItemFromPurchaseCsvById(int(inStockTotal[id]))
-    #     print(f' from purchas aan de hand van id {x}')
+    # get these items from purchase by id to check Expirtion date
+    inStockTotalNotExpired = []
+    for dict in inStockTotal:
+        id_inStockTotal = dict['id']
 
-    # inStockExpirate =
+        inStockTotalById = getItemFromPurchaseCsvById(id_inStockTotal)
 
-    inStock = getAllItemsByNameFromInventoryCsv(name)
+        for key, value in inStockTotalById.items():
+            if key == 'expiration_date':
+                expiration_date = datetime.strptime(
+                    value, "%d/%m/%Y")
+                check_date = datetime.strptime(
+                    day, "%d/%m/%Y")
+                print(f'e {expiration_date}')
+                print(f'c {check_date}')
+                if expiration_date < check_date:
+                    print("YES")
+                else:
+                    inStockTotalNotExpired.append(dict)
+
+    # Check how much of the item is in stock.
+    inStock = inStockTotalNotExpired
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
-
-    # Check if Expirate or not
 
     # Loop that handles the selling of the products.
     while amount > 0:
