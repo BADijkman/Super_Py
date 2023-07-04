@@ -22,7 +22,6 @@ def handleSell(parsed_Data, csv_path):
 
     # Go through the inventory and get the product_name
     inStockTotal = getAllItemsByNameFromInventoryCsv(name)
-    print(f'instock total{inStockTotal}')
 
     # get these items from purchase by id to check Expirtion date
     inStockTotalNotExpired = []
@@ -37,10 +36,8 @@ def handleSell(parsed_Data, csv_path):
                     value, "%d/%m/%Y")
                 check_date = datetime.strptime(
                     day, "%d/%m/%Y")
-                print(f'e {expiration_date}')
-                print(f'c {check_date}')
                 if expiration_date < check_date:
-                    print("YES")
+                    pass
                 else:
                     inStockTotalNotExpired.append(dict)
 
