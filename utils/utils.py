@@ -5,13 +5,6 @@ from modify_day.convert_to_datetime import convert_to_datetime
 from modify_day.convert_to_string import convert_to_string
 
 
-# appendToPurchase
-def appendToPurchaseCsv(newId, name, price, amount, date, expiration_date):
-    with open("./csv/purchase.csv", "a", newline="") as f:
-        writer = csv.writer(f, delimiter=",")
-        writer.writerow([newId, name, amount,  price, date, expiration_date])
-
-
 # sort on date
 def sortOnDate(cvs):
     data = []
@@ -25,7 +18,7 @@ def sortOnDate(cvs):
                 data.append(row)
 
     key = 'expiration_date'
-    # Sort the data list using the sorted() function and operator.itemgetter()
+    # Sort the data list 
     sorted_data = sorted(data, key=operator.itemgetter(key))
 
     # Convert datetime objects back to string format
@@ -38,6 +31,13 @@ def sortOnDate(cvs):
         writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
         writer.writeheader()
         writer.writerows(sorted_data)
+
+
+# appendToPurchase
+def appendToPurchaseCsv(newId, name, price, amount, date, expiration_date):
+    with open("./csv/purchase.csv", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([newId, name, amount,  price, date, expiration_date])
 
 
 # appendToInventory
