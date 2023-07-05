@@ -18,7 +18,7 @@ def sortOnDate(cvs):
                 data.append(row)
 
     key = 'expiration_date'
-    # Sort the data list 
+    # Sort the data list
     sorted_data = sorted(data, key=operator.itemgetter(key))
 
     # Convert datetime objects back to string format
@@ -65,7 +65,8 @@ def getAllItemsByNameFromInventoryCsv(name):
                 inStock.append(
                     {"id": int(line["id"]),
                         "name": line["name"],
-                        "amount": int(line["amount"]), }
+                        "amount": int(line["amount"]),
+                        "expiration_date": str(line["expiration_date"])}
                 )
     sortOnDate("inventory")
     return inStock

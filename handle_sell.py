@@ -23,7 +23,7 @@ def handleSell(parsed_Data, csv_path):
 
     # Go through the inventory and get the product_name
     inStockTotal = getAllItemsByNameFromInventoryCsv(name)
- 
+
     # sort on expiration_date
     sortOnDate("inventory")
 
@@ -33,7 +33,6 @@ def handleSell(parsed_Data, csv_path):
         id_inStockTotal = dict['id']
 
         inStockTotalById = getItemFromPurchaseCsvById(id_inStockTotal)
-  
 
         for key, value in inStockTotalById.items():
             if key == 'expiration_date':
