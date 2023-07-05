@@ -1,4 +1,4 @@
-from date import get_date
+from modify_day.date import get_date
 
 
 def set_day_to_today():

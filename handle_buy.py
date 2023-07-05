@@ -1,5 +1,5 @@
 import random
-from date import get_date
+from modify_day.date import get_date
 from utils.utils import appendToPurchaseCsv, appendToInventoryCsv
 from console import console
 

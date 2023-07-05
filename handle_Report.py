@@ -6,7 +6,7 @@ from modify_day.set_day_to_startingday import set_day_to_startingday
 from inventory import displayInventory
 from revenue import displayRevenue
 from profit import displayProfit
-from date import get_date
+from modify_day.date import get_date
 from datetime import datetime
 
 

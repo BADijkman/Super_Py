@@ -3,7 +3,7 @@ from rich.align import Align
 from datetime import datetime
 from modify_day.getDateFromFile import getDateFromFile
 from utils.utils import getAllItemsSoldByDate
-from date import get_date
+from modify_day.date import get_date
 
 
 def displayRevenue(parsed_data):
