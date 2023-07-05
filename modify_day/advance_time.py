@@ -4,7 +4,6 @@ from modify_day.getDateFromFile import getDateFromFile
 
 
 def handleAdvance(parsed_Data):
-    # print(parsed_Data.d)
     advance_days = parsed_Data.d
     day = getDateFromFile("date")
     try:
