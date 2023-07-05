@@ -36,7 +36,7 @@ def init_data(base_path, csv_path, day_path):
         pass
     else:
         fieldnames = ['id', 'name',
-                      'amount']
+                      'amount', 'expiration_date']
         with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()

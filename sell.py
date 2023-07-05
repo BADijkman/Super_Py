@@ -2,7 +2,9 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          appendToSoldCsv,
                          removeFromInventoryCsv,
                          adjustInventoryCsv,
-                         getItemFromPurchaseCsvById
+                         getItemFromPurchaseCsvById,
+                         sortOnDate
+
                          )
 from functools import reduce
 from console import console
@@ -21,13 +23,17 @@ def handleSell(parsed_Data, csv_path):
 
     # Go through the inventory and get the product_name
     inStockTotal = getAllItemsByNameFromInventoryCsv(name)
+ 
+    # sort on expiration_date
+    sortOnDate("inventory")
 
-    # get these items from purchase by id to check Expirtion date
+    # get these items from purchase by id to check expirtion date
     inStockTotalNotExpired = []
     for dict in inStockTotal:
         id_inStockTotal = dict['id']
 
         inStockTotalById = getItemFromPurchaseCsvById(id_inStockTotal)
+  
 
         for key, value in inStockTotalById.items():
             if key == 'expiration_date':
@@ -42,6 +48,7 @@ def handleSell(parsed_Data, csv_path):
 
     # Check how much of the item is in stock.
     inStock = inStockTotalNotExpired
+
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
 

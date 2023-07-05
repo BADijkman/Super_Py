@@ -1,6 +1,8 @@
 import csv
+import operator
 from datetime import datetime
-# import os
+from modify_day.convert_to_datetime import convert_to_datetime
+from modify_day.convert_to_string import convert_to_string
 
 
 # appendToPurchase
@@ -10,11 +12,47 @@ def appendToPurchaseCsv(newId, name, price, amount, date, expiration_date):
         writer.writerow([newId, name, amount,  price, date, expiration_date])
 
 
+# sort on date
+def sortOnDate(cvs):
+    data = []
+    if cvs == "inventory":
+        with open('./csv/inventory.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                # Convert the value in the date column to a datetime object
+                row['expiration_date'] = convert_to_datetime(
+                    row['expiration_date'])
+                data.append(row)
+
+    key = 'expiration_date'
+    # Sort the data list using the sorted() function and operator.itemgetter()
+    sorted_data = sorted(data, key=operator.itemgetter(key))
+
+    # Convert datetime objects back to string format
+    for row in sorted_data:
+        # Replace 'date_column' with your actual column name
+        row['expiration_date'] = convert_to_string(row['expiration_date'])
+
+    # Write the sorted data back to a CSV file
+    with open('./csv/inventory.csv', 'w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
+        writer.writeheader()
+        writer.writerows(sorted_data)
+
+
 # appendToInventory
-def appendToInventoryCsv(id, name, amount):
+def appendToInventoryCsv(id, name, amount, expiration_date):
     with open("./csv/inventory.csv", "a", newline="") as f:
         writer = csv.writer(f, delimiter=",")
-        writer.writerow([id, name, amount])
+        writer.writerow([id, name, amount, expiration_date])
+    sortOnDate("inventory")
+
+
+# appendToSold
+def appendToSoldCsv(id, name, amount, date, price):
+    with open("./csv/sold.csv", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([id, name, amount, date, price])
 
 
 # getAllItemsFromInventory
@@ -29,27 +67,23 @@ def getAllItemsByNameFromInventoryCsv(name):
                         "name": line["name"],
                         "amount": int(line["amount"]), }
                 )
+    sortOnDate("inventory")
     return inStock
-
-
-# appendToSold
-def appendToSoldCsv(id, name, amount, date, price):
-    with open("./csv/sold.csv", "a", newline="") as f:
-        writer = csv.writer(f, delimiter=",")
-        writer.writerow([id, name, amount, date, price])
 
 
 # resetInventory
 def resetInventory(csv_path):
     fieldnames = ['id', 'name',
-                  'amount']
+                  'amount', 'expiration_date']
     with open(f'{csv_path}/inventory.csv', 'w', encoding='UTF8', newline='')as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
         writer.writeheader()
+    sortOnDate("inventory")
 
 
 # adjustInventory
 def adjustInventoryCsv(id, amount, csv_path):
+    sortOnDate("inventory")
     newLines = []
     with open("./csv/inventory.csv", "r+") as f:
         lines = csv.DictReader(f)
@@ -60,6 +94,7 @@ def adjustInventoryCsv(id, amount, csv_path):
                         "id": line["id"],
                         "name": line["name"],
                         "amount": int(line["amount"]) - amount,
+                        "expiration_date": line["expiration_date"]
                     }
                 )
             else:
@@ -67,7 +102,8 @@ def adjustInventoryCsv(id, amount, csv_path):
 
     resetInventory(csv_path)
     for line in newLines:
-        appendToInventoryCsv(line["id"], line["name"], line["amount"])
+        appendToInventoryCsv(line["id"], line["name"],
+                             line["amount"], line["expiration_date"])
 
 
 # removeFromInventoryCsv(int(stock["id"]))
@@ -81,7 +117,8 @@ def removeFromInventoryCsv(id, csv_path):
 
     resetInventory(csv_path)
     for line in newLines:
-        appendToInventoryCsv(line["id"], line["name"], line["amount"])
+        appendToInventoryCsv(line["id"], line["name"],
+                             line["amount"], line["expiration_date"])
 
 
 # get item by id from Purchase
