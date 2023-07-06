@@ -30,7 +30,7 @@ def displayInventory():
                                  justify="left",
                                  no_wrap=True,
                                  )
-                table.add_column("Expirtion date",
+                table.add_column("Expiration date",
                                  justify="left",
                                  header_style="green",
                                  no_wrap=True,
