@@ -3,9 +3,13 @@ import operator
 from datetime import datetime
 from modify_day.convert_to_datetime import convert_to_datetime
 from modify_day.convert_to_string import convert_to_string
+from modify_day.date import get_date
 
+day = get_date()
 
 # sort on date
+
+
 def sortOnDate(cvs):
     data = []
     if cvs == "inventory":
@@ -55,7 +59,7 @@ def appendToSoldCsv(id, name, amount, date, price):
         writer.writerow([id, name, amount, date, price])
 
 
-# getAllItemsFromInventory
+# getAllItemsFromInventoryByName
 def getAllItemsByNameFromInventoryCsv(name):
     inStock = []
     with open('./csv/inventory.csv') as f:
@@ -173,3 +177,34 @@ def getAllItemsPurchaseByDate(date, parsed_data):
                 if check_date <= purchase_date:
                     purchase.append(float(line["buy_price"]))
     return sum(purchase)
+
+
+# get al items inStock
+def inStocktotal():
+    inStock = []
+    with open('./csv/inventory.csv') as f:
+        lines = csv.DictReader(f)
+        for line in lines:
+            inStock.append(
+                {"id": int(line["id"]),
+                 "name": line["name"],
+                 "amount": int(line["amount"]),
+                 "expiration_date": str(line["expiration_date"])}
+            )
+    sortOnDate("inventory")
+    return inStock
+
+
+# get al items inStock not Expired
+def inStockTotalNotExpired(inStock):
+    inStockTotalNotExpired = []
+    for dict in inStock:
+        expiration_date = datetime.strptime(
+            dict['expiration_date'], "%d/%m/%Y")
+        check_date = datetime.strptime(
+            day, "%d/%m/%Y")
+        if expiration_date < check_date:
+            pass
+        else:
+            inStockTotalNotExpired.append(dict)
+    return inStockTotalNotExpired
