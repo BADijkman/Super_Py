@@ -2,7 +2,6 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          appendToSoldCsv,
                          removeFromInventoryCsv,
                          adjustInventoryCsv,
-                         getItemFromPurchaseCsvById,
                          sortOnDate
                          )
 from functools import reduce
@@ -29,20 +28,14 @@ def handleSell(parsed_Data, csv_path):
     # select not expired
     inStockTotalNotExpired = []
     for dict in inStockTotal:
-        id_inStockTotal = dict['id']
-
-        inStockTotalById = getItemFromPurchaseCsvById(id_inStockTotal)
-
-        for key, value in inStockTotalById.items():
-            if key == 'expiration_date':
-                expiration_date = datetime.strptime(
-                    value, "%d/%m/%Y")
-                check_date = datetime.strptime(
-                    day, "%d/%m/%Y")
-                if expiration_date < check_date:
-                    pass
-                else:
-                    inStockTotalNotExpired.append(dict)
+        expiration_date = datetime.strptime(
+            dict['expiration_date'], "%d/%m/%Y")
+        check_date = datetime.strptime(
+            day, "%d/%m/%Y")
+        if expiration_date < check_date:
+            pass
+        else:
+            inStockTotalNotExpired.append(dict)
 
     # Check how much of the item is in stock.
     inStock = inStockTotalNotExpired
