@@ -2,6 +2,7 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          appendToSoldCsv,
                          removeFromInventoryCsv,
                          adjustInventoryCsv,
+                         getItemFromPurchaseCsvById,
                          sortOnDate
                          )
 from functools import reduce
@@ -28,30 +29,31 @@ def handleSell(parsed_Data, csv_path):
     # select not expired
     inStockTotalNotExpired = []
     for dict in inStockTotal:
-        expiration_date = datetime.strptime(
-            dict['expiration_date'], "%d/%m/%Y")
-        check_date = datetime.strptime(
-            day, "%d/%m/%Y")
-        if expiration_date < check_date:
-            pass
-        else:
-            inStockTotalNotExpired.append(dict)
+        id_inStockTotal = dict['id']
+
+        inStockTotalById = getItemFromPurchaseCsvById(id_inStockTotal)
+
+        for key, value in inStockTotalById.items():
+            if key == 'expiration_date':
+                expiration_date = datetime.strptime(
+                    value, "%d/%m/%Y")
+                check_date = datetime.strptime(
+                    day, "%d/%m/%Y")
+                if expiration_date < check_date:
+                    pass
+                else:
+                    inStockTotalNotExpired.append(dict)
 
     # Check how much of the item is in stock.
     inStock = inStockTotalNotExpired
 
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
-   
 
     # Loop that handles the selling of the products.
     while amount > 0:
-        
         if inStock:
             for stock in inStock:
-                print(amount)
-                print(inStockAmount)
-               
                 if amount > inStockAmount:
                     console.print(
                         f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}')
@@ -60,13 +62,14 @@ def handleSell(parsed_Data, csv_path):
                 elif amount > stock["amount"] and inStockAmount != 0:
                     if amount == stock["amount"]:
                         console.print("[green bold reverse]OK")
-                        amount -= stock["amount"]
+                    amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
                     appendToSoldCsv(
                         stock["id"], name, stock["amount"], day, price)
                     removeFromInventoryCsv(int(stock["id"]), csv_path)
                     continue
+
                 else:
                     appendToSoldCsv(
                         stock["id"], name, amount, day, price)
