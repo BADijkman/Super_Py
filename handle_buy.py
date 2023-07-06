@@ -20,5 +20,5 @@ def handleBuy(parsed_Data):
         appendToInventoryCsv(newId, name, amount, expiration_date)
         console.print("[green bold reverse]OK")
 
-    except:
+    except ValueError:
         console.print("[red bold reverse]an exception occurred")
