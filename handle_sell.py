@@ -42,11 +42,16 @@ def handleSell(parsed_Data, csv_path):
 
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
+   
 
     # Loop that handles the selling of the products.
     while amount > 0:
+        
         if inStock:
             for stock in inStock:
+                print(amount)
+                print(inStockAmount)
+               
                 if amount > inStockAmount:
                     console.print(
                         f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}')
