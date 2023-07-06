@@ -27,7 +27,7 @@ python main.py buy -n Apple -p 2 -e 01/01/2024
   return OK
 
 python main.py buy -n Pear -p 3 -a 6 -e 01/11/2024 
---This will buy 6 Pears at 3Euro with expiration date 01/11/2024
+--This will buy 6 Pears at 3Euro each with expiration date 01/11/2024
   return OK
 
 ---------------------------------------------------------------------------------------------------------------------
