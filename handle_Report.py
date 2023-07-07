@@ -34,8 +34,6 @@ def handleReport(parsed_Data):
             if parsed_Data.today:
                 set_day_to_today()
                 displayProfit(parsed_Data)
-                err_console.print(
-                    "[red bold reverse]an exception occurred")
             elif parsed_Data.yesterday:
                 set_day_to_today()
                 set_day_to_yesterday()
