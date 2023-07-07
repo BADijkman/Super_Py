@@ -40,8 +40,6 @@ def pltShow():
     products = [d['name'] for d in listWithoutDuplicateProducts]
     amounts = [d['amount'] for d in listWithoutDuplicateProducts]
 
-    
-
     fig, ax = plt.subplots()
 
     ax.set_title('Inventory')
