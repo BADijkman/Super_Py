@@ -1,11 +1,4 @@
 -1 First, we check whether certain csv files already exist, and if not the will be created,
-Also we put in the text file with the date, today’s date and if this text file does not exist we create it.
-
----
-
-import os
-import csv
-from modify_day.date import get_date
 
 def init_data(base_path, csv_path, day_path): # check cvs path
 if os.path.exists(csv_path):
@@ -67,8 +60,9 @@ So the expiration time needs to convert
 
 from datetime import datetime
 
+
 def convert_to_datetime(date_string):
-return datetime.strptime(date_string, "%d/%m/%Y")
+    return datetime.strptime(date_string, "%d/%m/%Y")
 
 ---
 
@@ -77,7 +71,7 @@ when a date needs to be put back in the csv file it must be a string type again
 ---
 
 def convert_to_string(date_object):
-return date_object.strftime("%d/%m/%Y")
+    return date_object.strftime("%d/%m/%Y")
 
 ---
 
@@ -88,41 +82,41 @@ First we make some columns add name and other specifications
 ---
 
 def displayInventory():
-table = Table(min_width=90, style='white',
-header_style="green",
-padding=(0, 2),
-)
-with open("./csv/inventory.csv") as f:
-lines = csv.reader(f)
-count = 0
-for line in lines:
-if count == 0:
-table.add_column("Product Name",
-justify="left",
-no_wrap=True,
-)
-table.add_column("Amount",
-justify="left",
-no_wrap=True,
-)
-table.add_column("Purchase price",
-justify="left",
-no_wrap=True,
-)
-table.add_column("Expiration date",
-justify="left",
-header_style="green",
-no_wrap=True,
-)
-table.add_column("Expirate",
-justify="left",
-header_style="green",
-no_wrap=True,
-)
+    table = Table(min_width=90, style='white',
+                  header_style="green",
+                  padding=(0, 2),
+                  )
+    with open("./csv/inventory.csv") as f:
+        lines = csv.reader(f)
+        count = 0
+        for line in lines:
+            if count == 0:
+                table.add_column("Product Name",
+                                 justify="left",
+                                 no_wrap=True,
+                                 )
+                table.add_column("Amount",
+                                 justify="left",
+                                 no_wrap=True,
+                                 )
+                table.add_column("Purchase price",
+                                 justify="left",
+                                 no_wrap=True,
+                                 )
+                table.add_column("Expiration date",
+                                 justify="left",
+                                 header_style="green",
+                                 no_wrap=True,
+                                 )
+                table.add_column("Expirate",
+                                 justify="left",
+                                 header_style="green",
+                                 no_wrap=True,
+                                 )
 
 ---
 
-## We check the expiration_date
+We check the expiration_date
 
 if (expiration_date.date() < check_date):
 display = "[red]YES"
@@ -131,7 +125,7 @@ display = "[green]N0"
 
 ---
 
-## We add the info taken from the inventory csv file
+We add the info taken from the inventory csv file
 
 table.add_row(
 line[1],
