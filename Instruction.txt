@@ -23,7 +23,7 @@ The item is given an id and add to the purchase.csv and to the inventory.csv
 Examples:
 
 python main.py buy -n Apple -p 2 -e 01/01/2024 
---This will buy a single(default) Apple for 2Euro with expiration date 01/01/2024
+--This will buy a single(default) Apple for 2 Euro with expiration date 01/01/2024
   return OK
 
 python main.py buy -n Pear -p 3 -a 6 -e 01/11/2024 
@@ -44,8 +44,13 @@ There are a few options to use as arguments:
 
 --amount or -a        "Amount of products" (if not supplied it will be 1 product)
 
-The selling goes through the entire inventory and collects all the products with the same name 
-or returns an error message: ERROR: Product not in stock or ERROR:You can only sell the number of products in stock
+The selling goes through the entire inventory and collects all the products with the same name.
+You can only sell the products that have not expired.
+
+return:
+OK
+error message: ERROR: Product not in stock 
+error message: ERROR: You can only sell the number of products in stock
 
 
 Examples:
@@ -63,7 +68,7 @@ python sell -n banana -p 3 -a 10
 python sell -n banana -p 3 -a 109               
 --This will sell 10 bananas for 3eur each
   return:
-  ERROR:You can only sell 20 banana
+  ERROR: You can only sell 20 banana
 
 ---------------------------------------------------------------------------------------------------
 
@@ -81,6 +86,7 @@ Examples:
 
 python main.py advance-time -d 5 
 --Advances the date with 5 days
+
   return:
   Current day set to: 11/07/2023
   OK
@@ -94,6 +100,7 @@ There are three types of reports to get from the program: [ inventory | revenue 
 
 Inventory:
 
+
 python main.py report inventory 
 
 There are a few options to use as arguments:
@@ -102,11 +109,13 @@ There are a few options to use as arguments:
 
 --yesterday or -y     shows the inventory for yesterday
 
---now or-n            shows the inventory for the day Advancetime
+--now or-n            shows the inventory for the day set with Advancetime
 
 --date  or-d          "date dd/mm/yyyy" shows the inventory on this date
 
 --startingdate or-s   "startingdate dd/mm/yyyy" shows the inventory from this date to current date
+
+the inventory argument shows also a bar chart
 
 Examples:
 python main.py report inventory -t
@@ -131,7 +140,7 @@ There are a few options to use as arguments:
 
 --yesterday or -y     shows the revenue for yesterday
 
---now or-n            shows the revenue for the day Advancetime
+--now or-n            shows the revenue for the day set with Advancetime
 
 --date  or-d          "date dd/mm/yyyy" shows the revenue on this date
 
