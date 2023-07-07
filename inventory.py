@@ -5,8 +5,7 @@ from rich.align import Align
 from utils.utils import getItemFromPurchaseCsvById
 from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
-import matplotlib.pyplot as plt
-from mathplot import pltShow
+from matplot import pltShow
 
 
 # displayInventory
@@ -78,25 +77,11 @@ def displayInventory():
                         item['expiration_date'],
                         display
                     )
-#     # Sample data
-#     x = [line[1], 2, 3, 4, 5]
-#     y = [2, 4, 6, 8, 10]
-
-# # Create a figure and axis
-#     fig, ax = plt.subplots()
-
-# # Plot the data
-#     ax.plot(x, y)
-
-# # Add labels and a title
-#     ax.set_xlabel('X-axis')
-#     ax.set_ylabel('Y-axis')
-#     ax.set_title('Simple Line Plot')
-# # Display the plot
-    pltShow()
 
     display_date = getDateFromFile("str")
     console.rule(f"[yellow]Inventory: {display_date}", style="yellow")
     console.print(Align.center(table))
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
+    # Display the plot
+    pltShow()

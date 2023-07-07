@@ -15,7 +15,7 @@ day = get_date()
 
 def handleSell(parsed_Data, csv_path):
     name = parsed_Data.name.lower()
-    price = parsed_Data.amount * parsed_Data.price
+    price = round(parsed_Data.amount * parsed_Data.price, 2)
     amount = parsed_Data.amount
     sold = 0
 

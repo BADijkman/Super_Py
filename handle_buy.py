@@ -7,7 +7,7 @@ from console import console
 def handleBuy(parsed_Data):
     newId = random.randint(1000000, 9999999)
     name = parsed_Data.name
-    price = parsed_Data.amount * parsed_Data.price
+    price = round(parsed_Data.amount * parsed_Data.price, 2)
     amount = parsed_Data.amount
     date = get_date()
     expiration_date = parsed_Data.expiration.strftime("%d/%m/%Y")

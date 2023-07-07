@@ -11,8 +11,8 @@ def checkForDuplicateProducts(new_list):
             elif key == "amount":
                 input_Amount = value
 
+        # If the search_value is found modify amount
         new_dict = True
-    # Check if the search_value exists in any of the dictionaries and       modify amount
         for dict in updated_list:
             if search_value in dict.values():
                 amount = dict.get("amount")
@@ -20,8 +20,7 @@ def checkForDuplicateProducts(new_list):
                 dict["amount"] = new_Amount
                 new_dict = False
                 break
-
-    # If the search_value is not found, create a new dictionary
+        # If the search_value is not found, create a new dictionary
         if new_dict:
             new_dict = {"name": search_value, "amount": input_Amount}
             updated_list.append(new_dict)
@@ -33,22 +32,22 @@ def pltShow():
     # get Inventory
     instock = inStocktotal()
     inStockTotal = inStockTotalNotExpired(instock)
-    # print(inStockTotal)
+
+    # check duplicate items and if so modify amount
     listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotal
                                                              )
 
-    # products = [d['name'] for d in listWithoutDuplicateProducts]
-    # amounts = [d['amount'] for d in listWithoutDuplicateProducts]
+    products = [d['name'] for d in listWithoutDuplicateProducts]
+    amounts = [d['amount'] for d in listWithoutDuplicateProducts]
+
+    
 
     fig, ax = plt.subplots()
 
-    products = [d['name'] for d in listWithoutDuplicateProducts]
-    amounts = [d['amount'] for d in listWithoutDuplicateProducts]
-    bar_colors = ['tab:green', 'tab:blue']
-
-    ax.bar(products, amounts,  color=bar_colors)
-
     ax.set_title('Inventory')
     ax.set_ylabel('amount')
+    bar_colors = ['tab:blue', 'tab:cyan']
+
+    ax.bar(products, amounts,  color=bar_colors)
 
     plt.show()
