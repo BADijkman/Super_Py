@@ -63,4 +63,5 @@ class Date():
         return date_object.strftime("%d/%m/%Y")
 
     def convertToDateTime(date_string):
-        return datetime.strptime(date_string, "%d/%m/%Y")
+        datetime_obj = datetime.strptime(date_string, "%d/%m/%Y")
+        return datetime_obj.date()

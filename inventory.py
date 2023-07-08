@@ -10,7 +10,7 @@ from modify_date.setDate import Date
 
 
 # displayInventory
-def displayInventory():
+def displayInventory(parsed_Data):
     table = Table(min_width=90, style='white',
                   header_style="green",
                   padding=(0, 2),
@@ -47,28 +47,34 @@ def displayInventory():
                 item = getItemFromPurchaseCsvById(int(line[0]))
 
                 # set expiration_date
-                string_expiration_date = (
+                # string_expiration_date = (
+                #     str(item['expiration_date']))
+
+                expiration_date = Date.convertToDateTime(
                     str(item['expiration_date']))
-                expiration_date = datetime.strptime(
-                    string_expiration_date, "%d/%m/%Y")
+                # expiration_date = datetime.strptime(
+                #     string_expiration_date, "%d/%m/%Y")
+                # print(expiration_date)
 
                 # set buy_date
-                string_buy_date = (
-                    str(item['buy_date']))
-                buy_date = datetime.strptime(
-                    string_buy_date, "%d/%m/%Y")
+                # string_buy_date = (
+                #     str(item['buy_date']))
+                buy_date = Date.convertToDateTime(str(item['buy_date']))
+                # buy_date = datetime.strptime(
+                #     string_buy_date, "%d/%m/%Y")
+                # print(buy_date)
 
                 # set check_date
                 check_date = Date.getDateFromFile("date")
+                # print(check_date)
 
                 # checking expirate
-                if (expiration_date.date() < check_date):
-                    display = "[red]YES"
-                else:
-                    display = "[green]N0"
+                expirate_display = "[green]N0"
+                if (expiration_date < check_date):
+                    expirate_display = "[red]YES"
 
                 # checking buy date
-                if (buy_date.date() > check_date):
+                if (buy_date > check_date):
                     pass
                 else:
                     table.add_row(
@@ -76,7 +82,7 @@ def displayInventory():
                         line[2],
                         "\u20ac " + item["buy_price"],
                         item['expiration_date'],
-                        display
+                        expirate_display
                     )
 
     display_date = Date.getDateFromFile("str")
@@ -85,4 +91,4 @@ def displayInventory():
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
     # Display the plot
-    pltShow()
+    # pltShow()

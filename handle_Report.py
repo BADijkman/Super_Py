@@ -17,19 +17,19 @@ def handleReport(parsed_Data):
             if parsed_Data.today:
                 # set_day_to_today()
                 Date.today()  # *
-                displayInventory()
+                displayInventory(parsed_Data)
             elif parsed_Data.yesterday:
                 # set_day_to_today()
                 Date.today()  # *
                 # set_day_to_yesterday()
                 Date.yesterday()  # *
-                displayInventory()
+                displayInventory(parsed_Data)
             elif parsed_Data.now:
-                displayInventory()
+                displayInventory(parsed_Data)
             elif parsed_Data.date:
                 # set_day_to_inputday(parsed_Data)
                 Date.input_date(parsed_Data)  # *
-                displayInventory()
+                displayInventory(parsed_Data)
             else:
                 err_console.print('error :inventory needs argument: --today ' /
                                   '--yesterday --now --date --startingdate')
