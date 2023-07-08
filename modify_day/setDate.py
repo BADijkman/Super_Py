@@ -9,6 +9,9 @@ class Date():
     def __init__(self, date,):
         self.date = date
 
+    def get_date():
+        return datetime.today().strftime('%d/%m/%Y')
+
     def today():
         with open("./current_date/current_date.txt", "w") as f:
             today = datetime.today().strftime('%d/%m/%Y')

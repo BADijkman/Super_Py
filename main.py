@@ -10,10 +10,10 @@ from handle_report import handleReport
 
 base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
-day_path = os.path.join(base_path, "day")
+current_day_path = os.path.join(base_path, "day")
 
 
-init_data(base_path, csv_path, day_path)
+init_data(base_path, csv_path, current_day_path)
 
 
 def main():

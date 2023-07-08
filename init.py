@@ -1,9 +1,10 @@
 import os
 import csv
-from modify_day.date import get_date
+# from modify_day.date import get_date
+from modify_day.setDate import Date
 
 
-def init_data(base_path, csv_path, day_path):
+def init_data(base_path, csv_path, current_date_path):
     # check cvs path
     if os.path.exists(csv_path):
         pass
@@ -42,11 +43,11 @@ def init_data(base_path, csv_path, day_path):
             writer.writeheader()
 
     # check day path
-    if os.path.exists(day_path):
+    if os.path.exists(current_date_path):
         pass
     else:
         os.mkdir(f'{base_path}/day')
         # set day to today
-        with open("./day/day.txt", "w") as f:
-            euDay = get_date()
-            f.write(euDay)
+        with open("./current_date/day.txt", "w") as f:
+            newdate = Date.get_date()
+            f.write(newdate)
