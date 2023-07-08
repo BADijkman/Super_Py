@@ -32,6 +32,7 @@ def pltShow():
     # get Inventory
     instock = inStocktotal()
     inStockTotal = inStockTotalNotExpired(instock)
+    ## CHECK OP DATUM AANVRAAG
 
     # check duplicate items and if so modify amount
     listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotal

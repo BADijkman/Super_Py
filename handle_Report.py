@@ -83,7 +83,7 @@ def handleReport(parsed_Data):
                 Date.input_date(parsed_Data)  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.startingdate:
-                check_date = datetime.strptime(get_date(), "%d/%m/%Y")
+                check_date = datetime.strptime(Date.get_date(), "%d/%m/%Y")
                 if parsed_Data.startingdate > check_date:
                     err_console.print("entry date past current date")
                 else:

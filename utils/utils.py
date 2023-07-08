@@ -8,9 +8,8 @@ from modify_day.setDate import Date
 
 day = Date.get_date()
 
+
 # sort on date
-
-
 def sortOnDate(cvs):
     data = []
     if cvs == "inventory":
@@ -18,7 +17,7 @@ def sortOnDate(cvs):
             reader = csv.DictReader(file)
             for row in reader:
                 # Convert the value in the date column to a datetime object
-                row['expiration_date'] = Date.convertToDatetime(
+                row['expiration_date'] = Date.convertToDateTime(
                     row['expiration_date'])
                 data.append(row)
 
@@ -29,7 +28,7 @@ def sortOnDate(cvs):
     # Convert datetime objects back to string format
     for row in sorted_data:
         # Replace 'date_column' with your actual column name
-        row['expiration_date'] = Date.ConvertToString(row['expiration_date'])
+        row['expiration_date'] = Date.convertToString(row['expiration_date'])
 
     # Write the sorted data back to a CSV file
     with open('./csv/inventory.csv', 'w', newline='') as file:

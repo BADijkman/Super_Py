@@ -59,7 +59,7 @@ class Date():
                 newdate = datetime.strptime(line, "%d%m%Y").date()
             return newdate
 
-    def covertToString(date_object):
+    def convertToString(date_object):
         return date_object.strftime("%d/%m/%Y")
 
     def convertToDateTime(date_string):
