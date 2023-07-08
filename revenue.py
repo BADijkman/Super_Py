@@ -1,23 +1,24 @@
 from console import console
 from rich.align import Align
 from datetime import datetime
-from modify_day.getDateFromFile import getDateFromFile
+# from modify_day.getDateFromFile import getDateFromFile
 from utils.utils import getAllItemsSoldByDate
-from modify_day.date import get_date
+# from modify_day.date import get_date
+from modify_day.setDate import Date
 
 
 def displayRevenue(parsed_data):
-    day = getDateFromFile("str")
+    day = Date.getDateFromFile("str")
     totalRevenue = getAllItemsSoldByDate(day, parsed_data)
     revenueLine = f"  Total revenue : \u20ac {totalRevenue:.2f}"
     if parsed_data.startingdate is None:
-        display_date = getDateFromFile("str")
+        display_date = Date.getDateFromFile("str")
         console.print()
         console.rule(f"[yellow]Revenue: {display_date}", style="yellow")
         console.print()
     elif parsed_data.startingdate is not None:
-        display_date_from = getDateFromFile("str")
-        display_date_to = get_date()
+        display_date_from = Date.getDateFromFile("str")
+        display_date_to = Date.get_date()
         console.rule(
             f"[yellow]Revenue: from {display_date_from} to {display_date_to}", style="yellow")
         console.print()

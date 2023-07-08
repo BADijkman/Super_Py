@@ -3,9 +3,10 @@ from console import console
 from rich.table import Table
 from rich.align import Align
 from utils.utils import getItemFromPurchaseCsvById
-from modify_day.getDateFromFile import getDateFromFile
+# from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
 from matplot import pltShow
+from modify_day.setDate import Date
 
 
 # displayInventory
@@ -58,7 +59,7 @@ def displayInventory():
                     string_buy_date, "%d/%m/%Y")
 
                 # set check_date
-                check_date = getDateFromFile("date")
+                check_date = Date.getDateFromFile("date")
 
                 # checking expirate
                 if (expiration_date.date() < check_date):
@@ -78,7 +79,7 @@ def displayInventory():
                         display
                     )
 
-    display_date = getDateFromFile("str")
+    display_date = Date.getDateFromFile("str")
     console.rule(f"[yellow]Inventory: {display_date}", style="yellow")
     console.print(Align.center(table))
     console.print(Align.right(

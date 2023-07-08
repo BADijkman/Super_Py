@@ -1,12 +1,12 @@
 from console import err_console
-from modify_day.set_day_to_today import set_day_to_today
-from modify_day.set_day_to_yesterday import set_day_to_yesterday
-from modify_day.set_day_to_inputday import set_day_to_inputday
-from modify_day.set_day_to_startingday import set_day_to_startingday
+# from modify_day.set_day_to_today import set_day_to_today
+# from modify_day.set_day_to_yesterday import set_day_to_yesterday
+# from modify_day.set_day_to_inputday import set_day_to_inputday
+# from modify_day.set_day_to_startingday import set_day_to_startingday
 from inventory import displayInventory
 from revenue import displayRevenue
 from profit import displayProfit
-from modify_day.date import get_date
+# from modify_day.date import get_date
 from datetime import datetime
 from modify_day.setDate import Date
 
@@ -15,19 +15,19 @@ def handleReport(parsed_Data):
     if hasattr(parsed_Data, 'inventory'):
         if parsed_Data.inventory:
             if parsed_Data.today:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()  # *
                 displayInventory()
             elif parsed_Data.yesterday:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()  # *
-                set_day_to_yesterday()
+                # set_day_to_yesterday()
                 Date.yesterday()  # *
                 displayInventory()
             elif parsed_Data.now:
                 displayInventory()
             elif parsed_Data.date:
-                set_day_to_inputday(parsed_Data)
+                # set_day_to_inputday(parsed_Data)
                 Date.input_date(parsed_Data)  # *
                 displayInventory()
             else:
@@ -37,27 +37,27 @@ def handleReport(parsed_Data):
     elif hasattr(parsed_Data, 'profit'):
         if parsed_Data.profit:
             if parsed_Data.today:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()     # *
                 displayProfit(parsed_Data)
             elif parsed_Data.yesterday:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()      # *
-                set_day_to_yesterday()
+                # set_day_to_yesterday()
                 Date.yesterday()  # *
                 displayProfit(parsed_Data)
             elif parsed_Data.now:
                 displayProfit(parsed_Data)
             elif parsed_Data.date:
-                set_day_to_inputday(parsed_Data)
+                # set_day_to_inputday(parsed_Data)
                 Date.input_date(parsed_Data)  # *
                 displayProfit(parsed_Data)
             elif parsed_Data.startingdate:
-                check_date = datetime.strptime(get_date(), "%d/%m/%Y")
+                check_date = datetime.strptime(Date.get_date(), "%d/%m/%Y")
                 if parsed_Data.startingdate > check_date:
                     err_console.print("entry date past current date")
                 else:
-                    set_day_to_startingday(parsed_Data)
+                    # set_day_to_startingday(parsed_Data)
                     Date.starting_date(parsed_Data)  # *
                     displayProfit(parsed_Data)
             else:
@@ -67,19 +67,19 @@ def handleReport(parsed_Data):
     elif hasattr(parsed_Data, 'revenue'):
         if parsed_Data.revenue:
             if parsed_Data.today:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.yesterday:
-                set_day_to_today()
+                # set_day_to_today()
                 Date.today()  # *
-                set_day_to_yesterday()
+                # set_day_to_yesterday()
                 Date.yesterday()  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.now:
                 displayRevenue(parsed_Data)
             elif parsed_Data.date:
-                set_day_to_inputday(parsed_Data)
+                # set_day_to_inputday(parsed_Data)
                 Date.input_date(parsed_Data)  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.startingdate:
@@ -87,7 +87,7 @@ def handleReport(parsed_Data):
                 if parsed_Data.startingdate > check_date:
                     err_console.print("entry date past current date")
                 else:
-                    set_day_to_startingday(parsed_Data)
+                    # set_day_to_startingday(parsed_Data)
                     Date.starting_date(parsed_Data)  # *
                     displayRevenue(parsed_Data)
             else:

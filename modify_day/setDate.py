@@ -59,7 +59,8 @@ class Date():
                 newdate = datetime.strptime(line, "%d%m%Y").date()
             return newdate
 
-# Date.today()
-# Date.yesterday()
-# Date.advance_date(5)
-# Date.input_date(2023-10-10 00:00:00)
+    def covertToString(date_object):
+        return date_object.strftime("%d/%m/%Y")
+
+    def convertToDateTime(date_string):
+        return datetime.strptime(date_string, "%d/%m/%Y")

@@ -6,11 +6,12 @@ from utils.utils import (getAllItemsByNameFromInventoryCsv,
                          )
 from functools import reduce
 from console import console
-from modify_day.date import get_date
+# from modify_day.date import get_date
 from datetime import datetime
+from modify_day.setDate import Date
 
 
-day = get_date()
+day = Date.get_date()
 
 
 def handleSell(parsed_Data, csv_path):
