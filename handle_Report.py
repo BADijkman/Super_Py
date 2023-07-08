@@ -8,6 +8,7 @@ from revenue import displayRevenue
 from profit import displayProfit
 from modify_day.date import get_date
 from datetime import datetime
+from modify_day.setDate import Date
 
 
 def handleReport(parsed_Data):
@@ -15,15 +16,19 @@ def handleReport(parsed_Data):
         if parsed_Data.inventory:
             if parsed_Data.today:
                 set_day_to_today()
+                Date.today()  # *
                 displayInventory()
             elif parsed_Data.yesterday:
                 set_day_to_today()
+                Date.today()  # *
                 set_day_to_yesterday()
+                Date.yesterday()  # *
                 displayInventory()
             elif parsed_Data.now:
                 displayInventory()
             elif parsed_Data.date:
                 set_day_to_inputday(parsed_Data)
+                Date.input_date(parsed_Data)  # *
                 displayInventory()
             else:
                 err_console.print('error :inventory needs argument: --today ' /
@@ -33,15 +38,19 @@ def handleReport(parsed_Data):
         if parsed_Data.profit:
             if parsed_Data.today:
                 set_day_to_today()
+                Date.today()     # *
                 displayProfit(parsed_Data)
             elif parsed_Data.yesterday:
                 set_day_to_today()
+                Date.today()      # *
                 set_day_to_yesterday()
+                Date.yesterday()  # *
                 displayProfit(parsed_Data)
             elif parsed_Data.now:
                 displayProfit(parsed_Data)
             elif parsed_Data.date:
                 set_day_to_inputday(parsed_Data)
+                Date.input_date(parsed_Data)  # *
                 displayProfit(parsed_Data)
             elif parsed_Data.startingdate:
                 check_date = datetime.strptime(get_date(), "%d/%m/%Y")
@@ -49,6 +58,7 @@ def handleReport(parsed_Data):
                     err_console.print("entry date past current date")
                 else:
                     set_day_to_startingday(parsed_Data)
+                    Date.starting_date(parsed_Data)  # *
                     displayProfit(parsed_Data)
             else:
                 err_console.print('error :inventory needs argument: --today ' /
@@ -58,15 +68,19 @@ def handleReport(parsed_Data):
         if parsed_Data.revenue:
             if parsed_Data.today:
                 set_day_to_today()
+                Date.today()  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.yesterday:
                 set_day_to_today()
+                Date.today()  # *
                 set_day_to_yesterday()
+                Date.yesterday()  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.now:
                 displayRevenue(parsed_Data)
             elif parsed_Data.date:
                 set_day_to_inputday(parsed_Data)
+                Date.input_date(parsed_Data)  # *
                 displayRevenue(parsed_Data)
             elif parsed_Data.startingdate:
                 check_date = datetime.strptime(get_date(), "%d/%m/%Y")
@@ -74,6 +88,7 @@ def handleReport(parsed_Data):
                     err_console.print("entry date past current date")
                 else:
                     set_day_to_startingday(parsed_Data)
+                    Date.starting_date(parsed_Data)  # *
                     displayRevenue(parsed_Data)
             else:
                 err_console.print('error :inventory needs argument: --today ' /

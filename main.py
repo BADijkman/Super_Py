@@ -3,7 +3,8 @@ from inputParser import create_parser
 from init import init_data
 from handle_buy import handleBuy
 from handle_sell import handleSell
-from modify_day.advance_time import handleAdvance
+# from modify_day.advance_time import handleAdvance
+from modify_day.setDate import Date
 from handle_report import handleReport
 
 
@@ -27,7 +28,7 @@ def main():
         handleSell(parsed, csv_path)
     # Advanced command was given and now parsed
     if hasattr(parsed, "advance"):
-        handleAdvance(parsed)
+        Date.advance_date(parsed.d)
     # Report command was given and now parsed
     if hasattr(parsed, "report"):
         handleReport(parsed)
