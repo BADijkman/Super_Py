@@ -4,7 +4,7 @@ from datetime import datetime
 # from modify_day.getDateFromFile import getDateFromFile
 from utils.utils import getAllItemsSoldByDate
 # from modify_day.date import get_date
-from modify_day.setDate import Date
+from modify_date.setDate import Date
 
 
 def displayRevenue(parsed_data):

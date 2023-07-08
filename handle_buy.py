@@ -2,7 +2,7 @@ import random
 # from modify_day.date import get_date
 from utils.utils import appendToPurchaseCsv, appendToInventoryCsv
 from console import console
-from modify_day.setDate import Date
+from modify_date.setDate import Date
 
 
 def handleBuy(parsed_Data):

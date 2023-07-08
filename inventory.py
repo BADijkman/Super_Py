@@ -6,7 +6,7 @@ from utils.utils import getItemFromPurchaseCsvById
 # from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
 from matplot import pltShow
-from modify_day.setDate import Date
+from modify_date.setDate import Date
 
 
 # displayInventory

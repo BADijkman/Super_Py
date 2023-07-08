@@ -1,7 +1,7 @@
 import os
 import csv
 # from modify_day.date import get_date
-from modify_day.setDate import Date
+from modify_date.setDate import Date
 
 
 def init_data(base_path, csv_path, current_date_path):

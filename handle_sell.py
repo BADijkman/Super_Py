@@ -8,7 +8,7 @@ from functools import reduce
 from console import console
 # from modify_day.date import get_date
 from datetime import datetime
-from modify_day.setDate import Date
+from modify_date.setDate import Date
 
 
 day = Date.get_date()
