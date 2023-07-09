@@ -1,6 +1,5 @@
 import os
 import csv
-# from modify_day.date import get_date
 from handle_date import Date
 
 

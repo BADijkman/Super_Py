@@ -1,9 +1,6 @@
 import csv
 import operator
 from datetime import datetime
-# from modify_day.convert_to_datetime import convert_to_datetime
-# from modify_day.convert_to_string import convert_to_string
-# from modify_day.date import get_date
 from handle_date import Date
 day = Date.get_date()
 

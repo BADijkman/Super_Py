@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-# from handle_cvs import inStocktotal, inStockTotalNotExpired
 from handle_cvs import Inventory
 from handle_date import Date
 
@@ -37,17 +36,15 @@ def pltShow():
     inStockTotalNotExpired = Inventory.totalNotExpired(instock)
 
     # check duplicate items and if so modify amount
-    listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotalNotExpired
-                                                             )
+    listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotalNotExpired)
 
     products = [d['name'] for d in listWithoutDuplicateProducts]
     amounts = [d['amount'] for d in listWithoutDuplicateProducts]
 
     fig, ax = plt.subplots()
 
-    ax.set_title('Inventory')
+    ax.set_title(f'Inventory {date}')
     ax.set_ylabel('amount')
-    # ax.legend(title=date)
     bar_colors = ['tab:blue', 'tab:cyan']
 
     ax.bar(products, amounts,  color=bar_colors)

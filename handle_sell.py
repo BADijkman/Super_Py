@@ -1,13 +1,5 @@
-# from handle_cvs import (
-#                         # getAllItemsByNameFromInventoryCsv,
-#                         # appendToSoldCsv,
-#                         # removeFromInventoryCsv,
-#                         # adjustInventoryCsv,
-#                         #
-#                         )
 from functools import reduce
 from console import console
-# from modify_day.date import get_date
 from datetime import datetime
 from handle_date import Date
 from handle_cvs import Sold, Inventory

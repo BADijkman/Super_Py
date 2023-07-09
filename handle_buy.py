@@ -1,7 +1,4 @@
 import random
-# from modify_day.date import get_date
-# from handle_cvs import appendToPurchaseCsv, appendToInventoryCsv
-# from handle_cvs import appendToInventoryCsv
 from console import console
 from handle_date import Date
 from handle_cvs import Purchase, Inventory
