@@ -68,7 +68,7 @@ class Inventory():
 
     def reset(csv_path):
         fieldnames = ['id', 'name',
-                      'amount', 'expiration_date']
+                      'amount', 'buy_date', 'expiration_date']
         with open(f'{csv_path}/inventory.csv', 'w',
                   encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
@@ -85,8 +85,11 @@ class Inventory():
 
         Inventory.reset(csv_path)
         for line in newLines:
-            Inventory.appendToCsv(line["id"], line["name"],
-                                  line["amount"], line["expiration_date"])
+            Inventory.appendToCsv(line["id"],
+                                  line["name"],
+                                  line["amount"],
+                                  line["buy_date"],
+                                  line["expiration_date"])
 
     def adjustCsv(id, amount, csv_path):
         Inventory.sortOnDate("inventory")
@@ -100,7 +103,7 @@ class Inventory():
                             "id": line["id"],
                             "name": line["name"],
                             "amount": int(line["amount"]) - amount,
-                            "buy_date": str(line["buy_date"]),
+                            "buy_date": line["buy_date"],
                             "expiration_date": line["expiration_date"]
                         }
                     )
