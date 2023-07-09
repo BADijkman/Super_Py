@@ -116,9 +116,7 @@ class Inventory():
             lines = csv.DictReader(f)
             for line in lines:
                 check_date = Date.getDateFromFile("date")
-                print(check_date)
                 buy_date = Date.convertToDateTime(str(line['buy_date']))
-                print(buy_date)
                 if (buy_date > check_date):
                     pass
                 else:
