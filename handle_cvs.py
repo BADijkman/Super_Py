@@ -36,8 +36,6 @@ def sortOnDate(cvs):
         writer.writeheader()
         writer.writerows(sorted_data)
 
-# -----------
-
 
 class Purchase():
     # def __init__(self, date,):
@@ -157,8 +155,6 @@ class Inventory():
         sortOnDate("inventory")
         return inStock
 
-    # get al items inStock not Expired
-
     def totalNotExpired(inStock):
         inStockTotalNotExpired = []
         for dict in inStock:
@@ -198,6 +194,3 @@ class Sold():
                     if check_date <= sell_date:
                         sold.append(float(line["sell_price"]))
         return sum(sold)
-
-
-# -------------------
