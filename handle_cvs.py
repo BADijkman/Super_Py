@@ -5,41 +5,10 @@ from datetime import datetime
 # from modify_day.convert_to_string import convert_to_string
 # from modify_day.date import get_date
 from handle_date import Date
-
 day = Date.get_date()
 
 
-# sort on date
-def sortOnDate(cvs):
-    data = []
-    if cvs == "inventory":
-        with open('./csv/inventory.csv', 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                # Convert the value in the date column to a datetime object
-                row['expiration_date'] = Date.convertToDateTime(
-                    row['expiration_date'])
-                data.append(row)
-
-    key = 'expiration_date'
-    # Sort the data list
-    sorted_data = sorted(data, key=operator.itemgetter(key))
-
-    # Convert datetime objects back to string format
-    for row in sorted_data:
-        # Replace 'date_column' with your actual column name
-        row['expiration_date'] = Date.convertToString(row['expiration_date'])
-
-    # Write the sorted data back to a CSV file
-    with open('./csv/inventory.csv', 'w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
-        writer.writeheader()
-        writer.writerows(sorted_data)
-
-
 class Purchase():
-    # def __init__(self, date,):
-    #     self.date = date
 
     def appendToCsv(newId, name, price, amount, date, expiration_date):
         with open("./csv/purchase.csv", "a", newline="") as f:
@@ -76,11 +45,11 @@ class Purchase():
 
 
 class Inventory():
-    def appendToCsv(id, name, amount, expiration_date):
+    def appendToCsv(id, name, amount,  buy_date, expiration_date):
         with open("./csv/inventory.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
-            writer.writerow([id, name, amount, expiration_date])
-        sortOnDate("inventory")
+            writer.writerow([id, name, amount, buy_date, expiration_date])
+        Inventory.sortOnDate("inventory")
 
     def getAllItemsByNameFromCsv(name):
         inStock = []
@@ -94,7 +63,7 @@ class Inventory():
                             "amount": int(line["amount"]),
                             "expiration_date": str(line["expiration_date"])}
                     )
-        sortOnDate("inventory")
+        Inventory.sortOnDate("inventory")
         return inStock
 
     def reset(csv_path):
@@ -103,7 +72,7 @@ class Inventory():
         with open(f'{csv_path}/inventory.csv', 'w', encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
-        sortOnDate("inventory")
+        Inventory.sortOnDate("inventory")
 
     def removeFromCsv(id, csv_path):
         newLines = []
@@ -119,7 +88,7 @@ class Inventory():
                                   line["amount"], line["expiration_date"])
 
     def adjustCsv(id, amount, csv_path):
-        sortOnDate("inventory")
+        Inventory.sortOnDate("inventory")
         newLines = []
         with open("./csv/inventory.csv", "r+") as f:
             lines = csv.DictReader(f)
@@ -146,13 +115,20 @@ class Inventory():
         with open('./csv/inventory.csv') as f:
             lines = csv.DictReader(f)
             for line in lines:
-                inStock.append(
-                    {"id": int(line["id"]),
-                     "name": line["name"],
-                     "amount": int(line["amount"]),
-                     "expiration_date": str(line["expiration_date"])}
-                )
-        sortOnDate("inventory")
+                check_date = Date.getDateFromFile("date")
+                print(check_date)
+                buy_date = Date.convertToDateTime(str(line['buy_date']))
+                print(buy_date)
+                if (buy_date > check_date):
+                    pass
+                else:
+                    inStock.append(
+                        {"id": int(line["id"]),
+                         "name": line["name"],
+                         "amount": int(line["amount"]),
+                         "expiration_date": str(line["expiration_date"])}
+                    )
+        Inventory.sortOnDate("inventory")
         return inStock
 
     def totalNotExpired(inStock):
@@ -167,6 +143,32 @@ class Inventory():
             else:
                 inStockTotalNotExpired.append(dict)
         return inStockTotalNotExpired
+
+    def sortOnDate(key):
+        data = []
+        if key == "inventory":
+            with open('./csv/inventory.csv', 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    # Convert the value in the date column to a datetime object
+                    row['expiration_date'] = Date.convertToDateTime(
+                        row['expiration_date'])
+                    data.append(row)
+
+        key = 'expiration_date'
+        # Sort the data list
+        sorted_data = sorted(data, key=operator.itemgetter(key))
+
+        # Convert datetime objects back to string format
+        for row in sorted_data:
+            row['expiration_date'] = Date.convertToString(
+                row['expiration_date'])
+
+        # Write the sorted data back to a CSV file
+        with open('./csv/inventory.csv', 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
+            writer.writeheader()
+            writer.writerows(sorted_data)
 
 
 class Sold():

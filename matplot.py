@@ -32,8 +32,9 @@ def checkForDuplicateProducts(new_list):
 def pltShow():
     # get Inventory
     instock = Inventory.total()
+
     inStockTotalNotExpired = Inventory.totalNotExpired(instock)
-    
+
     # CHECK OP DATUM AANVRAAG MOET NOG
 
     # check duplicate items and if so modify amount

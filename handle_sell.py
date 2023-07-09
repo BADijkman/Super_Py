@@ -1,10 +1,10 @@
-from handle_cvs import (
-                        # getAllItemsByNameFromInventoryCsv,
-                        # appendToSoldCsv,
-                        # removeFromInventoryCsv,
-                        # adjustInventoryCsv,
-                        sortOnDate
-                        )
+# from handle_cvs import (
+#                         # getAllItemsByNameFromInventoryCsv,
+#                         # appendToSoldCsv,
+#                         # removeFromInventoryCsv,
+#                         # adjustInventoryCsv,
+#                         #
+#                         )
 from functools import reduce
 from console import console
 # from modify_day.date import get_date
@@ -23,7 +23,7 @@ def handleSell(parsed_Data, csv_path):
     sold = 0
 
     # sort on expiration_date
-    sortOnDate("inventory")
+    Inventory.sortOnDate("inventory")
 
     # Go through the inventory and get the product_name
     inStockTotal = Inventory.getAllItemsByNameFromCsv(name)

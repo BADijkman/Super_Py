@@ -1,1 +1,2 @@
-id,name,amount,expiration_date
+id,name,amount,buy_date,expiration_date
+4537145,banana,3,09/07/2023,10/10/2023
