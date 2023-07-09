@@ -1,8 +1,6 @@
 
+from console import console
 from datetime import datetime, timedelta
-from rich.console import Console
-
-console = Console()
 
 
 class Date():

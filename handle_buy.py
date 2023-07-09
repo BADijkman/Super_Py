@@ -20,7 +20,7 @@ def handleBuy(parsed_Data):
         Purchase.appendToCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv
-        Inventory.appendToCsv(newId, name, amount, date, expiration_date)
+        Inventory.appendToCsv(newId, name, amount,  date, expiration_date)
         console.print("[green bold reverse]OK")
 
     except ValueError:

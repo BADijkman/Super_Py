@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 # from handle_cvs import inStocktotal, inStockTotalNotExpired
 from handle_cvs import Inventory
+from handle_date import Date
 
 
 def checkForDuplicateProducts(new_list):
@@ -30,12 +31,10 @@ def checkForDuplicateProducts(new_list):
 
 
 def pltShow():
+    date = Date.getDateFromFile("str")
     # get Inventory
     instock = Inventory.total()
-
     inStockTotalNotExpired = Inventory.totalNotExpired(instock)
-
-    # CHECK OP DATUM AANVRAAG MOET NOG
 
     # check duplicate items and if so modify amount
     listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotalNotExpired
@@ -48,6 +47,7 @@ def pltShow():
 
     ax.set_title('Inventory')
     ax.set_ylabel('amount')
+    ax.legend(title=date)
     bar_colors = ['tab:blue', 'tab:cyan']
 
     ax.bar(products, amounts,  color=bar_colors)

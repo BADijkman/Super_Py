@@ -45,7 +45,7 @@ class Purchase():
 
 
 class Inventory():
-    def appendToCsv(id, name, amount,  buy_date, expiration_date):
+    def appendToCsv(id, name, amount, buy_date, expiration_date):
         with open("./csv/inventory.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
             writer.writerow([id, name, amount, buy_date, expiration_date])
@@ -61,6 +61,7 @@ class Inventory():
                         {"id": int(line["id"]),
                             "name": line["name"],
                             "amount": int(line["amount"]),
+                            "buy_date": str(line["buy_date"]),
                             "expiration_date": str(line["expiration_date"])}
                     )
         Inventory.sortOnDate("inventory")
@@ -99,6 +100,7 @@ class Inventory():
                             "id": line["id"],
                             "name": line["name"],
                             "amount": int(line["amount"]) - amount,
+                            "buy_date": str(line["buy_date"]),
                             "expiration_date": line["expiration_date"]
                         }
                     )
@@ -108,7 +110,7 @@ class Inventory():
         Inventory.reset(csv_path)
         for line in newLines:
             Inventory.appendToCsv(line["id"], line["name"],
-                                  line["amount"], line["expiration_date"])
+                                  line["amount"], line["buy_date"], line["expiration_date"])
 
     def total():
         inStock = []
@@ -124,6 +126,7 @@ class Inventory():
                         {"id": int(line["id"]),
                          "name": line["name"],
                          "amount": int(line["amount"]),
+                         "buy_date": str(line["buy_date"]),
                          "expiration_date": str(line["expiration_date"])}
                     )
         Inventory.sortOnDate("inventory")
