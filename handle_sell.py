@@ -44,7 +44,8 @@ def handleSell(parsed_Data, csv_path):
             for stock in inStock:
                 if amount > inStockAmount:
                     console.print(
-                        f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}')
+                        f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}'
+                        )
                     amount = 0
                     break
                 elif amount > stock["amount"] and inStockAmount != 0:
