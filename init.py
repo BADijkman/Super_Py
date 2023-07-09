@@ -16,7 +16,8 @@ def init_data(base_path, csv_path, current_date_path):
     else:
         fieldnames = ['id', 'product_name', 'amount', 'buy_price',
                       'buy_date',  'expiration_date']
-        with open(f'{csv_path }/purchase.csv', 'w', encoding='UTF8', newline='') as f:
+        with open(f'{csv_path }/purchase.csv', 'w',
+                  encoding='UTF8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 
@@ -27,7 +28,8 @@ def init_data(base_path, csv_path, current_date_path):
         fieldnames = ['id', 'product_name', 'amount',
                       'sell_date', 'sell_price']
 
-        with open(f'{csv_path }/sold.csv', 'w', encoding='UTF8', newline='') as f:
+        with open(f'{csv_path }/sold.csv', 'w',
+                  encoding='UTF8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 
@@ -37,7 +39,8 @@ def init_data(base_path, csv_path, current_date_path):
     else:
         fieldnames = ['id', 'name',
                       'amount', 'buy_date', 'expiration_date']
-        with open(f'{csv_path }/inventory.csv', 'w', encoding='UTF8', newline='')as f:
+        with open(f'{csv_path }/inventory.csv', 'w',
+                  encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
 
