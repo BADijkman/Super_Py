@@ -30,19 +30,21 @@ def checkForDuplicateProducts(new_list):
 
 
 def pltShow():
-    date = Date.getDateFromFile("str")
+
     # get Inventory
     instock = Inventory.total()
     inStockTotalNotExpired = Inventory.totalNotExpired(instock)
 
     # check duplicate items and if so modify amount
-    listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotalNotExpired)
+    listWithoutDuplicateProducts = checkForDuplicateProducts(
+        inStockTotalNotExpired)
 
     products = [d['name'] for d in listWithoutDuplicateProducts]
     amounts = [d['amount'] for d in listWithoutDuplicateProducts]
 
     fig, ax = plt.subplots()
 
+    date = Date.getDateFromFile("str")
     ax.set_title(f'Inventory {date}')
     ax.set_ylabel('amount')
     bar_colors = ['tab:blue', 'tab:cyan']
