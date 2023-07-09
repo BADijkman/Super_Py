@@ -47,7 +47,7 @@ def pltShow():
 
     ax.set_title('Inventory')
     ax.set_ylabel('amount')
-    ax.legend(title=date)
+    # ax.legend(title=date)
     bar_colors = ['tab:blue', 'tab:cyan']
 
     ax.bar(products, amounts,  color=bar_colors)
