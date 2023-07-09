@@ -1,14 +1,16 @@
-from utils.utils import (getAllItemsByNameFromInventoryCsv,
-                         appendToSoldCsv,
-                         removeFromInventoryCsv,
-                         adjustInventoryCsv,
-                         sortOnDate
-                         )
+from handle_cvs import (
+                        # getAllItemsByNameFromInventoryCsv,
+                        # appendToSoldCsv,
+                        # removeFromInventoryCsv,
+                        # adjustInventoryCsv,
+                        sortOnDate
+                        )
 from functools import reduce
 from console import console
 # from modify_day.date import get_date
 from datetime import datetime
-from modify_date.setDate import Date
+from handle_date import Date
+from handle_cvs import Sold, Inventory
 
 
 day = Date.get_date()
@@ -24,7 +26,7 @@ def handleSell(parsed_Data, csv_path):
     sortOnDate("inventory")
 
     # Go through the inventory and get the product_name
-    inStockTotal = getAllItemsByNameFromInventoryCsv(name)
+    inStockTotal = Inventory.getAllItemsByNameFromCsv(name)
 
     # select not expired
     inStockTotalNotExpired = []
@@ -59,18 +61,18 @@ def handleSell(parsed_Data, csv_path):
                     amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
-                    appendToSoldCsv(
+                    Sold.appendToCsv(
                         stock["id"], name, stock["amount"], day, price)
-                    removeFromInventoryCsv(int(stock["id"]), csv_path)
+                    Inventory.removeFromCsv(int(stock["id"]), csv_path)
                     continue
 
                 else:
-                    appendToSoldCsv(
+                    Sold.appendToCsv(
                         stock["id"], name, amount, day, price)
                     if amount == stock["amount"]:
-                        removeFromInventoryCsv(int(stock["id"]), csv_path)
+                        Inventory.removeFromCsv(int(stock["id"]), csv_path)
                     else:
-                        adjustInventoryCsv(int(stock["id"]), amount, csv_path)
+                        Inventory.adjustCsv(int(stock["id"]), amount, csv_path)
                     # Set amount to 0 to reset the loop
                     amount = 0
                     sold += amount

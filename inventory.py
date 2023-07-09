@@ -2,11 +2,13 @@ import csv
 from console import console
 from rich.table import Table
 from rich.align import Align
-from utils.utils import getItemFromPurchaseCsvById
+# from handle_cvs import getItemFromPurchaseCsvById
 # from modify_day.getDateFromFile import getDateFromFile
 from datetime import datetime
 from matplot import pltShow
-from modify_date.setDate import Date
+
+from handle_date import Date
+from handle_cvs import Purchase
 
 
 # displayInventory
@@ -44,7 +46,7 @@ def displayInventory(parsed_Data):
                                  )
                 count += 1
             else:
-                item = getItemFromPurchaseCsvById(int(line[0]))
+                item = Purchase.getItemById(int(line[0]))
 
                 # set expiration_date
                 # string_expiration_date = (
@@ -91,4 +93,4 @@ def displayInventory(parsed_Data):
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
     # Display the plot
-    # pltShow()
+    pltShow()

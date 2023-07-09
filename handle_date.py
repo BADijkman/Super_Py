@@ -6,8 +6,8 @@ console = Console()
 
 
 class Date():
-    def __init__(self, date,):
-        self.date = date
+    # def __init__(self, date,):
+    #     self.date = date
 
     def get_date():
         return datetime.today().strftime('%d/%m/%Y')

@@ -2,15 +2,17 @@ from console import console
 from rich.align import Align
 from datetime import datetime
 # from modify_day.getDateFromFile import getDateFromFile
-from utils.utils import getAllItemsSoldByDate, getAllItemsPurchaseByDate
+# from handle_cvs import getAllItemsSoldByDate, getAllItemsPurchaseByDate
+# from handle_cvs import getAllItemsSoldByDate
 # from modify_day.date import get_date
-from modify_date.setDate import Date
+from handle_date import Date
+from handle_cvs import Purchase, Sold
 
 
 def displayProfit(parsed_data):
     day = Date.getDateFromFile("str")
-    totalRevenue = getAllItemsSoldByDate(day, parsed_data)
-    totalPurchase = getAllItemsPurchaseByDate(day, parsed_data)
+    totalRevenue = Sold.getAllItemsByDate(day, parsed_data)
+    totalPurchase = Purchase.getAllItemsByDate(day, parsed_data)
     totalProfit = totalRevenue - totalPurchase
     profitLine = f"  Total Profit : \u20ac {totalProfit:.2f}"
     if parsed_data.startingdate is None:

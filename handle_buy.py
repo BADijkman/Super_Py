@@ -1,8 +1,10 @@
 import random
 # from modify_day.date import get_date
-from utils.utils import appendToPurchaseCsv, appendToInventoryCsv
+# from handle_cvs import appendToPurchaseCsv, appendToInventoryCsv
+# from handle_cvs import appendToInventoryCsv
 from console import console
-from modify_date.setDate import Date
+from handle_date import Date
+from handle_cvs import Purchase, Inventory
 
 
 def handleBuy(parsed_Data):
@@ -15,10 +17,10 @@ def handleBuy(parsed_Data):
 
     try:
         # Append line to purchase.csv
-        appendToPurchaseCsv(newId, name, price, amount, date, expiration_date)
+        Purchase.appendToCsv(newId, name, price, amount, date, expiration_date)
 
         # Append line to inventory.csv
-        appendToInventoryCsv(newId, name, amount, expiration_date)
+        Inventory.appendToCsv(newId, name, amount, expiration_date)
         console.print("[green bold reverse]OK")
 
     except ValueError:

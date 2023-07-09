@@ -1,7 +1,7 @@
 import os
 import csv
 # from modify_day.date import get_date
-from modify_date.setDate import Date
+from handle_date import Date
 
 
 def init_data(base_path, csv_path, current_date_path):
@@ -46,7 +46,7 @@ def init_data(base_path, csv_path, current_date_path):
     if os.path.exists(current_date_path):
         pass
     else:
-        os.mkdir(f'{base_path}/day')
+        os.mkdir(f'{base_path}/current_date')
         # set day to today
         with open("./current_date/day.txt", "w") as f:
             newdate = Date.get_date()

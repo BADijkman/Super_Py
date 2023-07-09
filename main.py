@@ -4,13 +4,13 @@ from init import init_data
 from handle_buy import handleBuy
 from handle_sell import handleSell
 # from modify_day.advance_time import handleAdvance
-from modify_date.setDate import Date
+from handle_date import Date
 from handle_report import handleReport
 
 
 base_path = os.getcwd()
 csv_path = os.path.join(base_path, "csv")
-current_day_path = os.path.join(base_path, "day")
+current_day_path = os.path.join(base_path, "current_date")
 
 
 init_data(base_path, csv_path, current_day_path)

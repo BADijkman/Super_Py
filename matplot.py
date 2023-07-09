@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-from utils.utils import inStocktotal, inStockTotalNotExpired
+# from handle_cvs import inStocktotal, inStockTotalNotExpired
+from handle_cvs import Inventory
 
 
 def checkForDuplicateProducts(new_list):
@@ -30,12 +31,12 @@ def checkForDuplicateProducts(new_list):
 
 def pltShow():
     # get Inventory
-    instock = inStocktotal()
-    inStockTotal = inStockTotalNotExpired(instock)
-    # CHECK OP DATUM AANVRAAG MOET NOG 
+    instock = Inventory.total()
+    inStockTotalNotExpired = Inventory.totalNotExpired(instock)
+    # CHECK OP DATUM AANVRAAG MOET NOG
 
     # check duplicate items and if so modify amount
-    listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotal
+    listWithoutDuplicateProducts = checkForDuplicateProducts(inStockTotalNotExpired
                                                              )
 
     products = [d['name'] for d in listWithoutDuplicateProducts]
