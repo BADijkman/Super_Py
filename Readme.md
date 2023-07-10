@@ -1,9 +1,70 @@
 
+-1 Init
+First, we check whether certain csv files already exist, and if not the will be created, we also set the current_date text file on today
+
+def init_data(base_path, csv_path, day_path): # check cvs path
+if os.path.exists(csv_path):
+pass
+else:
+os.mkdir(f'{base_path}/csv')
+
+    # check purchase.cvs excist
+    if os.path.exists(f'{csv_path }/purchase.csv'):
+        pass
+    else:
+        fieldnames = ['id', 'product_name', 'amount', 'buy_price',
+                      'buy_date',  'expiration_date']
+        with open(f'{csv_path }/purchase.csv', 'w', encoding='UTF8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
+            writer.writeheader()
+
+    # check sold.csv excist
+    if os.path.exists(f'{csv_path}/sold.csv'):
+        pass
+    else:
+        fieldnames = ['id', 'product_name', 'amount',
+                      'sell_date', 'sell_price']
+
+        with open(f'{csv_path }/sold.csv', 'w', encoding='UTF8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
+            writer.writeheader()
+etc etc
 
 
 
+-2 compare dates
 
--3 rich table is used to display the inventory in a table
+To check whether the products are past their expiration date, you need to compare the expiration date with the current date.
+The expiration date is taken from the csv file and is a string type
+The current date is retrieved from the get date function and is date time type
+
+To compare you have to make the string type also a date time
+So the expiration time needs to convert
+
+def convertToString(date_object):
+        return date_object.strftime("%d/%m/%Y")
+
+    def convertToDateTime(date_string):
+        datetime_obj = datetime.strptime(date_string, "%d/%m/%Y")
+        return datetime_obj.date()
+
+
+-3 modify date
+
+To adjust the date we make it a text file, we call it up, we adjust it and put it back in the text file using timedelta
+
+def advance_date(delta_time):
+        with open("./current_date/current_date.txt", 'r') as f:
+            line = "".join(f.readline().split("/"))
+            date = datetime.strptime(line, "%d%m%Y").date()
+            newDate = date + timedelta(days=delta_time)
+            newDate = newDate.strftime("%d/%m/%Y")
+            with open("./current_date/current_date.txt", 'w') as f:
+                f.write(newDate)
+            console.print(f"[green]Current day set to: {newDate}")
+
+
+-4 rich table is used to display the inventory in a table
 
 First we make some columns for the header, add name and other specifications,
 
@@ -55,13 +116,7 @@ and add a row to the table with selected name price and date,
             expirate_display
 
 
-
-
-
-
-
-#-----------------------
--4 matplot is uses to get a bar chart from the inventory
+-5 matplot is uses to get a bar chart from the inventory
 
 To get only 1 bar for each product in the bar chart, the numbers must be added for several products of the same type.
 
