@@ -45,6 +45,7 @@ There are a few options to use as arguments:
 --amount or -a        "Amount of products" (if not supplied it will be 1 product)
 
 The selling goes through the entire inventory and collects all the products with the same name.
+You can only sell the number of products that are in stock
 You can only sell the products that have not expired.
 
 return:
