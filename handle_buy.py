@@ -3,7 +3,6 @@ from console import console
 from handle_date import Date
 from handle_cvs import Purchase, Inventory
 
-
 def handleBuy(parsed_Data):
     newId = random.randint(1000000, 9999999)
     name = parsed_Data.name
