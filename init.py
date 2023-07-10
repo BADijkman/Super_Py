@@ -9,7 +9,6 @@ def init_data(base_path, csv_path, current_date_path):
         pass
     else:
         os.mkdir(f'{base_path}/csv')
-
     # check purchase.cvs excist
     if os.path.exists(f'{csv_path }/purchase.csv'):
         pass
@@ -24,7 +23,6 @@ def init_data(base_path, csv_path, current_date_path):
                   encoding='UTF8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
-
     # check sold.csv excist
     if os.path.exists(f'{csv_path}/sold.csv'):
         pass
@@ -39,7 +37,6 @@ def init_data(base_path, csv_path, current_date_path):
                   encoding='UTF8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
-
     # check inventory.csv excist
     if os.path.exists(f'{csv_path }/inventory.csv'):
         pass
@@ -54,7 +51,6 @@ def init_data(base_path, csv_path, current_date_path):
                   encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
-
     # check day path
     if os.path.exists(current_date_path):
         pass

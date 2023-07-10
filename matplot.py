@@ -30,7 +30,6 @@ def checkForDuplicateProducts(list):
 
 
 def pltShow():
-
     # get Inventory
     inStockTotalNotExpired = Inventory.totalNotExpired()
 
