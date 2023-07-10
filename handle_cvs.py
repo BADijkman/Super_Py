@@ -3,7 +3,6 @@ import operator
 from datetime import datetime
 from handle_date import Date
 
-
 day = Date.get_date()
 
 
