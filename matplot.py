@@ -3,9 +3,9 @@ from handle_cvs import Inventory
 from handle_date import Date
 
 
-def checkForDuplicateProducts(new_list):
+def checkForDuplicateProducts(list):
     updated_list = []
-    for dict in new_list:
+    for dict in list:
         for key, value in dict.items():
             if key == "name":
                 search_value = value

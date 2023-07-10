@@ -38,6 +38,7 @@ def displayInventory(parsed_Data):
                      )
 
     inventory = Inventory.total()
+
     for product in inventory:
 
         check_date = Date.getDateFromFile("date")
