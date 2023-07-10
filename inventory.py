@@ -58,6 +58,7 @@ def displayInventory(parsed_Data):
         )
 
     display_date = Date.getDateFromFile("str")
+
     console.rule(f"[yellow]Inventory: {display_date}", style="yellow")
     console.print(Align.center(table))
     console.print(Align.right(
