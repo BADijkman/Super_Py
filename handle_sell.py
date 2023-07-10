@@ -45,7 +45,7 @@ def handleSell(parsed_Data, csv_path):
                 if amount > inStockAmount:
                     console.print(
                         f' [red bold reverse] ERROR:You can only sell {inStockAmount} {name}'
-                        )
+                    )
                     amount = 0
                     break
                 elif amount > stock["amount"] and inStockAmount != 0:
@@ -54,7 +54,6 @@ def handleSell(parsed_Data, csv_path):
                     amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
-                    
                     Sold.appendToCsv(
                         stock["id"], name, stock["amount"], day, price)
                     Inventory.removeFromCsv(int(stock["id"]), csv_path)
