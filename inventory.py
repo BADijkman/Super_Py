@@ -7,9 +7,8 @@ from matplot import pltShow
 from handle_date import Date
 from handle_cvs import Inventory
 
+
 # displayInventory
-
-
 def displayInventory(parsed_Data):
     table = Table(min_width=90, style='white',
                   header_style="green",
