@@ -1,7 +1,7 @@
 -1 Init
 First, we check whether certain csv files already exist, and if not the will be created, we also set the current_date text file on today
 
-def init_data(base_path, csv_path, current_date_path):
+  def init_data(base_path, csv_path, current_date_path):
     # check cvs path
     if os.path.exists(csv_path):
         pass
