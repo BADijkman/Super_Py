@@ -10,7 +10,7 @@ day = Date.get_date()
 
 def handleSell(parsed_Data, csv_path):
     name = parsed_Data.name.lower()
-    price = round(parsed_Data.amount * parsed_Data.price, 2)
+    price = parsed_Data.price
     amount = parsed_Data.amount
     sold = 0
 
@@ -54,6 +54,7 @@ def handleSell(parsed_Data, csv_path):
                     amount -= stock["amount"]
                     inStockAmount -= stock["amount"]
                     sold += stock["amount"]
+                    
                     Sold.appendToCsv(
                         stock["id"], name, stock["amount"], day, price)
                     Inventory.removeFromCsv(int(stock["id"]), csv_path)

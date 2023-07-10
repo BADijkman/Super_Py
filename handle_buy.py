@@ -7,7 +7,7 @@ from handle_cvs import Purchase, Inventory
 def handleBuy(parsed_Data):
     newId = random.randint(1000000, 9999999)
     name = parsed_Data.name
-    price = round(parsed_Data.amount * parsed_Data.price, 2)
+    price = parsed_Data.price
     amount = parsed_Data.amount
     date = Date.get_date()
     expiration_date = parsed_Data.expiration.strftime("%d/%m/%Y")
