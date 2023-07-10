@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 
 
 class Date():
-
     def get_date():
         return datetime.today().strftime('%d/%m/%Y')
 

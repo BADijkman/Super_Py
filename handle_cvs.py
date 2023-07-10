@@ -7,19 +7,11 @@ day = Date.get_date()
 
 
 class Purchase():
-
     def appendToCsv(newId, name, amount, price, date, expiration_date):
         with open("./csv/purchase.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
             writer.writerow(
                 [newId, name, amount,  price, date, expiration_date])
-
-    # def getItemById(id):
-    #     with open("./csv/purchase.csv") as f:
-    #         lines = csv.DictReader(f)
-    #         for line in lines:
-    #             if int(line["id"]) == int(id):
-    #                 return line
 
     def getAllItemsByDate(date, parsed_data):
         with open("./csv/purchase.csv", 'r') as f:
