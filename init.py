@@ -14,8 +14,12 @@ def init_data(base_path, csv_path, current_date_path):
     if os.path.exists(f'{csv_path }/purchase.csv'):
         pass
     else:
-        fieldnames = ['id', 'product_name', 'amount', 'buy_price',
-                      'buy_date',  'expiration_date']
+        fieldnames = ['id',
+                      'name',
+                      'amount',
+                      'buy_price',
+                      'buy_date',
+                      'expiration_date']
         with open(f'{csv_path }/purchase.csv', 'w',
                   encoding='UTF8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
@@ -25,8 +29,11 @@ def init_data(base_path, csv_path, current_date_path):
     if os.path.exists(f'{csv_path}/sold.csv'):
         pass
     else:
-        fieldnames = ['id', 'product_name', 'amount',
-                      'sell_date', 'sell_price']
+        fieldnames = ['id',
+                      'name',
+                      'amount',
+                      'sell_date',
+                      'sell_price']
 
         with open(f'{csv_path }/sold.csv', 'w',
                   encoding='UTF8', newline='') as f:
@@ -37,8 +44,12 @@ def init_data(base_path, csv_path, current_date_path):
     if os.path.exists(f'{csv_path }/inventory.csv'):
         pass
     else:
-        fieldnames = ['id', 'name',
-                      'amount', 'buy_date', 'expiration_date']
+        fieldnames = ['id',
+                      'name',
+                      'amount',
+                      'buy_price',
+                      'buy_date',
+                      'expiration_date']
         with open(f'{csv_path }/inventory.csv', 'w',
                   encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")

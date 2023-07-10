@@ -1,2 +1,3 @@
-id,product_name,amount,sell_date,sell_price
-1797181,melon,10,09/07/2023,8.0
+id,name,amount,sell_date,sell_price
+2317013,banana,2,10/07/2023,1.0
+9678773,pia,18,10/07/2023,18.0

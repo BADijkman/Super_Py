@@ -9,18 +9,18 @@ day = Date.get_date()
 
 class Purchase():
 
-    def appendToCsv(newId, name, price, amount, date, expiration_date):
+    def appendToCsv(newId, name, amount, price, date, expiration_date):
         with open("./csv/purchase.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
             writer.writerow(
                 [newId, name, amount,  price, date, expiration_date])
 
-    def getItemById(id):
-        with open("./csv/purchase.csv") as f:
-            lines = csv.DictReader(f)
-            for line in lines:
-                if int(line["id"]) == int(id):
-                    return line
+    # def getItemById(id):
+    #     with open("./csv/purchase.csv") as f:
+    #         lines = csv.DictReader(f)
+    #         for line in lines:
+    #             if int(line["id"]) == int(id):
+    #                 return line
 
     def getAllItemsByDate(date, parsed_data):
         with open("./csv/purchase.csv", 'r') as f:
@@ -44,10 +44,15 @@ class Purchase():
 
 
 class Inventory():
-    def appendToCsv(id, name, amount, buy_date, expiration_date):
+    def appendToCsv(id, name, amount, buy_price, buy_date, expiration_date):
         with open("./csv/inventory.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
-            writer.writerow([id, name, amount, buy_date, expiration_date])
+            writer.writerow([id,
+                             name,
+                             amount,
+                             buy_price,
+                             buy_date,
+                             expiration_date])
         Inventory.sortOnDate("inventory")
 
     def getAllItemsByNameFromCsv(name):
@@ -60,6 +65,7 @@ class Inventory():
                         {"id": int(line["id"]),
                             "name": line["name"],
                             "amount": int(line["amount"]),
+                            "buy_price": float(line["buy_price"]),
                             "buy_date": str(line["buy_date"]),
                             "expiration_date": str(line["expiration_date"])}
                     )
@@ -67,8 +73,12 @@ class Inventory():
         return inStock
 
     def reset(csv_path):
-        fieldnames = ['id', 'name',
-                      'amount', 'buy_date', 'expiration_date']
+        fieldnames = ['id',
+                      'name',
+                      'amount',
+                      'buy_price',
+                      'buy_date',
+                      'expiration_date']
         with open(f'{csv_path}/inventory.csv', 'w',
                   encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
@@ -88,6 +98,7 @@ class Inventory():
             Inventory.appendToCsv(line["id"],
                                   line["name"],
                                   line["amount"],
+                                  line["buy_price"],
                                   line["buy_date"],
                                   line["expiration_date"])
 
@@ -103,6 +114,7 @@ class Inventory():
                             "id": line["id"],
                             "name": line["name"],
                             "amount": int(line["amount"]) - amount,
+                            "buy_price": float(line["buy_price"]),
                             "buy_date": line["buy_date"],
                             "expiration_date": line["expiration_date"]
                         }
@@ -112,8 +124,11 @@ class Inventory():
 
         Inventory.reset(csv_path)
         for line in newLines:
-            Inventory.appendToCsv(line["id"], line["name"],
-                                  line["amount"], line["buy_date"],
+            Inventory.appendToCsv(line["id"],
+                                  line["name"],
+                                  line["amount"],
+                                  line["buy_price"],
+                                  line["buy_date"],
                                   line["expiration_date"])
 
     def total():
@@ -129,20 +144,21 @@ class Inventory():
                     inStock.append(
                         {"id": int(line["id"]),
                          "name": line["name"],
-                         "amount": int(line["amount"]),
+                         "amount": int(line[("amount")]),
+                         "buy_price": float(line["buy_price"]),
                          "buy_date": str(line["buy_date"]),
                          "expiration_date": str(line["expiration_date"])}
                     )
         Inventory.sortOnDate("inventory")
         return inStock
 
-    def totalNotExpired(inStock):
+    def totalNotExpired():
+        inStock = Inventory.total()
         inStockTotalNotExpired = []
         for dict in inStock:
             expiration_date = datetime.strptime(
-                dict['expiration_date'], "%d/%m/%Y")
-            check_date = datetime.strptime(
-                day, "%d/%m/%Y")
+                dict['expiration_date'], "%d/%m/%Y").date()
+            check_date = Date.getDateFromFile("date")
             if expiration_date < check_date:
                 pass
             else:

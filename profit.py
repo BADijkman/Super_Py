@@ -1,10 +1,6 @@
 from console import console
 from rich.align import Align
 from datetime import datetime
-# from modify_day.getDateFromFile import getDateFromFile
-# from handle_cvs import getAllItemsSoldByDate, getAllItemsPurchaseByDate
-# from handle_cvs import getAllItemsSoldByDate
-# from modify_day.date import get_date
 from handle_date import Date
 from handle_cvs import Purchase, Sold
 
