@@ -11,7 +11,12 @@ class Purchase():
         with open("./csv/purchase.csv", "a", newline="") as f:
             writer = csv.writer(f, delimiter=",")
             writer.writerow(
-                [newId, name, amount,  price, date, expiration_date])
+                [newId,
+                 name,
+                 amount,
+                 price,
+                 date,
+                 expiration_date])
 
     def getAllItemsByDate(date, parsed_data):
         with open("./csv/purchase.csv", 'r') as f:
