@@ -2,11 +2,12 @@
 First, we check whether certain csv files already exist, and if not the will be created, we also set the current_date text file on today
 
 def init_data(base_path, csv_path, current_date_path):
+
     # check cvs path
     if os.path.exists(csv_path):
-        pass
+    pass
     else:
-        os.mkdir(f'{base_path}/csv')
+    os.mkdir(f'{base_path}/csv')
 
     # check purchase.cvs excist
     if os.path.exists(f'{csv_path }/purchase.csv'):
@@ -45,33 +46,34 @@ So the expiration time needs to convert
 
 To adjust the date we make it a text file, we call it up, we adjust it and put it back in the text file using timedelta
 
-def advance_date(delta_time):
-with open("./current_date/current_date.txt", 'r') as f:
-line = "".join(f.readline().split("/"))
-date = datetime.strptime(line, "%d%m%Y").date()
-newDate = date + timedelta(days=delta_time)
-newDate = newDate.strftime("%d/%m/%Y")
-with open("./current_date/current_date.txt", 'w') as f:
-f.write(newDate)
-console.print(f"[green]Current day set to: {newDate}")
+    def advance_date(delta_time):
+        with open("./current_date/current_date.txt", 'r') as f:
+            line = "".join(f.readline().split("/"))
+            date = datetime.strptime(line, "%d%m%Y").date()
+            newDate = date + timedelta(days=delta_time)
+            newDate = newDate.strftime("%d/%m/%Y")
+            with open("./current_date/current_date.txt", 'w') as f:
+                f.write(newDate)
+            console.print(f"[green]Current day set to: {newDate}")
 
 -4 rich table is used to display the inventory in a table
 
 First we make some columns for the header, add name and other specifications,
 
-def displayInventory(parsed_data):
-table = Table(min_width=90, style='white',
-header_style="green",
-padding=(0, 2),
-)
-table.add_column("Product Name",
-justify="left",
-no_wrap=True,
-)
-table.add_column("Amount",
-justify="left",
-no_wrap=True,
-)
+    def displayInventory(parsed_Data):
+      table = Table(min_width=90, style='white',
+                  header_style="green",
+                  padding=(0, 2),
+                  )
+      table.add_column("Product Name",
+                     justify="left",
+                     no_wrap=True,
+                     )
+        table.add_column("Amount",
+                     justify="left",
+                     no_wrap=True,
+                     )
+
 etc, etc
 
 the argument parsed_date is not used but in a later stadion we
@@ -110,17 +112,18 @@ inventory = Inventory.total()
 To get only 1 bar for each product in the bar chart, the numbers must be added for several products of the same type.
 
 def checkForDuplicateProducts(list):
-updated_list = []
-for dict in list:
-for key, value in dict.items():
-if key == "name":
-search_value = value
-elif key == "amount":
-input_Amount = value
 
-        # If the search_value is found modify amount
-        new_dict = True
-        for dict in updated_list:
+      updated_list = []
+      for dict in list:
+          for key, value in dict.items():
+              if key == "name":
+                  search_value = value
+              elif key == "amount":
+                  input_Amount = value
+
+           # If the search_value is found modify amount
+           new_dict = True
+           for dict in updated_list:
             if search_value in dict.values():
                 amount = dict.get("amount")
                 new_Amount = amount + input_Amount
