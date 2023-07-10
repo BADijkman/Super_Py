@@ -1,12 +1,12 @@
 -1 Init
 First, we check whether certain csv files already exist, and if not the will be created, we also set the current_date text file on today
 
-def init_data(base_path, csv_path, current_date_path):
-    # check cvs path
-    if os.path.exists(csv_path):
-        pass
-    else:
-        os.mkdir(f'{base_path}/csv')
+  def init_data(base_path, csv_path, current_date_path):
+      # check cvs path
+      if os.path.exists(csv_path):
+          pass
+      else:
+          os.mkdir(f'{base_path}/csv')
 
     # check purchase.cvs excist
     if os.path.exists(f'{csv_path }/purchase.csv'):
@@ -34,8 +34,8 @@ The current date is retrieved from the get date function and is date time type
 To compare you have to make the string type also a date time
 So the expiration time needs to convert
 
-def convertToString(date_object):
-return date_object.strftime("%d/%m/%Y")
+    def convertToString(date_object):
+    return date_object.strftime("%d/%m/%Y")
 
     def convertToDateTime(date_string):
         datetime_obj = datetime.strptime(date_string, "%d/%m/%Y")
