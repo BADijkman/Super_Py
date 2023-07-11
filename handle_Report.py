@@ -10,7 +10,7 @@ def handleReport(parsed_Data):
 
     inventoryError = 'error :inventory needs argument: --today/-t --yesterday/-y --now/-n --date/-d '
     profitError = 'error :profit needs argument: --today/-t --yesterday/-y --now/-n --date/-d --startingdate/-s'
-    revenueError= 'error :revenue needs argument: --today/-t --yesterday/-y --now/-n --date/-d --startingdate/-s'
+    revenueError = 'error :revenue needs argument: --today/-t --yesterday/-y --now/-n --date/-d --startingdate/-s'
     reportError = 'error :report needs argument: inventory profit revenue'
     if hasattr(parsed_Data, 'inventory'):
         if parsed_Data.inventory:
