@@ -31,7 +31,7 @@ def main():
         handleReport(parsed)
     else:
         err_console.print(
-            " error choose from 'buy', 'sell', 'advance-time', 'set-date', 'report'")
+            " error choose from buy, sell, advance-time, set-date, report")
 
 
 if __name__ == "__main__":
