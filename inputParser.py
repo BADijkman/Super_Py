@@ -108,6 +108,24 @@ def create_parser():
         required=True,
     )
 
+    # set day instruction
+    set = commands.add_parser(
+        "set-date",
+        help="set the date by input",
+    )
+    set.add_argument(
+        "set",
+        action="store_true",
+        default=False
+    )
+    set.add_argument(
+        '-d',
+        metavar="DATE  yyyy-mm-dd",
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        help="set the date by input",
+        required=True,
+    )
+
     # report_commands
     report = commands.add_parser(
         "report",

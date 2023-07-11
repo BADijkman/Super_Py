@@ -112,9 +112,9 @@ There are a few options to use as arguments:
 
 --now or-n            shows the inventory for the day set with Advancetime
 
---date  or-d          "date dd/mm/yyyy" shows the inventory on this date
+--date  or-d          "date dd/mm/yyyy" shows the inventory on this date 
 
---startingdate or-s   "startingdate dd/mm/yyyy" shows the inventory from this date to current date
+--date  or-d          "date yyyy-mm-dd" shows the inventory on this date 
 
 the inventory argument shows also a bar chart
 

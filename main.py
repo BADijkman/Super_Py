@@ -24,6 +24,8 @@ def main():
         handleSell(parsed, csv_path)
     elif hasattr(parsed, "advance"):
         Date.advance_date(parsed.d)
+    elif hasattr(parsed, "set"):
+        Date.set_date(parsed)
     elif hasattr(parsed, "report"):
         handleReport(parsed)
 

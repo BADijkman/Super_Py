@@ -31,28 +31,35 @@ class Date():
                 f.write(newDate)
             console.print(f"[green]Current day set to: {newDate}")
 
-    def input_date(parsed_data):
-        newdate = datetime.strftime(parsed_data.date, "%d/%m/%Y")
+    def set_date(parsed_data):
+        newDate = (parsed_data.d).date()
+        newDate = newDate.strftime("%d/%m/%Y")
         with open("./current_date/current_date.txt", "w") as f:
-            f.write(newdate)
+            f.write(newDate)
+        console.print(f"[green]Current day set to: {newDate}")
+
+    def input_date(parsed_data):
+        newDate = datetime.strftime(parsed_data.date, "%d/%m/%Y")
+        with open("./current_date/current_date.txt", "w") as f:
+            f.write(newDate)
 
     def starting_date(parsed_data):
-        newdate = datetime.strftime(parsed_data.startingdate, "%d/%m/%Y")
+        newDate = datetime.strftime(parsed_data.startingdate, "%d/%m/%Y")
         with open("./current_date/current_date.txt", "w") as f:
-            f.write(newdate)
+            f.write(newDate)
 
     def getDateFromFile(type):
         if type == "str":
             with open("./current_date/current_date.txt") as f:
                 line = "".join(f.readline().split("/"))
                 date = datetime.strptime(line, "%d%m%Y").date()
-                newdate = datetime.strftime(date, "%d/%m/%Y")
-            return newdate
+                newDate = datetime.strftime(date, "%d/%m/%Y")
+            return newDate
         elif type == "date":
             with open("./current_date/current_date.txt") as f:
                 line = "".join(f.readline().split("/"))
-                newdate = datetime.strptime(line, "%d%m%Y").date()
-            return newdate
+                newDate = datetime.strptime(line, "%d%m%Y").date()
+            return newDate
 
     def convertToString(date_object):
         return date_object.strftime("%d/%m/%Y")
