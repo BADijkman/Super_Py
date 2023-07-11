@@ -50,9 +50,9 @@ def create_parser():
     buy.add_argument(
         "--expiration",
         "-e",
-        metavar="EXPIRATION dd/mm/yyyy'",
+        metavar="EXPIRATION yyyy/mm/dd'",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
-        help="supply the expiration date of product dd/mm/yyyy",
+        help="supply the expiration date of product yyyy/mm/dd",
         required=True,
     )
 
@@ -120,7 +120,7 @@ def create_parser():
     )
     set.add_argument(
         '-d',
-        metavar="DATE  yyyy-mm-dd",
+        metavar="DATE yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="set the date by input",
         required=True,
@@ -178,7 +178,7 @@ def create_parser():
     inventory.add_argument(
         "--date",
         "-d",
-        metavar="DATE_INPUT_INVENTORY",
+        metavar="DATE_INPUT_INVENTORY yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns inventory for input-date",
     )
@@ -217,14 +217,14 @@ def create_parser():
     revenue.add_argument(
         "--date",
         "-d",
-        metavar="DATE_INPUT_REVENUE",
+        metavar="DATE_INPUT yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns revenue for input-date",
     )
     revenue.add_argument(
         "--startingdate",
         "-s",
-        metavar="DATE_INPUT_REVENUE",
+        metavar="DATE_INPUT yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns revenue from input-date to current-date",
     )
@@ -264,14 +264,14 @@ def create_parser():
     profit.add_argument(
         "--date",
         "-d",
-        metavar="DATE_INPUT_PROFIT",
+        metavar="DATE_INPUT yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns profit for input-date",
     )
     profit.add_argument(
         "--startingdate",
         "-s",
-        metavar="DATE_INPUT_REVENUE",
+        metavar="DATE_INPUT yyyy-mm-dd",
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns profit from input-date to currentdate",
     )

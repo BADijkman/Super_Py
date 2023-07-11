@@ -7,6 +7,11 @@ from handle_date import Date
 
 
 def handleReport(parsed_Data):
+
+    inventoryError = 'error :inventory needs argument: --today/-t --yesterday/-y --now/-n --date/-d '
+    profitError = 'error :profit needs argument: --today/-t --yesterday/-y --now/-n --date/-d --startingdate/-s'
+    revenueError= 'error :revenue needs argument: --today/-t --yesterday/-y --now/-n --date/-d --startingdate/-s'
+    reportError = 'error :report needs argument: inventory profit revenue'
     if hasattr(parsed_Data, 'inventory'):
         if parsed_Data.inventory:
             if parsed_Data.today:
@@ -22,8 +27,7 @@ def handleReport(parsed_Data):
                 Date.input_date(parsed_Data)
                 displayInventory(parsed_Data)
             else:
-                err_console.print('error :inventory needs argument: --today ' /
-                                  '--yesterday --now --date --startingdate')
+                err_console.print(inventoryError)
 
     elif hasattr(parsed_Data, 'profit'):
         if parsed_Data.profit:
@@ -46,8 +50,7 @@ def handleReport(parsed_Data):
                 else:
                     displayProfit(parsed_Data)
             else:
-                err_console.print('error :inventory needs argument: --today ' /
-                                  '--yesterday --now --date --startingdate')
+                err_console.print(profitError)
 
     elif hasattr(parsed_Data, 'revenue'):
         if parsed_Data.revenue:
@@ -70,9 +73,7 @@ def handleReport(parsed_Data):
                 else:
                     displayRevenue(parsed_Data)
             else:
-                err_console.print('error :inventory needs argument: --today ' /
-                                  '--yesterday --now --date --startingdate')
+                err_console.print(revenueError)
 
     else:
-        err_console.print(
-            'error :report needs argument: inventory profit revenue')
+        err_console.print(reportError)
