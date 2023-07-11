@@ -120,7 +120,8 @@ class Inventory():
                                   line["amount"],
                                   line["buy_price"],
                                   line["buy_date"],
-                                  line["expiration_date"])
+                                  line["expiration_date"]
+                                  )
 
     def total():
         inStock = []
