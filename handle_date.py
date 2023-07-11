@@ -15,7 +15,7 @@ class Date():
     def yesterday():
         with open("./current_date/current_date.txt", 'r') as f:
             line = "".join(f.readline().split("/"))
-            date = datetime.strptime(line, "%d%m%Y").date()
+            date = datetime.strptime(line, "%Y-%m-%d").date()
             newDate = date - timedelta(days=1)
             newDate = newDate.strftime("%Y-%m-%d")
             with open("./current_date/current_date.txt", 'w') as f:
@@ -42,11 +42,6 @@ class Date():
         newDate = datetime.strftime(parsed_data.date, "%Y-%m-%d")
         with open("./current_date/current_date.txt", "w") as f:
             f.write(newDate)
-
-    # def starting_date(parsed_data):
-    #     newDate = datetime.strftime(parsed_data.startingdate, "%Y-%m-%d")
-    #     with open("./current_date/current_date.txt", "w") as f:
-    #         f.write(newDate)
 
     def getDateFromFile(type):
         if type == "str":

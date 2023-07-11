@@ -24,9 +24,9 @@ def handleSell(parsed_Data, csv_path):
     inStockTotalNotExpiredByName = []
     for dict in inStockTotal:
         expiration_date = datetime.strptime(
-            dict['expiration_date'], "%d/%m/%Y")
+            dict['expiration_date'], "%Y-%m-%d")
         check_date = datetime.strptime(
-            day, "%d/%m/%Y")
+            day, "%Y-%m-%d")
         if expiration_date < check_date:
             pass
         else:
