@@ -19,6 +19,7 @@ def displayProfit(parsed_data):
     elif parsed_data.startingdate is not None:
         display_date_from = Date.getDateFromFile("str")
         display_date_to = Date.get_date()
+        console.print()
         console.rule(
             f"[yellow]Profit: from {display_date_from} to {display_date_to}",
             style="yellow")
