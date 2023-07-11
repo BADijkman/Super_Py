@@ -64,4 +64,5 @@ def displayInventory(parsed_Data):
     console.print(Align.center(table))
     console.print(Align.right(
         f"[black]Dykey/Winc Copyright ©{(datetime.today().strftime('%Y'))}"))
+    console.print()
     pltShow()
