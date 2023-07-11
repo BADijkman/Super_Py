@@ -86,7 +86,6 @@ class Inventory():
             for line in lines:
                 if int(line["id"]) != id:
                     newLines.append(line)
-
         Inventory.reset(csv_path)
         for line in newLines:
             Inventory.appendToCsv(line["id"],
