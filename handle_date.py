@@ -43,10 +43,10 @@ class Date():
         with open("./current_date/current_date.txt", "w") as f:
             f.write(newDate)
 
-    def starting_date(parsed_data):
-        newDate = datetime.strftime(parsed_data.startingdate, "%Y-%m-%d")
-        with open("./current_date/current_date.txt", "w") as f:
-            f.write(newDate)
+    # def starting_date(parsed_data):
+    #     newDate = datetime.strftime(parsed_data.startingdate, "%Y-%m-%d")
+    #     with open("./current_date/current_date.txt", "w") as f:
+    #         f.write(newDate)
 
     def getDateFromFile(type):
         if type == "str":

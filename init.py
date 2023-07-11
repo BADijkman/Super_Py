@@ -57,6 +57,6 @@ def init_data(base_path, csv_path, current_date_path):
     else:
         os.mkdir(f'{base_path}/current_date')
         # set day to today
-        with open("./current_date/day.txt", "w") as f:
+        with open("./current_date/current_date.txt", "w") as f:
             newdate = Date.get_date()
             f.write(newdate)

@@ -44,7 +44,7 @@ def handleReport(parsed_Data):
                 if parsed_Data.startingdate > check_date:
                     err_console.print("entry date past current date")
                 else:
-                    Date.starting_date(parsed_Data)
+                    # Date.starting_date(parsed_Data)
                     displayProfit(parsed_Data)
             else:
                 err_console.print('error :inventory needs argument: --today ' /
@@ -69,7 +69,7 @@ def handleReport(parsed_Data):
                 if parsed_Data.startingdate > check_date:
                     err_console.print("entry date past current date")
                 else:
-                    Date.starting_date(parsed_Data)
+                    # Date.starting_date(parsed_Data)
                     displayRevenue(parsed_Data)
             else:
                 err_console.print('error :inventory needs argument: --today ' /

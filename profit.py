@@ -6,18 +6,24 @@ from handle_cvs import Purchase, Sold
 
 
 def displayProfit(parsed_data):
-    day = Date.getDateFromFile("str")
-    totalRevenue = Sold.getAllItemsByDate(day, parsed_data)
-    totalPurchase = Purchase.getAllItemsByDate(day, parsed_data)
-    totalProfit = totalRevenue - totalPurchase
-    profitLine = f"  Total Profit : \u20ac {totalProfit:.2f}"
     if parsed_data.startingdate is None:
-        display_date = Date.getDateFromFile("str")
+        day = Date.getDateFromFile("str")
+        totalRevenue = Sold.getAllItemsByDate(day, parsed_data)
+        totalPurchase = Purchase.getAllItemsByDate(day, parsed_data)
+        totalProfit = totalRevenue - totalPurchase
+        profitLine = f"  Total Profit : \u20ac {totalProfit:.2f}"
+        display_date = day
         console.print()
         console.rule(f"[yellow]Profit: {display_date}", style="yellow")
         console.print()
     elif parsed_data.startingdate is not None:
-        display_date_from = Date.getDateFromFile("str")
+        day = ((parsed_data.startingdate).date())
+        day = Date.convertToString(day)
+        totalRevenue = Sold.getAllItemsByDate(day, parsed_data)
+        totalPurchase = Purchase.getAllItemsByDate(day, parsed_data)
+        totalProfit = totalRevenue - totalPurchase
+        profitLine = f"  Total Profit : \u20ac {totalProfit:.2f}"
+        display_date_from = day
         display_date_to = Date.get_date()
         console.print()
         console.rule(
