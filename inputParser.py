@@ -51,7 +51,7 @@ def create_parser():
         "--expiration",
         "-e",
         metavar="EXPIRATION dd/mm/yyyy'",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="supply the expiration date of product dd/mm/yyyy",
         required=True,
     )
@@ -179,7 +179,7 @@ def create_parser():
         "--date",
         "-d",
         metavar="DATE_INPUT_INVENTORY",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns inventory for input-date",
     )
 
@@ -218,14 +218,14 @@ def create_parser():
         "--date",
         "-d",
         metavar="DATE_INPUT_REVENUE",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns revenue for input-date",
     )
     revenue.add_argument(
         "--startingdate",
         "-s",
         metavar="DATE_INPUT_REVENUE",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns revenue from input-date to current-date",
     )
 
@@ -265,14 +265,14 @@ def create_parser():
         "--date",
         "-d",
         metavar="DATE_INPUT_PROFIT",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns profit for input-date",
     )
     profit.add_argument(
         "--startingdate",
         "-s",
         metavar="DATE_INPUT_REVENUE",
-        type=lambda s: datetime.strptime(s, "%d/%m/%Y"),
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Returns profit from input-date to currentdate",
     )
 

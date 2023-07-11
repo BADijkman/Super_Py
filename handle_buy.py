@@ -10,7 +10,7 @@ def handleBuy(parsed_Data):
     price = parsed_Data.price
     amount = parsed_Data.amount
     date = Date.get_date()
-    expiration_date = parsed_Data.expiration.strftime("%d/%m/%Y")
+    expiration_date = parsed_Data.expiration.strftime("%Y-%m-%d")
 
     try:
         # Append line to purchase.csv

@@ -23,17 +23,17 @@ class Purchase():
             purchase = []
             lines = csv.DictReader(f)
             check_date = datetime.strptime(
-                date, "%d/%m/%Y")
+                date, "%Y-%m-%d")
             if parsed_data.startingdate is None:
                 for line in lines:
                     purchase_date = datetime.strptime(
-                        line["buy_date"], "%d/%m/%Y")
+                        line["buy_date"], "%Y-%m-%d")
                     if check_date == purchase_date:
                         purchase.append(float(line["buy_price"]))
             elif parsed_data.startingdate is not None:
                 for line in lines:
                     purchase_date = datetime.strptime(
-                        line["buy_date"], "%d/%m/%Y")
+                        line["buy_date"], "%Y-%m-%d")
                     if check_date <= purchase_date:
                         purchase.append(float(line["buy_price"]))
         return sum(purchase)
@@ -148,7 +148,7 @@ class Inventory():
         inStockTotalNotExpired = []
         for dict in inStock:
             expiration_date = datetime.strptime(
-                dict['expiration_date'], "%d/%m/%Y").date()
+                dict['expiration_date'], "%Y-%m-%d").date()
             check_date = Date.getDateFromFile("date")
             if expiration_date < check_date:
                 pass
@@ -194,17 +194,17 @@ class Sold():
             sold = []
             lines = csv.DictReader(f)
             check_date = datetime.strptime(
-                date, "%d/%m/%Y")
+                date, "%Y-%m-%d")
             if parsed_data.startingdate is None:
                 for line in lines:
                     sell_date = datetime.strptime(
-                        line["sell_date"], "%d/%m/%Y")
+                        line["sell_date"], "%Y-%m-%d")
                     if check_date == sell_date:
                         sold.append(float(line["sell_price"]))
             elif parsed_data.startingdate is not None:
                 for line in lines:
                     sell_date = datetime.strptime(
-                        line["sell_date"], "%d/%m/%Y")
+                        line["sell_date"], "%Y-%m-%d")
                     if check_date <= sell_date:
                         sold.append(float(line["sell_price"]))
         return sum(sold)
