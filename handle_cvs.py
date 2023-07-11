@@ -51,7 +51,7 @@ class Inventory():
                              expiration_date])
         Inventory.sortOnDate("inventory")
 
-    def getAllItemsByNameFromCsv(name):
+    def getAllItemsByName(name):
         inStock = []
         with open('./csv/inventory.csv') as f:
             lines = csv.DictReader(f)

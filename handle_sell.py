@@ -18,7 +18,7 @@ def handleSell(parsed_Data, csv_path):
     Inventory.sortOnDate("inventory")
 
     # Go through the inventory and get the product_name
-    inStockTotal = Inventory.getAllItemsByNameFromCsv(name)
+    inStockTotal = Inventory.getAllItemsByName(name)
 
     # select not expired
     inStockTotalNotExpired = []
