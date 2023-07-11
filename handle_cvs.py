@@ -65,7 +65,6 @@ class Inventory():
                             "buy_date": str(line["buy_date"]),
                             "expiration_date": str(line["expiration_date"])}
                     )
-        Inventory.sortOnDate("inventory")
         return inStock
 
     def reset(csv_path):
@@ -79,7 +78,6 @@ class Inventory():
                   encoding='UTF8', newline='')as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=",")
             writer.writeheader()
-        Inventory.sortOnDate("inventory")
 
     def removeFromCsv(id, csv_path):
         newLines = []
@@ -145,7 +143,6 @@ class Inventory():
                          "buy_date": str(line["buy_date"]),
                          "expiration_date": str(line["expiration_date"])}
                     )
-        Inventory.sortOnDate("inventory")
         return inStock
 
     def totalNotExpired():
