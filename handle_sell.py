@@ -21,7 +21,7 @@ def handleSell(parsed_Data, csv_path):
     inStockTotal = Inventory.getAllItemsByName(name)
 
     # select not expired
-    inStockTotalNotExpired = []
+    inStockTotalNotExpiredByName = []
     for dict in inStockTotal:
         expiration_date = datetime.strptime(
             dict['expiration_date'], "%d/%m/%Y")
@@ -30,10 +30,10 @@ def handleSell(parsed_Data, csv_path):
         if expiration_date < check_date:
             pass
         else:
-            inStockTotalNotExpired.append(dict)
+            inStockTotalNotExpiredByName.append(dict)
 
     # Check how much of the item is in stock.
-    inStock = inStockTotalNotExpired
+    inStock = inStockTotalNotExpiredByName
 
     inStockAmount = reduce(
         lambda x, y: x + y, [d["amount"] for d in inStock], 0)
