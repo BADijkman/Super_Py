@@ -103,18 +103,16 @@ class Inventory():
             for line in lines:
                 if int(line["id"]) == id:
                     newLines.append(
-                        {
-                            "id": line["id"],
-                            "name": line["name"],
-                            "amount": int(line["amount"]) - amount,
-                            "buy_price": float(line["buy_price"]),
-                            "buy_date": line["buy_date"],
-                            "expiration_date": line["expiration_date"]
-                        }
+                        {"id": line["id"],
+                         "name": line["name"],
+                         "amount": int(line["amount"]) - amount,
+                         "buy_price": float(line["buy_price"]),
+                         "buy_date": line["buy_date"],
+                         "expiration_date": line["expiration_date"]
+                         }
                     )
                 else:
                     newLines.append(line)
-
         Inventory.reset(csv_path)
         for line in newLines:
             Inventory.appendToCsv(line["id"],
