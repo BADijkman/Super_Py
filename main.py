@@ -5,6 +5,7 @@ from handle_buy import handleBuy
 from handle_sell import handleSell
 from handle_date import Date
 from handle_report import handleReport
+from console import err_console
 
 
 base_path = os.getcwd()
@@ -28,6 +29,9 @@ def main():
         Date.set_date(parsed)
     elif hasattr(parsed, "report"):
         handleReport(parsed)
+    else:
+        err_console.print(
+            " error choose from 'buy', 'sell', 'advance-time', 'set-date', 'report'")
 
 
 if __name__ == "__main__":
